@@ -32,8 +32,6 @@ function showSlides(n) {
 //Latest events added
 let events = JSON.parse(localStorage.getItem("Event")) || []; // Use an empty array if null
 
-
-
 events.push({
   title: "free medical day",
   img: ["../image/freeday.png"],
@@ -60,3 +58,11 @@ events.forEach((event) => {
 
   cardContainer.appendChild(card);
 });
+function nav() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}

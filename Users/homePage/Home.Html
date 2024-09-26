@@ -11,20 +11,26 @@
     />
   </head>
   <body>
-    <header>
-      <nav class="nav">
-        <img src="..\image\Logonav.png" />
-        <div class="nav1">
+    <nav>
+      <div class="topnav" id="myTopnav">
+        <a href=""><img src="..\image\Logonav.png" /></a>
+        <div class="div1">
           <a href="#">About us</a>
           <a href="#">Event</a>
           <a href="#">Home</a>
         </div>
 
-        <div class="nav2">
+        <div>
           <a href="#"><i class="bi bi-moon-fill">Dark</i> </a>
         </div>
-      </nav>
-    </header>
+        <a
+          href="javascript:void(0);"
+          class="bi bi-list icon"
+          onclick="nav()"
+        ></a>
+      </div>
+    </nav>
+
     <div class="slideshow-container">
       <div class="mySlides fade">
         <img src="../image/slider1.jpg" />
