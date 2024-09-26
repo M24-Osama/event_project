@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="output"></p>
+    <script>
+      // Function to get URL parameters
+      function getUrlParams() {
+        const params = new URLSearchParams(window.location.search);
+
+        return {
+          title: params.get("title"),
+        };
+      }
+
+      // Display the data
+      const data = getUrlParams();
+      document.getElementById("output").innerText = `title: ${data.title}`;
+    </script>
+  </body>
+</html>

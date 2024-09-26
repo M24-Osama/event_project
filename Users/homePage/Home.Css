@@ -4,7 +4,6 @@
   padding: 0;
 }
 body {
-  font-family: Verdana, sans-serif;
   margin: 0;
   height: auto;
   
@@ -79,7 +78,7 @@ body {
   background-color: #2d9bf0;
 }
 .dot:hover {
-  background-color: rgb(45, 155, 240, 0.6);
+  background-color: #2d9bf099;
 }
 
 /* Fading animation */
@@ -87,23 +86,6 @@ body {
   animation-name: fade;
   animation-duration: 1.5s;
 }
-
-/* Latest events cards */
-.card {
-  text-align:center;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 16px;
-      margin: 8px;
-      width: 200px;
-      display: inline-block;
-      box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-  }
-  .card-container {
-      display: flex;
-      flex-wrap: wrap;
-  }
-
 
 @keyframes fade {
   from {
@@ -121,4 +103,45 @@ body {
   .text {
     font-size: 11px;
   }
+}
+
+/* Latest events cards */
+.card {
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 8px;
+  width: 300px;
+  display: inline-block;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  transition: scale 0.6s ease;
+}
+.card:hover {
+  scale: 1.07;
+}
+.card img {
+  margin: 10px;
+  border-radius: 18px;
+}
+.card a {
+  text-decoration: none;
+}
+.card h2 {
+  color: #2d9bf0;
+}
+.card p {
+  font-size: medium;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  color: #000;
+}
+.card h4 {
+  color: #2d9bf099;
+}
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
 }

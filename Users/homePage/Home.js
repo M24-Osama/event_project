@@ -29,54 +29,34 @@ function showSlides(n) {
   dots[slideIndex - 1].className += " active";
 }
 
-
 //Latest events added
-let events = [];
-events = JSON.parse(localStorage.getItem('Event'));
-  console.log(events);
+let events = JSON.parse(localStorage.getItem("Event")) || []; // Use an empty array if null
 
-  events.push(
-   {
-       title:"free medial day",
-       img:"../Assets/freeday.png",
-       desc:"this is a description for the event",
-       date:"12 nov 2024",
-       location:"Jordan/Irbid",
-   }
-  ) ;
-  events.push(
-   {
-       title:"free medial day",
-       img:"//Users/image/freeday.png",
-       desc:"another card with desc",
-       date:"12 nov 2024",
-       location:"Jordan/Irbid",
-   }
-  );
 
-  cardContainer = document.getElementById('card-container');
-        
-  events.forEach((event) => {
-   const card = document.createElement('div');
-   card.className = 'card';
 
-   const Title = document.createElement('h2');
-    Title.textContent = event.title;
-   
-    const Image = document.createElement('img');
-    Image.src = event.img;
-    Image.style.width = '100%';
+events.push({
+  title: "free medical day",
+  img: ["../image/freeday.png"],
+  desc: "Maintaining a healthy lifestyle is not just about exercising regularly or eating balanced meals; it's about finding a sustainable routine that promotes overall well-being.",
+  date: "12 nov 2024",
+  location: "Jordan/Irbid",
+});
 
-    const desc = document.createElement('p');
-    desc.textContent = event.desc;
-    
-    const loc = document.createElement('h4');
-    loc.textContent = event.location;
+cardContainer = document.getElementById("card-container");
 
-    card.appendChild(Image);
-    card.appendChild(Title);
-    card.appendChild(desc);
-    card.appendChild(loc);
-      
-    cardContainer.appendChild(card);
-  });
+events.forEach((event) => {
+  const card = document.createElement("div");
+  card.className = "card";
+  card.innerHTML = `
+  <a href="../HTML/EventDetails.html?title=${event.title}&img=${event.img}&desc=${event.desc}&date=${event.date}&location=${event.location}">
+  <img src="${event.img[0]}" style="width: 100%;">
+  <h2>${event.title}</h2>
+  <br>
+  <p>${event.desc}</p>
+  <br>
+  <h4>${event.location}</h4>
+  </a>
+`;
+
+  cardContainer.appendChild(card);
+});
