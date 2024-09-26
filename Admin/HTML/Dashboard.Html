@@ -25,15 +25,24 @@
     </nav>
     <div class="page">
       <div class="container">
-        <input class="btn" type="button" value="Add Event" />
-        <input class="btn" type="button" value="Add Admin " />
+        <div class="btn">
+          <a href="Registration.html">Add Admin </a>
+        </div>
+        <div class="btn">
+          <a href="Registration.html">Add Event </a>
+        </div>
         <div class="search-container">
           <input
+            id="search"
             type="text"
             class="search-input"
             placeholder="Search about event"
           />
-          <div class="bi bi-search search-icon"></div>
+          <div
+            id="search-icon"
+            class="bi bi-search search-icon"
+            onclick="search(event)"
+          ></div>
         </div>
       </div>
       <br />
