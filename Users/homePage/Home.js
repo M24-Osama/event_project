@@ -32,14 +32,7 @@ function showSlides(n) {
 //Latest events added
 let events = JSON.parse(localStorage.getItem("Event")) || []; // Use an empty array if null
 
-// Push new event data
-events.push({
-  title: "free medical day",
-  img: ["../image/freeday.png"],
-  desc: "Maintaining a healthy lifestyle is not just about exercising regularly or eating balanced meals; it's about finding a sustainable routine that promotes overall well-being.",
-  date: "12 nov 2024",
-  location: "Jordan/Irbid",
-});
+
 
 events.push({
   title: "free medical day",
