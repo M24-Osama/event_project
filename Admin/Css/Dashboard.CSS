@@ -121,6 +121,7 @@ nav {
   z-index: 2;
   font-size: x-large;
   border: 1px solid #ccc;
+  cursor: pointer;
 }
 .search-icon:hover {
   background-color: #2d9bf099;
@@ -135,6 +136,7 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 .btn a {
   color: #000;
@@ -184,6 +186,16 @@ th {
   border-radius: 8px;
   background-color: #2d9bf0;
   border: 1px solid #ccc;
+  cursor: pointer;
+}
+.btnEvent:hover {
+  background-color: #2d9bf099;
+}
+.red {
+  background-color: rgb(255, 0, 0);
+}
+.red:hover {
+  background-color: rgb(255, 0, 0, 0.7);
 }
 .card {
   display: auto;

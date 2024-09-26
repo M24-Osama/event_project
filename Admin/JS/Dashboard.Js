@@ -48,7 +48,7 @@ events.forEach((event) => {
     <td><div class = "desc">${event.desc}</div></td>
     <td>  
         <div class="btnEvent" ><i class="bi bi-pen-fill"> Edit</i></div>
-        <div class="btnEvent" style="background-color: red "> <i class="bi bi-trash-fill" style="color: white;"> Delete</i> </div>
+        <div class="btnEvent red"> <span class="bi bi-trash-fill" style="color: white;"> Delete</span> </div>
     </td>
 `;
   count += 1;
@@ -56,7 +56,7 @@ events.forEach((event) => {
 });
 
 let searchInput = document.getElementById("search");
-
+//searchInput.addEventListener("input", search);
 function search(e) {
   console.log(e);
   const value = (e.target.value || searchInput.value).toLowerCase();
