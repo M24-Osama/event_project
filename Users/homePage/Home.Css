@@ -135,7 +135,7 @@ body {
 .card a {
   text-decoration: none;
 }
-.card h2 {
+h2 {
   color: #2d9bf0;
 }
 .card p {
@@ -151,11 +151,22 @@ body {
 }
 .card-container {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
+  width: 85%;
+}
+
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 100%;
 }
 
 /*start global rules*/
-/*google font */
 
 .light {
   margin-left: 60px;

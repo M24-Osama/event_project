@@ -32,17 +32,64 @@ function showSlides(n) {
 //Latest events added
 let events = JSON.parse(localStorage.getItem("Event")) || []; // Use an empty array if null
 
-events.push({
-  title: "free medical day",
-  img: ["../image/freeday.png"],
-  desc: "Maintaining a healthy lifestyle is not just about exercising regularly or eating balanced meals; it's about finding a sustainable routine that promotes overall well-being.",
-  date: "12 nov 2024",
-  location: "Jordan/Irbid",
-});
-
+events.push(
+  {
+    id: 1,
+    title: "free medical day",
+    img: ["../image/freeday.png"],
+    desc: "Maintaining a healthy lifestyle is not just about exercising regularly or eating balanced meals; it's about finding a sustainable routine that promotes overall well-being.",
+    date: "12 nov 2024",
+    location: "Jordan/Irbid",
+  },
+  {
+    id: 1,
+    title: "free medical day",
+    img: ["../image/freeday.png"],
+    desc: "Maintaining a healthy lifestyle is not just about exercising regularly or eating balanced meals; it's about finding a sustainable routine that promotes overall well-being.",
+    date: "12 nov 2024",
+    location: "Jordan/Irbid",
+  },
+  {
+    id: 1,
+    title: "free medical day",
+    img: ["../image/freeday.png"],
+    desc: "Maintaining a healthy lifestyle is not just about exercising regularly or eating balanced meals; it's about finding a sustainable routine that promotes overall well-being.",
+    date: "12 nov 2024",
+    location: "Jordan/Irbid",
+  },
+  {
+    id: 1,
+    title: "free medical day",
+    img: ["../image/freeday.png"],
+    desc: "Maintaining a healthy lifestyle is not just about exercising regularly or eating balanced meals; it's about finding a sustainable routine that promotes overall well-being.",
+    date: "12 nov 2024",
+    location: "Jordan/Irbid",
+  },
+  {
+    id: 1,
+    title: "free medical day",
+    img: ["../image/freeday.png"],
+    desc: "Maintaining a healthy lifestyle is not just about exercising regularly or eating balanced meals; it's about finding a sustainable routine that promotes overall well-being.",
+    date: "12 nov 2024",
+    location: "Jordan/Irbid",
+  },
+  {
+    id: 1,
+    title: "free medical day",
+    img: ["../image/freeday.png"],
+    desc: "Maintaining a healthy lifestyle is not just about exercising regularly or eating balanced meals; it's about finding a sustainable routine that promotes overall well-being.",
+    date: "2 nov 2023",
+    location: "Jordan/Irbid",
+  }
+);
+// latest events
 cardContainer = document.getElementById("card-container");
-
-events.forEach((event) => {
+let cont = 0;
+events.reverse().forEach((event) => {
+  if (cont == 4) {
+    return;
+  }
+  cont += 1;
   const card = document.createElement("div");
   card.className = "card";
   card.innerHTML = `
@@ -52,12 +99,46 @@ events.forEach((event) => {
   <br>
   <p>${event.desc}</p>
   <br>
+  <h4>${event.date}</h4>
   <h4>${event.location}</h4>
+  
   </a>
 `;
 
   cardContainer.appendChild(card);
 });
+
+// starting soon
+cardContainer = document.getElementById("card-container-soon");
+let contSoon = 0;
+events.sort((a, b) => {
+  const dateA = new Date(a.date);
+  const dateB = new Date(b.date);
+  return dateA - dateB;
+});
+events.reverse().forEach((event) => {
+  if (contSoon == 4) {
+    return;
+  }
+  contSoon += 1;
+  const card = document.createElement("div");
+  card.className = "card";
+  card.innerHTML = `
+    <a href="../HTML/EventDetails.html?title=${event.title}&img=${event.img}&desc=${event.desc}&date=${event.date}&location=${event.location}">
+    <img src="${event.img[0]}" style="width: 100%;">
+    <h2>${event.title}</h2>
+    <br>
+    <p>${event.desc}</p>
+    <br>
+  <h4>${event.date}</h4>
+
+    <h4>${event.location}</h4>
+    </a>
+  `;
+
+  cardContainer.appendChild(card);
+});
+// nav
 function nav() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
