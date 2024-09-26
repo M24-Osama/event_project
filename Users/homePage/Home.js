@@ -47,12 +47,12 @@ events = JSON.parse(localStorage.getItem('Event'));
   events.push(
    {
        title:"free medial day",
-       img:"../Users/image/freeday.png",
+       img:"//Users/image/freeday.png",
        desc:"another card with desc",
        date:"12 nov 2024",
        location:"Jordan/Irbid",
    }
-  ) ;
+  );
 
   cardContainer = document.getElementById('card-container');
         
