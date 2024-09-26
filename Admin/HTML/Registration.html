@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Registration</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(90deg, #a7def2, #1fa0e1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .registration-container {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 700px;
+      }
+
+      .registration-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+      }
+
+      .image-section {
+        flex: 1;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .image-section img {
+        max-width: 100%;
+        border-radius: 50%;
+        width: 220px;
+        height: 280px;
+      }
+
+      .form-section {
+        flex: 1;
+        padding: 20px;
+      }
+
+      .form-section h2 {
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: #333;
+        text-align: center;
+      }
+
+      .input-group {
+        position: relative;
+        margin-bottom: 15px;
+      }
+
+      .input-group input {
+        width: 85%;
+        padding: 10px 10px 15px 40px;
+        border: 2px solid #ddd;
+        border-radius: 25px;
+        background-color: #f7f7f7;
+        font-size: 13px;
+        outline: none;
+        margin-bottom: 5px;
+      }
+
+      .input-group input:focus {
+        border-color: #2d9bf0;
+      }
+
+      .input-group .input-icon {
+        position: absolute;
+        top: 50%;
+        left: 15px;
+        transform: translateY(-50%);
+        font-size: 16px;
+        color: gray;
+      }
+
+      .register-button {
+        width: 100%;
+        padding: 10px 0;
+        border: none;
+        border-radius: 30px;
+        background-color: #2d9bf0;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+        margin-bottom: 20px;
+        transition: background-color 0.3s ease;
+      }
+
+      .register-button:hover {
+        background-color: #007bb5;
+      }
+
+      .register-links {
+        text-align: center;
+        font-size: 14px;
+        color: #777;
+      }
+
+      .register-links a {
+        color: #2d9bf0;
+        text-decoration: none;
+        display: inline;
+      }
+
+      .register-links a:hover {
+        text-decoration: underline;
+      }
+
+      .error-message {
+        color: red;
+        font-size: 12px;
+        text-align: left;
+        margin-top: -10px;
+        margin-bottom: 10px;
+      }
+
+      @media screen and (max-width: 768px) {
+        .registration-container {
+          flex-direction: column;
+          width: 90%;
+          padding: 20px;
+        }
+
+        .registration-card {
+          flex-direction: column;
+        }
+
+        .image-section img {
+          width: 180px;
+          height: 180px;
+        }
+
+        .form-section {
+          padding: 10px;
+        }
+
+        .input-group input {
+          width: 100%;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .registration-container {
+          width: 100%;
+          padding: 15px;
+        }
+
+        .image-section img {
+          width: 150px;
+          height: 150px;
+        }
+
+        .form-section h2 {
+          font-size: 20px;
+        }
+
+        .input-group input {
+          font-size: 12px;
+        }
+
+        .register-button {
+          padding: 8px 0;
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="registration-container">
+      <div class="registration-card">
+        <div class="image-section">
+          <img src="../image/Health.png" alt="Profile Image" />
+        </div>
+
+        <div class="form-section">
+          <h2>Admin Registration</h2>
+          <form id="registration-form">
+            <div class="input-group">
+              <span class="input-icon fa fa-user"></span>
+              <input type="text" id="name" placeholder="Name" required />
+              <div class="error-message" id="name-error"></div>
+            </div>
+
+            <div class="input-group">
+              <span class="input-icon fa fa-envelope"></span>
+              <input type="email" id="email" placeholder="Email" required />
+              <div class="error-message" id="email-error"></div>
+            </div>
+
+            <div class="input-group">
+              <span class="input-icon fa fa-lock"></span>
+              <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                required
+              />
+              <div class="error-message" id="password-error"></div>
+            </div>
+
+            <div class="input-group">
+              <span class="input-icon fa fa-lock"></span>
+              <input
+                type="password"
+                id="confirm-password"
+                placeholder="Confirm Password"
+                required
+              />
+              <div class="error-message" id="confirm-password-error"></div>
+            </div>
+
+            <button type="submit" class="register-button">Register</button>
+
+            <div class="register-links">
+              Already have an account? <a href="Login.html">Login here</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("registration-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          document.getElementById("name-error").innerText = "";
+          document.getElementById("email-error").innerText = "";
+          document.getElementById("password-error").innerText = "";
+          document.getElementById("confirm-password-error").innerText = "";
+
+          const name = document.getElementById("name").value.trim();
+          const email = document.getElementById("email").value.trim();
+          const password = document.getElementById("password").value;
+          const confirmPassword =
+            document.getElementById("confirm-password").value;
+
+          let isValid = true;
+
+          if (name === "") {
+            document.getElementById("name-error").innerText =
+              "Name is required";
+            isValid = false;
+          }
+
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailPattern.test(email)) {
+            document.getElementById("email-error").innerText =
+              "Invalid email address";
+            isValid = false;
+          }
+
+          if (password.length < 6) {
+            document.getElementById("password-error").innerText =
+              "Password must be at least 6 characters";
+            isValid = false;
+          }
+
+          if (password !== confirmPassword) {
+            document.getElementById("confirm-password-error").innerText =
+              "Passwords do not match";
+            isValid = false;
+          }
+
+          if (isValid) {
+            const existingData =
+              JSON.parse(localStorage.getItem("adminData")) || [];
+
+            if (existingData.some((user) => user.email === email)) {
+              document.getElementById("email-error").innerText =
+                "Email already exists";
+              isValid = false;
+            }
+          }
+
+          if (isValid) {
+            const userData = {
+              name: name,
+              email: email,
+              password: password,
+            };
+
+            let existingData;
+            try {
+              existingData = JSON.parse(localStorage.getItem("adminData"));
+            } catch (e) {
+              existingData = [];
+            }
+
+            if (!Array.isArray(existingData)) {
+              existingData = [];
+            }
+
+            existingData.push(userData);
+
+            localStorage.setItem("adminData", JSON.stringify(existingData));
+            alert("Registration successful!");
+          }
+        });
+    </script>
+  </body>
+</html>

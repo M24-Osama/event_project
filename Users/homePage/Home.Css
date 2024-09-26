@@ -47,7 +47,10 @@ body {
 
 /* Position the "next button" to the right */
 .next {
-  right: 0;
+  right: 6%;
+}
+.prev {
+  left: 6%;
 }
 
 /* On hover, add a black background color with a little bit see-through */
@@ -156,27 +159,6 @@ body {
 
 .light {
   margin-left: 60px;
-}
-
-.nav1 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 50%;
-}
-.nav2 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.nav {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 100%;
 }
 
 .topnav {
@@ -293,4 +275,135 @@ nav {
     left: 0px;
     top: 0px;
   }
+}
+
+/*reg*/
+
+.about {
+  background: #f4f4f4;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 85%;
+  margin: 0 auto;
+}
+
+.about {
+  margin-bottom: 1rem;
+}
+
+.about p {
+  font-style: italic;
+  color: #555;
+}
+
+.about .author {
+  font-weight: bold;
+  color: #2d9bf0;
+}
+
+.footer {
+  background-color: #c0edff;
+  padding: 5px;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 250px;
+}
+
+.footer .left-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer .logo img {
+  width: 250px;
+  height: auto;
+}
+
+.footer .social-icons {
+  display: flex;
+  justify-content: center;
+  transform: translateX(-30px);
+  margin-bottom: 10px;
+}
+
+.footer .social-icons a {
+  margin: 0 12px;
+  color: #2d9bf0;
+  font-size: 22px;
+  text-decoration: none;
+}
+
+.footer .social-icons a:hover {
+  color: black;
+}
+
+.footer .copyright {
+  color: black;
+  margin-top: 10px;
+  transform: translateX(-30px);
+}
+
+.footer .center-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer .form-section {
+  display: flex;
+  flex-direction: column;
+  max-width: 350px;
+  width: 100%;
+  align-items: normal;
+}
+
+.footer .form-section input,
+.footer .form-section textarea {
+  width: 90%;
+  padding: 6px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 13px;
+}
+
+.footer .form-section input {
+  height: 28px;
+}
+
+.footer .form-section textarea {
+  resize: none;
+  height: 70px;
+}
+
+.footer .form-section input:focus,
+.footer .form-section textarea:focus {
+  border-color: #2d9bf0;
+  outline: none;
+  box-shadow: 0 0 5px rgba(45, 155, 240, 0.5);
+}
+
+.footer .form-section button {
+  width: 90%;
+  padding: 8px;
+  background-color: #2d9bf0;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.footer .form-section button:hover {
+  background-color: #007bb5;
 }

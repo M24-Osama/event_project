@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="../CSS/Dashboard.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="topnav" id="myTopnav">
+        <a href=""><img src="..\image\Logonav.png" /></a>
+        <div class="div1">
+          <p>Dashboard</p>
+        </div>
+
+        <div>
+          <a href="#"><i>Log out</i> </a>
+        </div>
+      </div>
+    </nav>
+    <div class="page">
+      <div class="container">
+        <input class="btn" type="button" value="Add Event" />
+        <input class="btn" type="button" value="Add Admin " />
+        <div class="search-container">
+          <input
+            type="text"
+            class="search-input"
+            placeholder="Search about event"
+          />
+          <div class="bi bi-search search-icon"></div>
+        </div>
+      </div>
+      <br />
+      <br />
+      <div class="table">
+        <table id="tableEvent">
+          <th class="thw10">#</th>
+          <th class="thw10">ID</th>
+          <th class="thw20">Event's Name</th>
+          <th class="thw20">Date</th>
+          <th class="thw20">Location</th>
+          <th class="thw20">Description</th>
+          <th class="thw20">Action</th>
+        </table>
+      </div>
+    </div>
+    <script src="../JS/Dashboard.js"></script>
+  </body>
+</html>

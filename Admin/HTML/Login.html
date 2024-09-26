@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(90deg, #a7def2, #1fa0e1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .login-container {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 700px;
+        max-width: 100%;
+      }
+
+      .login-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        flex-wrap: wrap;
+      }
+
+      .image-section {
+        flex: 1;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .image-section img {
+        max-width: 100%;
+        border-radius: 50%;
+        width: 180px;
+        height: 180px;
+      }
+
+      .form-section {
+        flex: 1;
+        padding: 20px;
+      }
+
+      .form-section h2 {
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: #333;
+        text-align: center;
+      }
+
+      .input-group {
+        position: relative;
+        margin-bottom: 15px;
+      }
+
+      .input-group input {
+        width: 85%;
+        padding: 8px 10px 8px 40px;
+        border: 2px solid #ddd;
+        border-radius: 25px;
+        background-color: #f7f7f7;
+        font-size: 13px;
+        outline: none;
+      }
+
+      .input-group input:focus {
+        border-color: #2d9bf0;
+      }
+
+      .input-group .input-icon {
+        position: absolute;
+        top: 50%;
+        left: 15px;
+        transform: translateY(-50%);
+        font-size: 16px;
+        color: gray;
+      }
+
+      .login-button {
+        width: 100%;
+        padding: 10px 0;
+        border: none;
+        border-radius: 30px;
+        background-color: #2d9bf0;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+        margin-bottom: 20px;
+        transition: background-color 0.3s ease;
+      }
+
+      .login-button:hover {
+        background-color: #007bb5;
+      }
+
+      @media screen and (max-width: 768px) {
+        .login-container {
+          flex-direction: column;
+          width: 90%;
+          padding: 20px;
+        }
+
+        .login-card {
+          flex-direction: column;
+        }
+
+        .image-section,
+        .form-section {
+          padding: 10px;
+        }
+
+        .input-group input {
+          width: 100%;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .form-section h2 {
+          font-size: 20px;
+        }
+
+        .input-group input {
+          padding: 8px 10px 8px 35px;
+          font-size: 12px;
+        }
+
+        .login-button {
+          font-size: 14px;
+          padding: 8px 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="login-container">
+      <div class="login-card">
+        <div class="image-section">
+          <img src="../image/Health.png" alt="Profile Image" />
+        </div>
+
+        <div class="form-section">
+          <h2>Admin Login</h2>
+          <form id="loginForm">
+            <div class="input-group">
+              <span class="input-icon fa fa-envelope"></span>
+              <input type="email" id="email" placeholder="Email" required />
+            </div>
+
+            <div class="input-group">
+              <span class="input-icon fa fa-lock"></span>
+              <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                required
+              />
+            </div>
+
+            <button type="submit" class="login-button">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+
+          const storedUsers = JSON.parse(localStorage.getItem("adminData"));
+
+          const matchingUser = storedUsers.find((user) => user.email === email);
+
+          if (matchingUser && matchingUser.password === password) {
+            window.location.href = "Dashboard.html";
+          } else {
+            alert("Invalid email or password. Please try again.");
+          }
+        });
+    </script>
+  </body>
+</html>

@@ -66,3 +66,39 @@ function nav() {
     x.className = "topnav";
   }
 }
+
+document.getElementById("submitBtn").addEventListener("click", function (e) {
+  e.preventDefault();
+
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const comment = document.getElementById("comment").value.trim();
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!name || !email || !comment) {
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  if (!emailRegex.test(email)) {
+    alert("Please enter a valid email address.");
+    return;
+  }
+
+  let formData = JSON.parse(localStorage.getItem("formData")) || [];
+
+  const newEntry = { name, email, comment };
+
+  formData.push(newEntry);
+
+  localStorage.setItem("formData", JSON.stringify(formData));
+
+  alert("Form submitted!");
+});
+
+window.onload = function () {
+  document.getElementById("name").value = "";
+  document.getElementById("email").value = "";
+  document.getElementById("comment").value = "";
+};

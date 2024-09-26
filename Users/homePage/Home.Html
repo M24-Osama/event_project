@@ -9,6 +9,10 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
   </head>
   <body>
     <nav>
@@ -55,6 +59,7 @@
       ></a>
     </div>
     <br />
+    <br />
 
     <div style="text-align: center">
       <span class="dot" onclick="currentSlide(1)"></span>
@@ -66,6 +71,54 @@
     <br /><br />
 
     <div class="card-container" id="card-container"></div>
+    <br /><br />
+    <section id="about">
+      <div class="about">
+        <div class="author"><h2>About Us</h2></div>
+        <p>
+          "We are dedicated to promoting health and wellness through our
+          comprehensive medical events. Whether it’s first aid training, health
+          workshops, or monthly health seminars, our mission is to empower
+          individuals with the knowledge and skills necessary to respond
+          effectively in emergencies and improve their overall well-being. We
+          believe that education is the key to better health outcomes, and our
+          events are designed to provide practical, hands-on training and
+          insights from experienced professionals in the medical field. Join us
+          in our commitment to fostering a healthier community through regular
+          engagement and learning opportunities!"
+        </p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="left-section">
+        <div class="logo">
+          <img src="../image/Logo1.png" alt="Company Logo" />
+        </div>
+      </div>
+
+      <div class="center-section">
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="mailto:your-email@gmail.com"
+            ><i class="fas fa-envelope"></i
+          ></a>
+        </div>
+
+        <div class="copyright">
+          &copy; 2024 Eventak Plus. All rights reserved.
+        </div>
+      </div>
+
+      <div class="form-section">
+        <input type="text" id="name" placeholder="Your Name" required />
+        <input type="email" id="email" placeholder="Your Email" required />
+        <textarea id="comment" placeholder="Your Comment" required></textarea>
+        <button type="submit" id="submitBtn">Submit</button>
+      </div>
+    </footer>
 
     <script src="Home.js"></script>
   </body>
