@@ -15,9 +15,10 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
   </head>
-  <body>
-    <nav>
-      <div class="topnav" id="myTopnav">
+  <div class="body">
+  <body id="body">
+    <nav >
+      <div class="topnav" id="myTopnav" >
         <a href=""><img src="..\image\Logonav.png" /></a>
         <div class="div1">
           <a href="#about"><i class="bi bi-person-vcard-fill"> About us</i></a>
@@ -25,10 +26,10 @@
           <a href="#"><i class="bi bi-house-door-fill activeNav"> Home</i></a>
         </div>
 
-        <div>
-          <a href="#"
-            ><i class="bi bi-moon-fill" style="color: #fff"></i> Dark
-          </a>
+        <div class="moon">
+          <a href="#" id="dark"
+            ><i  id="dark" class="bi bi-moon-fill" ></i> 
+        </a>
         </div>
         <a
           href="javascript:void(0);"
@@ -64,7 +65,7 @@
     <br />
     <br />
 
-    <div style="text-align: center">
+    <div id="dot" style="text-align: center">
       <span class="dot" onclick="currentSlide(1)"></span>
       <span class="dot" onclick="currentSlide(2)"></span>
       <span class="dot" onclick="currentSlide(3)"></span>
@@ -141,7 +142,17 @@
         </div>
       </div>
     </footer>
-
+<!-- start dark mood script-->
     <script src="Home.js"></script>
+    <script>
+    const dark=document.getElementById("dark");
+    const body=document.getElementById("body");
+    dark.addEventListener("click",()=>{
+      body.classList.toggle("darkMood")
+    })
+
+    </script>
+ <!-- end dark mood script-->
   </body>
+  </div>
 </html>

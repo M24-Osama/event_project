@@ -10,6 +10,7 @@
   scroll-behavior: smooth;
   font-style: normal;
 }
+
 body {
   margin: 0;
   height: auto;
@@ -484,4 +485,71 @@ footer {
   .footer {
     flex-direction: row;
   }
+}
+/*dark mood*/
+nav .moon a{
+ 
+  font-size: 30px;
+  color:black;
+}
+
+
+.darkMood .topnav{
+  background-color: black;
+  color: #f4f4f4;
+  color: #2d9bf0;
+}
+
+.darkMood .moon a i{
+  color: white;
+}
+.darkMood nav  .topnav .div1 a{
+  color: #2d9bf0;
+}
+.darkMood .page {
+ background-color:black; 
+ color:white;
+}
+
+.darkMood .card p{
+  color:white;
+}
+.darkMood .card{
+ background-color: rgb(25, 25, 67);  
+}
+.darkMood nav  .topnav  img{
+  border: #f2f2f2;
+  background-color: #f4f4f4;
+  border-radius: 30px;
+}
+.darkMood #about{
+   background-color:black; 
+}
+.darkMood  #about h2{
+  color: #2d9bf0;
+}
+.darkMood  #about p{
+  color:white;
+}
+.darkMood  #about .about{
+   background-color: rgb(25, 25, 67); 
+  
+}
+.darkMood  footer {
+  background-color: rgb(25, 25, 67); 
+  
+}
+.darkMood .footer{
+     background-color: rgb(25, 25, 67); ; 
+}
+.darkMood .footer .logo img{
+   border: #f2f2f2;
+  background-color: #f4f4f4;
+  border-radius: 100%;
+}
+.darkMood .footer .copyright{
+  color:white;
+}
+.darkMood .body {
+  background-color: #000;
 }
