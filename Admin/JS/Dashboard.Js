@@ -56,16 +56,17 @@ events.forEach((event) => {
 });
 
 let searchInput = document.getElementById("search");
-//searchInput.addEventListener("input", search);
+searchInput.addEventListener("input", search);
 function search(e) {
   console.log(e);
   const value = (e.target.value || searchInput.value).toLowerCase();
   const cards = document.getElementsByClassName("card");
   Array.from(cards).forEach((card) => {
-    const id = card.children[0].textContent.toLowerCase();
+    const id = card.children[1].textContent.toLowerCase();
     const title = card.children[2].textContent.toLowerCase();
+    const loc = card.children[4].textContent.toLowerCase();
 
-    if (title.includes(value) || id.includes(value)) {
+    if (title.includes(value) || id.includes(value) || loc.includes(value)) {
       card.style.display = "";
     } else {
       card.style.display = "none";
