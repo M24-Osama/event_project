@@ -19,9 +19,9 @@
       <div class="topnav" id="myTopnav">
         <a href=""><img src="..\image\Logonav.png" /></a>
         <div class="div1">
-          <a href="#">About us</a>
-          <a href="#">Event</a>
-          <a href="#">Home</a>
+          <a href="#about"><i class="bi bi-person-vcard-fill"> About us</i></a>
+          <a href="#"><i class="bi bi-calendar2-event-fill"> Event</i></a>
+          <a href="#"><i class="bi bi-house-door-fill activeNav"> Home</i></a>
         </div>
 
         <div>
@@ -103,34 +103,41 @@
         </p>
       </div>
     </section>
-
-    <footer class="footer">
-      <div class="left-section">
-        <div class="logo">
-          <img src="../image/Logo1.png" alt="Company Logo" />
+    <br /><br />
+    <footer>
+      <div class="footer">
+        <div class="left-section">
+          <div class="logo">
+            <img src="../image/Logo1.png" alt="Company Logo" />
+          </div>
         </div>
-      </div>
+        <div class="rghit-section">
+          <div class="center-section">
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-whatsapp"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              <a href="mailto:your-email@gmail.com"
+                ><i class="fas fa-envelope"></i
+              ></a>
+            </div>
 
-      <div class="center-section">
-        <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-whatsapp"></i></a>
-          <a href="#"><i class="fab fa-linkedin-in"></i></a>
-          <a href="mailto:your-email@gmail.com"
-            ><i class="fas fa-envelope"></i
-          ></a>
+            <div class="copyright">
+              &copy; 2024 Eventak Plus. All rights reserved.
+            </div>
+          </div>
+
+          <div class="form-section">
+            <input type="text" id="name" placeholder="Your Name" required />
+            <input type="email" id="email" placeholder="Your Email" required />
+            <textarea
+              id="comment"
+              placeholder="Your Comment"
+              required
+            ></textarea>
+            <button type="submit" id="submitBtn">Submit</button>
+          </div>
         </div>
-
-        <div class="copyright">
-          &copy; 2024 Eventak Plus. All rights reserved.
-        </div>
-      </div>
-
-      <div class="form-section">
-        <input type="text" id="name" placeholder="Your Name" required />
-        <input type="email" id="email" placeholder="Your Email" required />
-        <textarea id="comment" placeholder="Your Comment" required></textarea>
-        <button type="submit" id="submitBtn">Submit</button>
       </div>
     </footer>
 
