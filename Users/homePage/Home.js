@@ -49,6 +49,7 @@ events.push(
     img: ["../image/freeday.png"],
     desc: "Maintaining a healthy lifestyle is not just about exercising regularly or eating balanced meals; it's about finding a sustainable routine that promotes overall well-being.",
     date: "12 nov 2024",
+    time: "12:00",
     location: "Jordan/Irbid",
   },
   {
@@ -57,6 +58,7 @@ events.push(
     img: ["../image/freeday.png"],
     desc: "Maintaining a healthy lifestyle is not just about exercising regularly or eating balanced meals; it's about finding a sustainable routine that promotes overall well-being.",
     date: "12 nov 2024",
+    time: "12:00",
     location: "Jordan/Irbid",
   },
   {
@@ -65,6 +67,7 @@ events.push(
     img: ["../image/freeday.png"],
     desc: "Maintaining a healthy lifestyle is not just about exercising regularly or eating balanced meals; it's about finding a sustainable routine that promotes overall well-being.",
     date: "12 nov 2024",
+    time: "12:00",
     location: "Jordan/Irbid",
   },
   {
