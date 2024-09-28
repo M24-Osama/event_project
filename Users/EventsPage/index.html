@@ -1,147 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Events Page</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
     />
-        <style>
-            .hide{
-                display: none;
-            }
-        </style>
-    
-</head>
-<body>
-    
-
+    <style>
+      .hide {
+        display: none;
+      }
+    </style>
+  </head>
+  <body id="body">
     <nav>
-        <div class="topnav" id="myTopnav">
-          <a href=""><img src="/Users/image/Logonav.png" /></a>
-          <div class="div1">
-            <a href="#about"><i class="bi bi-person-vcard-fill"> About us</i></a>
-            <a href="#"><i class="bi bi-calendar2-event-fill"> Event</i></a>
-            <a href="#"><i class="bi bi-house-door-fill activeNav"> Home</i></a>
-          </div>
-  
-          <div>
-            <a href="#"
-              ><i class="bi bi-moon-fill" style="color: #fff"></i> Dark
-            </a>
-          </div>
-          <a
-            href="javascript:void(0);"
-            class="bi bi-list icon"
-            onclick="nav()"
-          ></a>
+      <div class="topnav" id="myTopnav">
+        <a><img src="..\image\Logonav.png" /></a>
+        <div class="div1">
+          <a href="#about"><i class="bi bi-person-vcard-fill"> About us</i></a>
+          <a href="#"
+            ><i class="bi bi-calendar2-event-fill activeNav"> Event</i></a
+          >
+          <a href="../homePage/Home.Html"
+            ><i class="bi bi-house-door-fill"> Home</i></a
+          >
         </div>
-      </nav>
 
-
-
-    <div class="content">
-      
+        <div onclick="darkMood()" class="moon">
+          <a href="javascript:void(0);" id="dark"
+            ><i id="dark" class="bi bi-moon-fill"></i>
+          </a>
+        </div>
+        <a
+          href="javascript:void(0);"
+          class="bi bi-list icon"
+          onclick="nav()"
+        ></a>
+      </div>
+    </nav>
+    <div class="page">
+      <div class="content">
         <div class="search-container">
-          
-
-            <input type="search" id="search" placeholder="Search for an Event!">
+          <input type="search" id="search" placeholder="Search for an Event!" />
         </div>
+      </div>
+      <div class="title">
+        <h1>All evnts that match your serach:</h1>
+      </div>
+
+      <div id="eventsContainer1" class="events-container"></div>
+      <div id="eventsContainer2" class="events-container"></div>
+      <div id="eventsContainer3" class="events-container"></div>
+      <div id="eventsContainer4" class="events-container"></div>
+      <div id="eventsContainer5" class="events-container"></div>
+      <div id="eventsContainer6" class="events-container"></div>
+
+      <br /><br />
+      <div class="pagination">
+        <button id="prev" class="prevp" onclick="prevBtn()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="40px"
+            viewBox="0 -960 960 960"
+            width="30px"
+          >
+            <path
+              d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"
+            />
+          </svg>
+        </button>
+        <ul>
+          <li class="link active" value="1" onclick="activeLink()">1</li>
+          <li class="link" value="2" onclick="activeLink()">2</li>
+          <li class="link" value="3" onclick="activeLink()">3</li>
+          <li class="link" value="4" onclick="activeLink()">4</li>
+          <li class="link" value="5" onclick="activeLink()">5</li>
+          <li class="link" value="6" onclick="activeLink()">6</li>
+        </ul>
+        <button id="next" class="nextp" onclick="nextBtn()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="40px"
+            viewBox="0 -960 960 960"
+            width="30px"
+            transform="rotate(180)"
+          >
+            <path
+              d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"
+            />
+          </svg>
+        </button>
+      </div>
+      <br />
+      <section id="about">
+        <div class="about">
+          <div class="author"><h2>About Us</h2></div>
+          <p>
+            "We are dedicated to promoting health and wellness through our
+            comprehensive medical events. Whether it’s first aid training,
+            health workshops, or monthly health seminars, our mission is to
+            empower individuals with the knowledge and skills necessary to
+            respond effectively in emergencies and improve their overall
+            well-being. We believe that education is the key to better health
+            outcomes, and our events are designed to provide practical, hands-on
+            training and insights from experienced professionals in the medical
+            field. Join us in our commitment to fostering a healthier community
+            through regular engagement and learning opportunities!"
+          </p>
+        </div>
+      </section>
+      <br /><br /><br />
     </div>
-        <div class="title">
-          <h1>All evnts that match your serach:</h1>
+    <footer>
+      <div class="footer">
+        <div class="left-section">
+          <div class="logo">
+            <img src="../image/Logo1.png" alt="Company Logo" />
+          </div>
+        </div>
+        <div class="rghit-section">
+          <div class="center-section">
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-whatsapp"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              <a href="mailto:your-email@gmail.com"
+                ><i class="fas fa-envelope"></i
+              ></a>
             </div>
-           
 
-                <div id="eventsContainer1" class="events-container"></div>
-                <div id="eventsContainer2" class="events-container"></div>
-                <div id="eventsContainer3" class="events-container"></div>
-                <div id="eventsContainer4" class="events-container"></div>
-                <div id="eventsContainer5" class="events-container"></div>
-                <div id="eventsContainer6" class="events-container"></div>
-
-               
-            
-            <br><br><br>
-              <div class="pagination">
-                <button id="prev" onclick="prevBtn()"><svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="30px" ><path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/></svg></button>
-                <ul>
-                    <li class="link active" value="1" onclick="activeLink()">1</li>
-                    <li class="link" value="2" onclick="activeLink()">2</li>
-                    <li class="link" value="3" onclick="activeLink()">3</li>
-                    <li class="link" value="4" onclick="activeLink()">4</li>
-                    <li class="link" value="5" onclick="activeLink()">5</li>
-                    <li class="link" value="6" onclick="activeLink()">6</li>
-                </ul>
-                <button id="next" onclick="nextBtn()"><svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="30px" transform="rotate(180)" ><path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/></svg></button>
-              </div>
-              <section id="about">
-                <div class="about">
-                  <div class="author"><h2>About Us</h2></div>
-                  <p>
-                    "We are dedicated to promoting health and wellness through our
-                    comprehensive medical events. Whether it’s first aid training,
-                    health workshops, or monthly health seminars, our mission is to
-                    empower individuals with the knowledge and skills necessary to
-                    respond effectively in emergencies and improve their overall
-                    well-being. We believe that education is the key to better health
-                    outcomes, and our events are designed to provide practical,
-                    hands-on training and insights from experienced professionals in
-                    the medical field. Join us in our commitment to fostering a
-                    healthier community through regular engagement and learning
-                    opportunities!"
-                  </p>
-                </div>
-              </section>
+            <div class="copyright">
+              &copy; 2024 Eventak Plus. All rights reserved.
             </div>
-      
-            <br /><br />
-            <footer>
-              <div class="footer">
-                <div class="left-section">
-                  <div class="logo">
-                    <img src="../image/Logo1.png" alt="Company Logo" />
-                  </div>
-                </div>
-                <div class="rghit-section">
-                  <div class="center-section">
-                    <div class="social-icons">
-                      <a href="#"><i class="fab fa-facebook-f"></i></a>
-                      <a href="#"><i class="fab fa-whatsapp"></i></a>
-                      <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                      <a href="mailto:your-email@gmail.com"
-                        ><i class="fas fa-envelope"></i
-                      ></a>
-                    </div>
-      
-                    <div class="copyright">
-                      &copy; 2024 Eventak Plus. All rights reserved.
-                    </div>
-                  </div>
-      
-                  <div class="form-section">
-                    <input type="text" id="name" placeholder="Your Name" required />
-                    <input
-                      type="email"
-                      id="email"
-                      placeholder="Your Email"
-                      required
-                    />
-                    <textarea
-                      id="comment"
-                      placeholder="Your Comment"
-                      required
-                    ></textarea>
-                    <button type="submit" id="submitBtn">Submit</button>
-                  </div>
-                </div>
-              </div>
-            </footer>
+          </div>
+
+          <div class="form-section">
+            <input type="text" id="name" placeholder="Your Name" required />
+            <input type="email" id="email" placeholder="Your Email" required />
+            <textarea
+              id="comment"
+              placeholder="Your Comment"
+              required
+            ></textarea>
+            <button type="submit" id="submitBtn">Submit</button>
+          </div>
+        </div>
+      </div>
+    </footer>
     <script src="main.js"></script>
-</body>
+  </body>
 </html>
-
-
