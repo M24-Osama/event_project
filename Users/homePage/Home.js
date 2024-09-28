@@ -206,8 +206,10 @@ window.onload = function () {
   document.getElementById("comment").value = "";
 
   let darkMood = localStorage.getItem("darkMood");
-  if (darkMood != "dark") {
+  if (darkMood == "light") {
     body.classList.add("darkMood");
+  } else {
+    localStorage.setItem("darkMood", "dark");
   }
 };
 
