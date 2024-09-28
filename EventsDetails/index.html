@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    
+    
+     <div class="content">
+        <div class="leftContent"></div>
+        <div class="rightContent"></div>
+     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+      // Function to get URL parameters
+      function getUrlParams() {
+        const params = new URLSearchParams(window.location.search);
+
+        return {
+          date: params.get("date"),
+          title: "Free medical day",
+          image:params.get("img"),
+          dec:params.get("desc"),
+          loc:params.get("location"),
+          date: params.get("date"),
+          id: 1,
+          fullLocation:params.get("fullLocation"),
+          markerLocation:params.get("markerLocation"),
+          
+        };
+      }
+     
+      const data = getUrlParams();
+      console.log(data);
+
+      
+      let marker1 = data.markerLocation;
+      let marker2;
+      let directionsRenderer;
+      let directionsService;
+      let map;
+      let myLoc;
+      let loc = 
+         consoele.log(loc);
+      function initMap() {
+        directionsService = new google.maps.DirectionsService();
+        directionsRenderer = new google.maps.DirectionsRenderer();
+
+        map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 15,
+          center: loc,
+        });
+        directionsRenderer.setMap(map);
+        marker1 = new google.maps.Marker({
+          position: loc,
+          map: map,
+        });
+        marker1.setPosition(loc);
+      }
+      function myPlace(map) {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              myLoc = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+              };
+
+              // Center the map on the current location
+              map.setCenter(myLoc);
+              map.setZoom(15);
+
+              // Add a marker to indicate the current location
+              marker2 = new google.maps.Marker({
+                position: myLoc,
+                map: map,
+                title: "You are here!",
+              });
+              marker2.setPosition(myLoc);
+            },
+            (error) => {
+              alert("Error Code = " + error.code + " - " + error.message);
+              handleLocationError(true, map.getCenter());
+            }
+          );
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, map.getCenter());
+        }
+      }
+      function handleLocationError(browserHasGeolocation, pos) {
+        const infoWindow = new google.maps.InfoWindow();
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(
+          browserHasGeolocation
+            ? "Error: The Geolocation service failed."
+            : "Error: Your browser doesn't support geolocation."
+        );
+        infoWindow.open(map);
+      }
+      function direction(loc, myLoc) {
+        if (!myLoc) {
+          alert("Activate your location");
+          return;
+        }
+        const destination = myLoc;
+
+        // Create a request for directions
+        const request = {
+          origin: loc,
+          destination: myLoc,
+          travelMode: google.maps.TravelMode.DRIVING, // Can be WALKING, BICYCLING, TRANSIT, etc.
+        };
+
+        // Get directions from the DirectionsService
+        directionsService.route(request, (result, status) => {
+          if (status == google.maps.DirectionsStatus.OK) {
+            // Display the route on the map
+            directionsRenderer.setDirections(result);
+          } else {
+            window.alert("Directions request failed due to " + status);
+          }
+        });
+        marker1.setMap(null);
+      }
+
+      function Clear() {
+        directionsRenderer.setDirections({ routes: [] });
+        if (marker2) {
+          marker2.setMap(null);
+        }
+        if (marker1) {
+          marker1 = new google.maps.Marker({
+            position: loc,
+            map: map,
+          });
+          map.panTo(marker1.getPosition());
+          map.setZoom(15);
+        }
+      }
+
+      window.onload = initMap;
+
+      window.setInterval(getLocation(), 1000);
+      
+    </script>
+  </body>
+</html>
