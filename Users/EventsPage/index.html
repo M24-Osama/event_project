@@ -45,6 +45,16 @@
       <div class="content">
         <div class="search-container">
           <input type="search" id="search" placeholder="Search for an Event!" />
+          <div class="date-input-container">
+            <input
+              onchange="searchDate()"
+              id="date-input"
+              type="date"
+              class="date-input"
+            />
+            <i class="bi bi-calendar2-plus calendar"></i>
+            <!-- You can replace this with any calendar icon you prefer -->
+          </div>
         </div>
       </div>
       <div class="title">

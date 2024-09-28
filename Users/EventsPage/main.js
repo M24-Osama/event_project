@@ -12,7 +12,7 @@ events.push(
     title: "free medical day",
     img: ["../image/freeday.png"],
     desc: "Maintaining a healthy lifestyle is not just about exercising regularly or eating balanced meals; it's about finding a sustainable routine that promotes overall well-being.",
-    date: "12 nov 2024",
+    date: "2024-09-09",
     location: "Jordan/Irbid",
     fullLocation: "Akef Al-Fayiz St. 116, Amman, Jordan",
     markerLocation: {
@@ -25,7 +25,7 @@ events.push(
     title: "free medical day",
     img: ["../image/freeday.png"],
     desc: "Maintaining a healthy lifestyle is not just about exercising regularly or eating balanced meals; it's about finding a sustainable routine that promotes overall well-being.",
-    date: "12 nov 2024",
+    date: "2024-09-09",
     time: "12:00",
     location: "Jordan/Irbid",
   },
@@ -34,7 +34,7 @@ events.push(
     title: "free medical day",
     img: ["../image/freeday.png"],
     desc: "Maintaining a healthy lifestyle is not just about exercising regularly or eating balanced meals; it's about finding a sustainable routine that promotes overall well-being.",
-    date: "12 nov 2024",
+    date: "2024-08-09",
     time: "12:00",
     location: "Jordan/Irbid",
   },
@@ -77,7 +77,7 @@ function createEventCard(event) {
             <br>
             <div class="card-date-loc">
             <h4>${event.location}</h4>
-            <h4>${event.date}</h4>
+            <h4 class="date">${event.date}</h4>
             </div>
         </a>
     `;
@@ -190,4 +190,16 @@ function darkMood() {
     body.classList.remove("darkMood");
     localStorage.setItem("darkMood", "dark");
   }
+}
+
+function searchDate() {
+  const dateInput = document.getElementById("date-input").value;
+  const cards = document.querySelectorAll(".card");
+  console.log("Selected date:", dateInput);
+  cards.forEach((card) => {
+    const dateElement = card.querySelector(".date");
+    const dateText = dateElement ? dateElement.textContent.trim() : ""; // Extract text content
+    const isVisible = dateText.includes(dateInput);
+    card.classList.toggle("hide", !isVisible);
+  });
 }
