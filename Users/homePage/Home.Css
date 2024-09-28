@@ -10,6 +10,7 @@
   scroll-behavior: smooth;
   font-style: normal;
 }
+
 body {
   margin: 0;
   height: auto;
@@ -134,7 +135,7 @@ body {
   scale: 1.07;
 }
 .card img {
-  border-radius: 18px;
+  border-radius: 8px;
   border-bottom: 1px solid #c0edff;
 }
 .card a {
@@ -233,15 +234,11 @@ h2 {
   transform: scaleX(1);
 }
 
-.topnav a.active {
-  background-color: #04aa6d;
-  color: white;
-}
-
 .topnav .icon {
   display: none;
   font-size: xx-large;
 }
+
 .div1 {
   display: flex;
   flex-direction: row;
@@ -268,10 +265,14 @@ nav {
   }
   /*card*/
   .card {
-    width: 100%;
+    width: 90%;
     height: auto;
   }
-
+  .about {
+    width: 90%;
+    height: auto;
+    font-size: small;
+  }
   /*nav*/
   .topnav {
     justify-content: space-between;
@@ -305,6 +306,9 @@ nav {
 
     margin-top: 80px;
   }
+  .darkMood .topnav.responsive .div1 {
+    border-top: 1px solid #fff;
+  }
   .topnav.responsive div a {
     display: block;
     text-align: center;
@@ -313,7 +317,7 @@ nav {
   .topnav.responsive a img {
     position: absolute;
     left: 0px;
-    top: 0px;
+    top: 5px;
   }
 }
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
@@ -323,20 +327,24 @@ nav {
   }
 }
 /*reg*/
-
+#about {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+}
 .about {
   background: #f4f4f4;
-  padding: 2rem;
+  padding: 1.4rem;
   border-radius: 12px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  width: 85%;
-  margin: 0 auto;
+  width: 100%;
 }
 
 .about p {
@@ -484,4 +492,86 @@ footer {
   .footer {
     flex-direction: row;
   }
+}
+/*dark mood*/
+nav .moon a {
+  font-size: 30px;
+  color: black;
+}
+
+.darkMood nav {
+  background-color: black;
+}
+
+.darkMood .topnav {
+  background-color: black;
+  color: #f4f4f4;
+  color: #2d9bf0;
+}
+
+.darkMood .moon a i {
+  color: white;
+}
+.darkMood nav .topnav .div1 a {
+  color: #2d9bf0;
+}
+.darkMood .page {
+  background-color: black;
+  color: white;
+}
+
+.darkMood .card p {
+  color: white;
+}
+.darkMood .card {
+  background-color: rgb(0, 0, 0);
+  box-shadow: 4px 4px 20px rgba(255, 255, 255, 0.3);
+}
+.darkMood nav .topnav img {
+  border: #f2f2f2;
+  background-color: #f4f4f4;
+  border-radius: 30px;
+}
+.darkMood #about {
+  background-color: black;
+}
+.darkMood #about h2 {
+  color: #2d9bf0;
+}
+.darkMood #about p {
+  color: white;
+}
+.darkMood #about .about {
+  background-color: rgb(25, 25, 67);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+.darkMood footer {
+  background-color: rgb(25, 25, 67);
+}
+.darkMood .footer {
+  background-color: rgb(25, 25, 67);
+}
+.darkMood .footer .logo img {
+  border: #f2f2f2;
+  background-color: #f4f4f4;
+  border-radius: 100%;
+}
+.darkMood .footer .copyright {
+  color: white;
+}
+.darkMood .body {
+  background-color: #000;
+}
+.darkMood .card-date-loc {
+  background-color: rgb(25, 25, 67);
+}
+.darkMood .activeNav {
+  color: white;
+}
+.darkMood .topnav a::after {
+  background-color: #c0edff;
+}
+
+.darkMood .topnav .icon {
+  color: #fff;
 }

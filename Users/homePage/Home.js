@@ -42,6 +42,11 @@ events.push(
     desc: "Maintaining a healthy lifestyle is not just about exercising regularly or eating balanced meals; it's about finding a sustainable routine that promotes overall well-being.",
     date: "12 nov 2024",
     location: "Jordan/Irbid",
+    fullLocation: "Akef Al-Fayiz St. 116, Amman, Jordan",
+    markerLocation: {
+      lat: 32.0,
+      lng: 35.0,
+    },
   },
   {
     id: 1,
@@ -98,7 +103,7 @@ events.reverse().forEach((event) => {
   const card = document.createElement("div");
   card.className = "card";
   card.innerHTML = `
-  <a href="../HTML/EventDetails.html?title=${event.title}&img=${event.img}&desc=${event.desc}&date=${event.date}&location=${event.location}">
+  <a href="../HTML/EventDetails.html?title=${event.title}&img=${event.img}&desc=${event.desc}&date=${event.date}&location=${event.location}&fullLocation=${event.fullLocation}">
     <img src="${event.img[0]}" style="width: 100%;">
     <h2>${event.title}</h2>
     <p>${event.desc}</p>
@@ -199,4 +204,21 @@ window.onload = function () {
   document.getElementById("name").value = "";
   document.getElementById("email").value = "";
   document.getElementById("comment").value = "";
+
+  let darkMood = localStorage.getItem("darkMood");
+  if (darkMood != "dark") {
+    body.classList.add("darkMood");
+  }
 };
+
+function darkMood() {
+  let darkMood = localStorage.getItem("darkMood");
+  const body = document.getElementById("body");
+  if (darkMood == "dark") {
+    body.classList.add("darkMood");
+    localStorage.setItem("darkMood", "light");
+  } else {
+    body.classList.remove("darkMood");
+    localStorage.setItem("darkMood", "dark");
+  }
+}
