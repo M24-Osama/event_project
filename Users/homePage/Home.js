@@ -199,4 +199,18 @@ window.onload = function () {
   document.getElementById("name").value = "";
   document.getElementById("email").value = "";
   document.getElementById("comment").value = "";
+  localStorage.setItem("darkMood", "dark");
 };
+
+function darkMood() {
+  let darkMood = localStorage.getItem("darkMood");
+  const dark = document.getElementById("dark");
+  const body = document.getElementById("body");
+  if (darkMood == "dark") {
+    localStorage.setItem("darkMood", "light");
+    body.classList.add("darkMood");
+  } else {
+    localStorage.setItem("darkMood", "dark");
+    body.classList.remove("darkMood");
+  }
+}

@@ -16,143 +16,143 @@
     />
   </head>
   <div class="body">
-  <body id="body">
-    <nav >
-      <div class="topnav" id="myTopnav" >
-        <a href=""><img src="..\image\Logonav.png" /></a>
-        <div class="div1">
-          <a href="#about"><i class="bi bi-person-vcard-fill"> About us</i></a>
-          <a href="#"><i class="bi bi-calendar2-event-fill"> Event</i></a>
-          <a href="#"><i class="bi bi-house-door-fill activeNav"> Home</i></a>
+    <body id="body">
+      <nav>
+        <div class="topnav" id="myTopnav">
+          <a href=""><img src="..\image\Logonav.png" /></a>
+          <div class="div1">
+            <a href="#about"
+              ><i class="bi bi-person-vcard-fill"> About us</i></a
+            >
+            <a href="#"><i class="bi bi-calendar2-event-fill"> Event</i></a>
+            <a href="#"><i class="bi bi-house-door-fill activeNav"> Home</i></a>
+          </div>
+
+          <div onclick="darkMood()" class="moon">
+            <a href="javascript:void(0);" id="dark"
+              ><i id="dark" class="bi bi-moon-fill"></i>
+            </a>
+          </div>
+          <a
+            href="javascript:void(0);"
+            class="bi bi-list icon"
+            onclick="nav()"
+          ></a>
+        </div>
+      </nav>
+
+      <div class="slideshow-container">
+        <div class="mySlides fade">
+          <img src="../image/slider1.jpg" />
         </div>
 
-        <div class="moon">
-          <a href="#" id="dark"
-            ><i  id="dark" class="bi bi-moon-fill" ></i> 
-        </a>
+        <div class="mySlides fade">
+          <img src="../image/slider2.png" />
         </div>
-        <a
-          href="javascript:void(0);"
-          class="bi bi-list icon"
-          onclick="nav()"
+
+        <div class="mySlides fade">
+          <img src="../image/slider3.jpg" />
+        </div>
+        <div class="mySlides fade">
+          <img src="../image/slider4.jpg" />
+        </div>
+
+        <a class="prev" onclick="plusSlides(-1)"
+          ><i class="bi bi-arrow-left-circle-fill"></i
+        ></a>
+        <a class="next" onclick="plusSlides(1)"
+          ><i class="bi bi-arrow-right-circle-fill"></i
         ></a>
       </div>
-    </nav>
+      <br />
+      <br />
 
-    <div class="slideshow-container">
-      <div class="mySlides fade">
-        <img src="../image/slider1.jpg" />
+      <div id="dot" style="text-align: center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
       </div>
 
-      <div class="mySlides fade">
-        <img src="../image/slider2.png" />
-      </div>
-
-      <div class="mySlides fade">
-        <img src="../image/slider3.jpg" />
-      </div>
-      <div class="mySlides fade">
-        <img src="../image/slider4.jpg" />
-      </div>
-
-      <a class="prev" onclick="plusSlides(-1)"
-        ><i class="bi bi-arrow-left-circle-fill"></i
-      ></a>
-      <a class="next" onclick="plusSlides(1)"
-        ><i class="bi bi-arrow-right-circle-fill"></i
-      ></a>
-    </div>
-    <br />
-    <br />
-
-    <div id="dot" style="text-align: center">
-      <span class="dot" onclick="currentSlide(1)"></span>
-      <span class="dot" onclick="currentSlide(2)"></span>
-      <span class="dot" onclick="currentSlide(3)"></span>
-      <span class="dot" onclick="currentSlide(4)"></span>
-    </div>
-
-    <br /><br />
-    <div class="page">
-      <div>
-        <h2>Last Events</h2>
-      </div>
       <br /><br />
-      <div class="card-container" id="card-container"></div>
-      <br /><br />
-
-      <div>
-        <h2>Starting Soon</h2>
-      </div>
-      <br /><br />
-      <div class="card-container" id="card-container-soon"></div>
-    </div>
-    <br /><br />
-    <section id="about">
-      <div class="about">
-        <div class="author"><h2>About Us</h2></div>
-        <p>
-          "We are dedicated to promoting health and wellness through our
-          comprehensive medical events. Whether it’s first aid training, health
-          workshops, or monthly health seminars, our mission is to empower
-          individuals with the knowledge and skills necessary to respond
-          effectively in emergencies and improve their overall well-being. We
-          believe that education is the key to better health outcomes, and our
-          events are designed to provide practical, hands-on training and
-          insights from experienced professionals in the medical field. Join us
-          in our commitment to fostering a healthier community through regular
-          engagement and learning opportunities!"
-        </p>
-      </div>
-    </section>
-    <br /><br />
-    <footer>
-      <div class="footer">
-        <div class="left-section">
-          <div class="logo">
-            <img src="../image/Logo1.png" alt="Company Logo" />
-          </div>
+      <div class="page">
+        <div>
+          <h2>Last Events</h2>
         </div>
-        <div class="rghit-section">
-          <div class="center-section">
-            <div class="social-icons">
-              <a href="#"><i class="fab fa-facebook-f"></i></a>
-              <a href="#"><i class="fab fa-whatsapp"></i></a>
-              <a href="#"><i class="fab fa-linkedin-in"></i></a>
-              <a href="mailto:your-email@gmail.com"
-                ><i class="fas fa-envelope"></i
-              ></a>
-            </div>
+        <br /><br />
+        <div class="card-container" id="card-container"></div>
+        <br /><br />
 
-            <div class="copyright">
-              &copy; 2024 Eventak Plus. All rights reserved.
+        <div>
+          <h2>Starting Soon</h2>
+        </div>
+        <br /><br />
+        <div class="card-container" id="card-container-soon"></div>
+        <br /><br />
+        <section id="about">
+          <div class="about">
+            <div class="author"><h2>About Us</h2></div>
+            <p>
+              "We are dedicated to promoting health and wellness through our
+              comprehensive medical events. Whether it’s first aid training,
+              health workshops, or monthly health seminars, our mission is to
+              empower individuals with the knowledge and skills necessary to
+              respond effectively in emergencies and improve their overall
+              well-being. We believe that education is the key to better health
+              outcomes, and our events are designed to provide practical,
+              hands-on training and insights from experienced professionals in
+              the medical field. Join us in our commitment to fostering a
+              healthier community through regular engagement and learning
+              opportunities!"
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <br /><br />
+      <footer>
+        <div class="footer">
+          <div class="left-section">
+            <div class="logo">
+              <img src="../image/Logo1.png" alt="Company Logo" />
             </div>
           </div>
+          <div class="rghit-section">
+            <div class="center-section">
+              <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:your-email@gmail.com"
+                  ><i class="fas fa-envelope"></i
+                ></a>
+              </div>
 
-          <div class="form-section">
-            <input type="text" id="name" placeholder="Your Name" required />
-            <input type="email" id="email" placeholder="Your Email" required />
-            <textarea
-              id="comment"
-              placeholder="Your Comment"
-              required
-            ></textarea>
-            <button type="submit" id="submitBtn">Submit</button>
+              <div class="copyright">
+                &copy; 2024 Eventak Plus. All rights reserved.
+              </div>
+            </div>
+
+            <div class="form-section">
+              <input type="text" id="name" placeholder="Your Name" required />
+              <input
+                type="email"
+                id="email"
+                placeholder="Your Email"
+                required
+              />
+              <textarea
+                id="comment"
+                placeholder="Your Comment"
+                required
+              ></textarea>
+              <button type="submit" id="submitBtn">Submit</button>
+            </div>
           </div>
         </div>
-      </div>
-    </footer>
-<!-- start dark mood script-->
-    <script src="Home.js"></script>
-    <script>
-    const dark=document.getElementById("dark");
-    const body=document.getElementById("body");
-    dark.addEventListener("click",()=>{
-      body.classList.toggle("darkMood")
-    })
-
-    </script>
- <!-- end dark mood script-->
-  </body>
+      </footer>
+      <!-- start dark mood script-->
+      <script src="Home.js"></script>
+    </body>
   </div>
 </html>
