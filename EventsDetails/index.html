@@ -17,9 +17,12 @@
 
 
 
+     <button onclick="myPlace(map)">loc</button>
+     <button onclick="direction(loc,myLoc)">Direction</button>
+     <button onclick="Clear()">Clear</button>
+     <div id="map" style="height: 400px; width: 50%"></div>
 
-
-
+     
 
 
 
@@ -48,22 +51,33 @@
           id: 1,
           fullLocation:params.get("fullLocation"),
           markerLocation:params.get("markerLocation"),
+    // id: 1,
+    // title: "free medical day",
+    // img: "../image/freeday.png",
+    // desc: "Maintaining a healthy lifestyle is not just about exercising regularly or eating balanced meals; it's about finding a sustainable routine that promotes overall well-being.",
+    // date: "12 nov 2024",
+    // location: "Jordan/Irbid",
+    // fullLocation: "Akef Al-Fayiz St. 116, Amman, Jordan",
+    // markerLocation: {
+    //   lat: 32.0,
+    //   lng: 35.0,
+    }
           
         };
-      }
+      
      
       const data = getUrlParams();
-      console.log(data);
+      
 
       
-      let marker1 = data.markerLocation;
+      let marker1 ;
       let marker2;
       let directionsRenderer;
       let directionsService;
       let map;
       let myLoc;
-      let loc = 
-         consoele.log(loc);
+      let loc = data.markerLocation;
+         console.log(loc);
       function initMap() {
         directionsService = new google.maps.DirectionsService();
         directionsRenderer = new google.maps.DirectionsRenderer();
