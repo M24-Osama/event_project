@@ -1,85 +1,27 @@
 // Retrieve events from localStorage
-const events = JSON.parse(localStorage.getItem("Event")) || [];
+const events = JSON.parse(localStorage.getItem("events")) || [];
 const eventsContainers = document.querySelectorAll(".events-container");
 const searchInput = document.getElementById("search");
 const links = document.querySelectorAll(".pagination ul li.link");
 let currentValue = 1; // Tracks the current page
 const cardsPerPage = 8; // Number of cards per container
-console.log("test");
-events.push(
-  {
-    id: 1,
-    title: "free medical day",
-    img: ["../image/freeday.png"],
-    desc: "Maintaining a healthy lifestyle is not just about exercising regularly or eating balanced meals; it's about finding a sustainable routine that promotes overall well-being.",
-    date: "2024-09-09",
-    location: "Jordan/Irbid",
-    fullLocation: "Akef Al-Fayiz St. 116, Amman, Jordan",
-    markerLocation: {
-      lat: 32.0,
-      lng: 35.0,
-    },
-  },
-  {
-    id: 1,
-    title: "free medical day",
-    img: ["../image/freeday.png"],
-    desc: "Maintaining a healthy lifestyle is not just about exercising regularly or eating balanced meals; it's about finding a sustainable routine that promotes overall well-being.",
-    date: "2024-09-09",
-    time: "12:00",
-    location: "Jordan/Irbid",
-  },
-  {
-    id: 1,
-    title: "free medical day",
-    img: ["../image/freeday.png"],
-    desc: "Maintaining a healthy lifestyle is not just about exercising regularly or eating balanced meals; it's about finding a sustainable routine that promotes overall well-being.",
-    date: "2024-08-09",
-    time: "12:00",
-    location: "Jordan/Irbid",
-  },
-  {
-    id: 1,
-    title: "free medical day",
-    img: ["../image/freeday.png"],
-    desc: "Maintaining a healthy lifestyle is not just about exercising regularly or eating balanced meals; it's about finding a sustainable routine that promotes overall well-being.",
-    date: "12 nov 2024",
-    time: "12:00",
-    location: "Jordan/Irbid",
-  },
-  {
-    id: 1,
-    title: "free medical day",
-    img: ["../image/freeday.png"],
-    desc: "Maintaining a healthy lifestyle is not just about exercising regularly or eating balanced meals; it's about finding a sustainable routine that promotes overall well-being.",
-    date: "30 sep 2024",
-    location: "Jordan/Irbid",
-  },
-  {
-    id: 1,
-    title: "free medical day",
-    img: ["../image/freeday.png"],
-    desc: "Maintaining a healthy lifestyle is not just about exercising regularly or eating balanced meals; it's about finding a sustainable routine that promotes overall well-being.",
-    date: "2 nov 2023",
-    location: "Jordan/Irbid",
-  }
-);
+console.log(events);
+
 // Function to create a card for an event
 function createEventCard(event) {
   const card = document.createElement("div");
   card.className = "card";
 
   card.innerHTML = `
-        <a href="../HTML/EventDetails.html?title=${event.title}&img=${event.img}&desc=${event.desc}&date=${event.date}&location=${event.location}">
-            <img src="${event.img}" style="width: 100%;">
-            <h1>${event.title}</h1>
-            <p>${event.desc}</p>
-            <br>
-            <div class="card-date-loc">
-            <h4>${event.location}</h4>
-            <h4 class="date">${event.date}</h4>
-            </div>
-        </a>
+            <a href="../HTML/EventDetails.html?title=${event.title}&img=${event.img}&desc=${event.desc}&date=${event.date}&location=${event.location}">
+    <img src="${event.images[0]}" style="width: 100%;">
+    <h2>${event.title}</h2>
+    <p>${event.description}</p>
+    <div class ="card-date-loc">
+      <h4>${event.location}</h4>
+      <h4>${event.date}</h4>
+    </div>
+    </a>
     `;
   return card; // Return the created card
 }

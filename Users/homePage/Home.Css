@@ -29,10 +29,16 @@ body {
 .slideshow-container {
   padding-top: 60px;
   height: 70vh;
+  width: 100%;
+}
+.slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
   margin: auto;
+  width: 85%;
 }
-
 /* Next & previous buttons */
 .prev,
 .next {

@@ -32,66 +32,8 @@ setInterval(function () {
   plusSlides(1);
 }, 5000);
 //Latest events added
-let events = JSON.parse(localStorage.getItem("Event")) || []; // Use an empty array if null
-
-events.push(
-  {
-    id: 1,
-    title: "free medical day",
-    img: ["../image/freeday.png"],
-    desc: "Maintaining a healthy lifestyle is not just about exercising regularly or eating balanced meals; it's about finding a sustainable routine that promotes overall well-being.",
-    date: "12 nov 2024",
-    location: "Jordan/Irbid",
-    fullLocation: "Akef Al-Fayiz St. 116, Amman, Jordan",
-    markerLocation: {
-      lat: 32.0,
-      lng: 35.0,
-    },
-  },
-  {
-    id: 1,
-    title: "free medical day",
-    img: ["../image/freeday.png"],
-    desc: "Maintaining a healthy lifestyle is not just about exercising regularly or eating balanced meals; it's about finding a sustainable routine that promotes overall well-being.",
-    date: "12 nov 2024",
-    time: "12:00",
-    location: "Jordan/Irbid",
-  },
-  {
-    id: 1,
-    title: "free medical day",
-    img: ["../image/freeday.png"],
-    desc: "Maintaining a healthy lifestyle is not just about exercising regularly or eating balanced meals; it's about finding a sustainable routine that promotes overall well-being.",
-    date: "12 nov 2024",
-    time: "12:00",
-    location: "Jordan/Irbid",
-  },
-  {
-    id: 1,
-    title: "free medical day",
-    img: ["../image/freeday.png"],
-    desc: "Maintaining a healthy lifestyle is not just about exercising regularly or eating balanced meals; it's about finding a sustainable routine that promotes overall well-being.",
-    date: "12 nov 2024",
-    time: "12:00",
-    location: "Jordan/Irbid",
-  },
-  {
-    id: 1,
-    title: "free medical day",
-    img: ["../image/freeday.png"],
-    desc: "Maintaining a healthy lifestyle is not just about exercising regularly or eating balanced meals; it's about finding a sustainable routine that promotes overall well-being.",
-    date: "30 sep 2024",
-    location: "Jordan/Irbid",
-  },
-  {
-    id: 1,
-    title: "free medical day",
-    img: ["../image/freeday.png"],
-    desc: "Maintaining a healthy lifestyle is not just about exercising regularly or eating balanced meals; it's about finding a sustainable routine that promotes overall well-being.",
-    date: "2 nov 2023",
-    location: "Jordan/Irbid",
-  }
-);
+let events = JSON.parse(localStorage.getItem("events")) || []; // Use an empty array if null
+console.log(events);
 // latest events
 cardContainer = document.getElementById("card-container");
 let cont = 0;
@@ -103,10 +45,10 @@ events.reverse().forEach((event) => {
   const card = document.createElement("div");
   card.className = "card";
   card.innerHTML = `
-  <a href="../HTML/EventDetails.html?title=${event.title}&img=${event.img}&desc=${event.desc}&date=${event.date}&location=${event.location}&fullLocation=${event.fullLocation}">
-    <img src="${event.img[0]}" style="width: 100%;">
+  <a href="../HTML/EventDetails.html?title=${event.title}&img=${event.images}&desc=${event.description}&date=${event.date}&location=${event.location}&fullLocation=${event.fullLocation}">
+    <img src="${event.images[0]}" style="width: 100%;">
     <h2>${event.title}</h2>
-    <p>${event.desc}</p>
+    <p>${event.description}</p>
     <div class ="card-date-loc">
       <h4>${event.location}</h4>
       <h4>${event.date}</h4>
@@ -139,9 +81,9 @@ events.reverse().forEach((event) => {
     card.className = "card";
     card.innerHTML = `
     <a href="../HTML/EventDetails.html?title=${event.title}&img=${event.img}&desc=${event.desc}&date=${event.date}&location=${event.location}">
-    <img src="${event.img[0]}" style="width: 100%;">
+    <img src="${event.images[0]}" style="width: 100%;">
     <h2>${event.title}</h2>
-    <p>${event.desc}</p>
+    <p>${event.description}</p>
     <div class ="card-date-loc">
       <h4>${event.location}</h4>
       <h4>${event.date}</h4>
