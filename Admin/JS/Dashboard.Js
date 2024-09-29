@@ -6,12 +6,6 @@ let color = true;
 events.forEach((event) => {
   const tr = document.createElement("tr");
   tr.className = "card";
-  if (color) {
-    tr.className += " cardBlue";
-    color = false;
-  } else {
-    color = true;
-  }
   tr.innerHTML = `
     <td>${count}</td>
     <td>${event.id}</td>
@@ -21,14 +15,31 @@ events.forEach((event) => {
     <td >${event.location}</td>
     <td><div class = "desc" >${event.description}</div></td>
     <td>  
-        <div class="btnEvent" ><i class="bi bi-pen-fill"> Edit</i></div>
-        <div class="btnEvent red"> <span class="bi bi-trash-fill" style="color: white;"> Delete</span> </div>
+    <div class="btnEvent"><i class="bi bi-pen-fill"> Edit</i></div>
+        <div class="btnEvent red delete-button" data-id="${event.id}">
+            <span class="bi bi-trash-fill" style="color: white;"> Delete</span>
+        </div>
     </td>
-`;
-  count += 1;
+  `;
+
   cardContainer.appendChild(tr);
+  count += 1;
+  // Add the event listener to the delete button
+  const deleteButton = tr.querySelector(".delete-button");
+  deleteButton.addEventListener("click", () => {
+    if (confirm("Are you sure to Delete?")) {
+      const eventId = parseInt(deleteButton.getAttribute("data-id"), 10);
+      deleteEventById(eventId);
+      tr.remove(); // Remove the row from the table
+    }
+  });
 });
 
+function deleteEventById(eventId) {
+  // Filter out the event with the matching ID
+  events = events.filter((event) => event.id !== eventId);
+  localStorage.setItem("events", JSON.stringify(events));
+}
 let searchInput = document.getElementById("search");
 searchInput.addEventListener("input", search);
 function search(e) {

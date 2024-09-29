@@ -160,6 +160,7 @@ input {
   border-radius: 10px;
   text-align: center;
   border-bottom: 1px solid #2d9bf0;
+  height: 280px;
 }
 .card a {
   text-decoration: none;

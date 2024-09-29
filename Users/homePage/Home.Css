@@ -143,6 +143,7 @@ body {
 .card img {
   border-radius: 8px;
   border-bottom: 1px solid #c0edff;
+  height: 280px;
 }
 .card a {
   text-decoration: none;
