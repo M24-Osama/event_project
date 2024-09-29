@@ -6,6 +6,14 @@ let color = true;
 events.forEach((event) => {
   const tr = document.createElement("tr");
   tr.className = "card";
+  tr.className = "card";
+  if (color) {
+    tr.className += " cardBlue";
+    color = false;
+  } else {
+    color = true;
+  }
+
   tr.innerHTML = `
     <td>${count}</td>
     <td>${event.id}</td>
