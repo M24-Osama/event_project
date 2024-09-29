@@ -284,7 +284,7 @@ function initMap() {
 function geocodeAddress() {
   const address = document.getElementById("searchLocation").value;
 
-  geocoder.geocode({ address: address, language: "en" }, (results, status) => {
+  geocoder.geocode({ address: address }, (results, status) => {
     if (status === "OK") {
       map.setCenter(results[0].geometry.location);
       if (marker1) {

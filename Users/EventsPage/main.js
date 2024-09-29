@@ -13,7 +13,7 @@ function createEventCard(event) {
   card.className = "card";
 
   card.innerHTML = `
-            <a href="../HTML/EventDetails.html?title=${event.title}&img=${event.img}&desc=${event.desc}&date=${event.date}&location=${event.location}">
+    <a href="../HTML/EventDetails.html?title=${event.title}&img=${event.images}&desc=${event.description}&date=${event.date}&location=${event.location}&fullLocation=${event.fullLocation}&markerLocation=${event.markerLocation}&time=${event.time}">
     <img src="${event.images[0]}" style="width: 100%;">
     <h2>${event.title}</h2>
     <p>${event.description}</p>
