@@ -649,7 +649,9 @@ nav .moon a {
 .darkMood nav {
   background-color: black;
 }
-
+h2 {
+  color: #2d9bf0;
+}
 .darkMood .topnav {
   background-color: black;
   color: #f4f4f4;

@@ -148,9 +148,11 @@ body {
 .card a {
   text-decoration: none;
 }
+h1,
 h2 {
   color: #2d9bf0;
 }
+
 .card p {
   font-size: small;
   display: -webkit-box;
@@ -543,6 +545,9 @@ nav .moon a {
   background-color: black;
 }
 .darkMood #about h2 {
+  color: #2d9bf0;
+}
+.darkMood #about h1 {
   color: #2d9bf0;
 }
 .darkMood #about p {

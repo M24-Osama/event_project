@@ -13,7 +13,6 @@ events.forEach((event) => {
   } else {
     color = true;
   }
-
   tr.innerHTML = `
     <td>${count}</td>
     <td>${event.id}</td>
