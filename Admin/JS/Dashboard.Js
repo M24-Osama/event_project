@@ -178,57 +178,65 @@ saveLocationBtn.addEventListener("click", () => {
 
 // Handle form submission
 submitEventBtn.addEventListener("click", () => {
-  const eventData = {
-    id: Date.now(),
-    title: eventTitleInput.value,
-    description: eventDescriptionInput.value,
-    date: eventDateInput.value,
-    time: eventTimeInput.value,
-    images: selectedImages,
-    location: `${locationDetails.city}, ${locationDetails.country}`,
-    fullLocation: locationDetails.fullAddress,
-    markerLocation: markerLocation,
-  };
+  // Display confirmation dialog
+  if (confirm("Are you sure you want to add this event?")) {
+    // If the user confirms, proceed with adding the event
+    const eventData = {
+      id: Date.now(),
+      title: eventTitleInput.value,
+      description: eventDescriptionInput.value,
+      date: eventDateInput.value,
+      time: eventTimeInput.value,
+      images: selectedImages,
+      location: `${locationDetails.city}, ${locationDetails.country}`,
+      fullLocation: locationDetails.fullAddress,
+      markerLocation: markerLocation,
+    };
 
-  const existingEvents = JSON.parse(localStorage.getItem("events")) || [];
-  existingEvents.push(eventData);
-  localStorage.setItem("events", JSON.stringify(existingEvents));
+    const existingEvents = JSON.parse(localStorage.getItem("events")) || [];
+    existingEvents.push(eventData);
+    localStorage.setItem("events", JSON.stringify(existingEvents));
 
-  alert("Event saved successfully!");
+    // Clear the form fields
+    eventTitleInput.value = "";
+    eventDateInput.value = "";
+    eventTimeInput.value = "";
+    eventDescriptionInput.value = "";
+    eventImagesInput.value = "";
+    selectedImages = [];
+    locationDetails = { city: "", country: "", fullAddress: "" };
+    locationDisplay.innerHTML = "No location selected.";
+    submitEventBtn.disabled = true;
+    eventPopup.style.display = "none";
 
-  eventTitleInput.value = "";
-  eventDateInput.value = "";
-  eventTimeInput.value = "";
-  eventDescriptionInput.value = "";
-  eventImagesInput.value = "";
-  selectedImages = [];
-  locationDetails = { city: "", country: "", fullAddress: "" };
-  locationDisplay.innerHTML = "No location selected.";
-  submitEventBtn.disabled = true;
-  eventPopup.style.display = "none";
-  const tr = document.createElement("tr");
-  tr.className = "card";
-  if (color) {
-    tr.className += " cardBlue";
-    color = false;
+    // Add new event to the table
+    const tr = document.createElement("tr");
+    tr.className = "card";
+    if (color) {
+      tr.className += " cardBlue";
+      color = false;
+    } else {
+      color = true;
+    }
+    tr.innerHTML = `
+      <td>${count}</td>
+      <td>${eventData.id}</td>
+      <td>${eventData.title}</td>
+      <td>${eventData.date}</td>
+      <td>${eventData.time}</td>
+      <td>${eventData.fullLocation}</td>
+      <td><div class = "desc">${eventData.description}</div></td>
+      <td>  
+          <div class="btnEvent" ><i class="bi bi-pen-fill"> Edit</i></div>
+          <div class="btnEvent red"> <span class="bi bi-trash-fill" style="color: white;"> Delete</span> </div>
+      </td>
+    `;
+    count += 1;
+    cardContainer.appendChild(tr);
   } else {
-    color = true;
+    eventPopup.style.display = "none";
+
   }
-  tr.innerHTML = `
-    <td>${count}</td>
-    <td>${eventData.id}</td>
-    <td>${eventData.title}</td>
-    <td>${eventData.date}</td>
-    <td>${eventData.time}</td>
-    <td>${eventData.fullLocation}</td>
-    <td><div class = "desc">${eventData.description}</div></td>
-    <td>  
-        <div class="btnEvent" ><i class="bi bi-pen-fill"> Edit</i></div>
-        <div class="btnEvent red"> <span class="bi bi-trash-fill" style="color: white;"> Delete</span> </div>
-    </td>
-`;
-  count += 1;
-  cardContainer.appendChild(tr);
 });
 
 // Google Maps Code
