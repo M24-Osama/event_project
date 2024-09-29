@@ -10,6 +10,11 @@
     />
     <link rel="stylesheet" href="../CSS/Dashboard.css" />
     <link rel="icon" type="image/x-icon" href="../image/Logonav.png" />
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2Pm1mbPplAE3Q3g9XdihQ0hO1S1PfJ9s&callback=initMap"
+      async
+      defer
+    ></script>
   </head>
   <body>
     <nav>
@@ -20,7 +25,7 @@
         </div>
 
         <div>
-          <a href="#"><i>Log out</i> </a>
+          <a href="Login.html"><i>Log out</i> </a>
         </div>
       </div>
     </nav>
@@ -29,8 +34,90 @@
         <div class="btn">
           <a href="Registration.html">Add Admin </a>
         </div>
-        <div class="btn">
-          <a href="Registration.html">Add Event </a>
+        <div id="showPopupBtn" class="btn">
+          <span>Add Event </span>
+        </div>
+
+        <div id="eventPopup" class="popup-container">
+          <div class="popup-content">
+            <span id="closePopupBtn" class="close-btn">&times;</span>
+            <h2>Create New Event</h2>
+
+            <div class="form-group">
+              <label for="eventTitle">Event Title</label>
+              <input
+                type="text"
+                id="eventTitle"
+                placeholder="Enter event title"
+                required
+              />
+              <div class="error-message" id="title-error"></div>
+            </div>
+
+            <div class="row">
+              <div class="form-group">
+                <label for="eventDate">Event Date</label>
+                <input type="date" id="eventDate" required />
+                <div class="error-message" id="date-error"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="eventTime">Event Time</label>
+                <input type="time" id="eventTime" required />
+                <div class="error-message" id="time-error"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="eventDescription">Event Description</label>
+              <textarea
+                id="eventDescription"
+                placeholder="Describe the event"
+                rows="4"
+                required
+              ></textarea>
+              <div class="error-message" id="description-error"></div>
+            </div>
+
+            <div class="form-group">
+              <label>Event Location</label>
+              <button id="setLocationBtn">Set Event Location</button>
+              <div id="locationBox" class="location-box">
+                <div id="locationDisplay">No location selected.</div>
+              </div>
+            </div>
+
+            <div class="file-upload-group">
+              <label for="eventImages">Upload Event Images</label>
+              <input type="file" id="eventImages" accept="image/*" multiple />
+              <div class="error-message" id="image-error"></div>
+            </div>
+
+            <button
+              type="submit"
+              class="submit-button"
+              id="submitEventBtn"
+              disabled
+            >
+              Add Event
+            </button>
+          </div>
+        </div>
+
+        <!-- Location popup -->
+        <div id="locationPopup" class="popup-container">
+          <div class="popup-content">
+            <span id="closeLocationPopup" class="close-btn">&times;</span>
+            <h2>Select Event Location</h2>
+            <input
+              id="searchLocation"
+              type="text"
+              placeholder="Search for a location..."
+            />
+            <button onclick="geocodeAddress()">Search</button>
+            <button id="saveLocationBtn">Save Location</button>
+            <div id="map"></div>
+          </div>
         </div>
         <div class="search-container">
           <input

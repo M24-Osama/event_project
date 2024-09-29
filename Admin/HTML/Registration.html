@@ -137,7 +137,7 @@
       @media screen and (max-width: 768px) {
         .registration-container {
           flex-direction: column;
-          width: 90%;
+          width: 85%;
           padding: 20px;
         }
 
@@ -151,17 +151,13 @@
         }
 
         .form-section {
-          padding: 10px;
-        }
-
-        .input-group input {
           width: 100%;
+          padding: 10px;
         }
       }
 
       @media screen and (max-width: 480px) {
         .registration-container {
-          width: 100%;
           padding: 15px;
         }
 
@@ -199,14 +195,14 @@
             <div class="input-group">
               <span class="input-icon fa fa-user"></span>
               <input type="text" id="name" placeholder="Name" required />
-              <div class="error-message" id="name-error"></div>
             </div>
+            <div class="error-message" id="name-error"></div>
 
             <div class="input-group">
               <span class="input-icon fa fa-envelope"></span>
               <input type="email" id="email" placeholder="Email" required />
-              <div class="error-message" id="email-error"></div>
             </div>
+            <div class="error-message" id="email-error"></div>
 
             <div class="input-group">
               <span class="input-icon fa fa-lock"></span>
@@ -216,8 +212,8 @@
                 placeholder="Password"
                 required
               />
-              <div class="error-message" id="password-error"></div>
             </div>
+            <div class="error-message" id="password-error"></div>
 
             <div class="input-group">
               <span class="input-icon fa fa-lock"></span>
@@ -227,8 +223,8 @@
                 placeholder="Confirm Password"
                 required
               />
-              <div class="error-message" id="confirm-password-error"></div>
             </div>
+            <div class="error-message" id="confirm-password-error"></div>
 
             <button type="submit" class="register-button">Register</button>
 
@@ -251,6 +247,8 @@
           document.getElementById("password-error").innerText = "";
           document.getElementById("confirm-password-error").innerText = "";
 
+          const passwordErrorElement =
+            document.getElementById("password-error");
           const name = document.getElementById("name").value.trim();
           const email = document.getElementById("email").value.trim();
           const password = document.getElementById("password").value;
@@ -273,9 +271,22 @@
           }
 
           if (password.length < 6) {
-            document.getElementById("password-error").innerText =
+            passwordErrorElement.innerText =
               "Password must be at least 6 characters";
             isValid = false;
+          }
+          // Check if password meets strong password criteria using regex
+          else {
+            const strongPasswordRegex =
+              /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+            if (!strongPasswordRegex.test(password)) {
+              passwordErrorElement.innerText =
+                "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character";
+              isValid = false;
+            } else {
+              // Clear error message if password is valid
+              passwordErrorElement.innerText = "";
+            }
           }
 
           if (password !== confirmPassword) {
