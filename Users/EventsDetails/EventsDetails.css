@@ -175,7 +175,7 @@ nav .moon a {
 /* Existing navbar styles */
 .topnav {
   background-color: #c0edff;
-  width: 90%;
+  width: 100%;
   z-index: 999;
   display: flex;
   justify-content: space-around;
