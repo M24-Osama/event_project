@@ -222,3 +222,23 @@ function nav() {
     x.className = "topnav";
   }
 }
+window.onload = function () {
+  let darkMood = localStorage.getItem("darkMood");
+  if (darkMood == "light") {
+    body.classList.add("darkMood");
+  } else {
+    localStorage.setItem("darkMood", "dark");
+  }
+};
+
+function darkMood() {
+  let darkMood = localStorage.getItem("darkMood");
+  const body = document.getElementById("body");
+  if (darkMood == "dark") {
+    body.classList.add("darkMood");
+    localStorage.setItem("darkMood", "light");
+  } else {
+    body.classList.remove("darkMood");
+    localStorage.setItem("darkMood", "dark");
+  }
+}

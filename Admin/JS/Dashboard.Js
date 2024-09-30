@@ -50,7 +50,6 @@ function deleteEventById(eventId) {
 let searchInput = document.getElementById("search");
 searchInput.addEventListener("input", search);
 function search(e) {
-  console.log(e);
   const value = (e.target.value || searchInput.value).toLowerCase();
   const cards = document.getElementsByClassName("card");
   Array.from(cards).forEach((card) => {

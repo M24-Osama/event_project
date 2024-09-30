@@ -3,24 +3,39 @@ const events = JSON.parse(localStorage.getItem("events")) || [];
 const eventsContainers = document.querySelectorAll(".events-container");
 const searchInput = document.getElementById("search");
 const links = document.querySelectorAll(".pagination ul li.link");
-let currentValue = 1; 
-const cardsPerPage = 8; 
-console.log(events);
+let currentValue = 1;
+const cardsPerPage = 8;
 
 // Function to create a card for an event
 function createEventCard(event) {
+  const i = event.images.join("@");
   const card = document.createElement("div");
   card.className = "card";
   card.innerHTML = `
-    <a href="/Users/EventsDetails/index.html?title=${event.title}&img=${event.images}&desc=${event.description}&date=${event.date}&location=${event.location}&fullLocation=${event.fullLocation}&markerLocation=${event.markerLocation}&time=${event.time}">
-      <img src="${event.images}" style="width: 100%;">
-      <h2>${event.title}</h2>
-      <p>${event.description}</p>
-      <div class ="card-date-loc">
-        <h4>${event.location}</h4>
-        <h4>${event.date}</h4>
-      </div>
-    </a>
+           <a href="../EventsDetails/index.html?title=${encodeURIComponent(
+             event.title
+           )}&img=${encodeURIComponent(i)}&desc=${encodeURIComponent(
+    event.description
+  )}&date=${encodeURIComponent(event.date)}&time=${encodeURIComponent(
+    event.time
+  )}&location=${encodeURIComponent(
+    event.location
+  )}&fullLocation=${encodeURIComponent(
+    event.fullLocation
+  )}&lat=${encodeURIComponent(
+    event.markerLocation.lat
+  )}&lng=${encodeURIComponent(
+    event.markerLocation.lng
+  )}&time=${encodeURIComponent(event.time)}">
+    <img src="${event.images[0]}" style="width: 100%;">
+    <h2>${event.title}</h2>
+    <p>${event.description}</p>
+    <div class ="card-date-loc">
+      <h4>${event.location}</h4>
+      <h4 class = "date">${event.date}</h4>
+    </div>
+  
+  </a>
   `;
   return card;
 }
@@ -129,8 +144,11 @@ function searchDate() {
   const dateInput = document.getElementById("date-input").value;
   const cards = document.querySelectorAll(".card");
   cards.forEach((card) => {
+    console.log(dateInput);
     const dateElement = card.querySelector(".date");
+    console.log(dateElement);
     const dateText = dateElement ? dateElement.textContent.trim() : "";
+    console.log(card);
     const isVisible = dateText.includes(dateInput);
     card.classList.toggle("hide", !isVisible);
   });
