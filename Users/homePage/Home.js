@@ -41,11 +41,25 @@ events.reverse().forEach((event) => {
   if (cont == 4) {
     return;
   }
+  const i = event.images.join("@");
+  console.log(i);
   cont += 1;
   const card = document.createElement("div");
   card.className = "card";
   card.innerHTML = `
-    <a href="/Users/EventsDetails/index.html?title=${event.title}&img=${event.images}&desc=${event.description}&date=${event.date}&location=${event.location}&fullLocation=${event.fullLocation}&markerLocation=${event.markerLocation}&time=${event.time}">
+    <a href="../EventsDetails/index.html?title=${encodeURIComponent(
+      event.title
+    )}&img=${encodeURIComponent(i)}&desc=${encodeURIComponent(
+    event.description
+  )}&date=${encodeURIComponent(event.date)}&time=${encodeURIComponent(
+    event.time
+  )}&location=${encodeURIComponent(
+    event.location
+  )}&fullLocation=${encodeURIComponent(
+    event.fullLocation
+  )}&markerLocation=${encodeURIComponent(
+    event.markerLocation
+  )}&time=${encodeURIComponent(event.time)}">
     <img src="${event.images[0]}" style="width: 100%;">
     <h2>${event.title}</h2>
     <p>${event.description}</p>
@@ -81,15 +95,25 @@ events.reverse().forEach((event) => {
     const card = document.createElement("div");
     card.className = "card";
     card.innerHTML = `
-    <a href="../HTML/EventDetails.html?title=${event.title}&img=${event.images}&desc=${event.description}&date=${event.date}&location=${event.location}&fullLocation=${event.fullLocation}&markerLocation=${event.markerLocation}&time=${event.time}">
+    <a href="../EventsDetails/index.html?title=${encodeURIComponent(
+      event.title
+    )}&img=${encodeURIComponent(event.images)}&desc=${encodeURIComponent(
+      event.description
+    )}&date=${encodeURIComponent(event.date)}&location=${encodeURIComponent(
+      event.location
+    )}&fullLocation=${encodeURIComponent(
+      event.fullLocation
+    )}&markerLocation=${encodeURIComponent(
+      event.markerLocation
+    )}&time=${encodeURIComponent(event.time)}">
     <img src="${event.images[0]}" style="width: 100%;">
     <h2>${event.title}</h2>
     <p>${event.description}</p>
-    <div class ="card-date-loc">
+    <div class="card-date-loc">
       <h4>${event.location}</h4>
       <h4>${event.date}</h4>
     </div>
-    </a>
+</a>
   `;
     cardContainer.appendChild(card);
   }
