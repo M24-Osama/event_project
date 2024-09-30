@@ -8,7 +8,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
     />
-    <link rel="stylesheet" href="../CSS/Dashboard.css" />
+
+    <link rel="stylesheet" href="/Admin/Css/Dashboard.CSS" />
     <link rel="icon" type="image/x-icon" href="../image/Logonav.png" />
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2Pm1mbPplAE3Q3g9XdihQ0hO1S1PfJ9s&callback=initMap"
@@ -19,7 +20,7 @@
   <body>
     <nav>
       <div class="topnav" id="myTopnav">
-        <a href=""><img src="..\image\Logonav.png" /></a>
+        <a href=""><img src="../image/Logonav.png" /></a>
         <div class="div1">
           <p>Dashboard</p>
         </div>
@@ -103,7 +104,73 @@
             </button>
           </div>
         </div>
-         
+
+        <!-- Edit Event Popup -->
+        <div id="editEventPopup" class="popup-container">
+          <div class="popup-content">
+            <span id="closeEditPopupBtn" class="close-btn">&times;</span>
+            <h2>Edit Event</h2>
+
+            <div class="form-group">
+              <label for="editEventTitle">Event Title</label>
+              <input
+                type="text"
+                id="editEventTitle"
+                placeholder="Enter event title"
+                required
+              />
+              <div class="error-message" id="edit-title-error"></div>
+            </div>
+
+            <div class="row">
+              <div class="form-group">
+                <label for="editEventDate">Event Date</label>
+                <input type="date" id="editEventDate" required />
+                <div class="error-message" id="edit-date-error"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="editEventTime">Event Time</label>
+                <input type="time" id="editEventTime" required />
+                <div class="error-message" id="edit-time-error"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="editEventDescription">Event Description</label>
+              <textarea
+                id="editEventDescription"
+                placeholder="Describe the event"
+                rows="4"
+                required
+              ></textarea>
+              <div class="error-message" id="edit-description-error"></div>
+            </div>
+
+            <div class="form-group">
+              <label>Event Location</label>
+              <button id="editSetLocationBtn">Set Event Location</button>
+              <div id="editLocationBox" class="location-box">
+                <div id="editLocationDisplay">No location selected.</div>
+              </div>
+            </div>
+
+            <div class="file-upload-group">
+              <label for="editEventImages">Upload Event Images</label>
+              <input type="file" id="editEventImages" accept="image/*" multiple />
+              <div class="error-message" id="edit-image-error"></div>
+            </div>
+
+            <button
+              type="submit"
+              class="submit-button"
+              id="updateEventBtn"
+            >
+              Update Event
+            </button>
+          </div>
+        </div>
+
         <!-- Location popup -->
         <div id="locationPopup" class="popup-container">
           <div class="popup-content">
@@ -120,43 +187,6 @@
           </div>
         </div>
 
-
-        <div id="editEventPopup" class="popup-container">
-  <div class="popup-content">
-    <span id="closeEditPopupBtn" class="close-btn">&times;</span>
-    <h2>Edit Event</h2>
-
-    <div class="form-group">
-      <label for="editEventTitle">Event Title</label>
-      <input type="text" id="editEventTitle" placeholder="Enter event title" required />
-      <div class="error-message" id="edit-title-error"></div>
-    </div>
-
-    <div class="row">
-      <div class="form-group">
-        <label for="editEventDate">Event Date</label>
-        <input type="date" id="editEventDate" required />
-        <div class="error-message" id="edit-date-error"></div>
-      </div>
-
-      <div class="form-group">
-        <label for="editEventTime">Event Time</label>
-        <input type="time" id="editEventTime" required />
-        <div class="error-message" id="edit-time-error"></div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="editEventDescription">Event Description</label>
-      <textarea id="editEventDescription" placeholder="Describe the event" rows="4" required></textarea>
-      <div class="error-message" id="edit-description-error"></div>
-    </div>
-
-    <button type="submit" class="submit-button" id="submitEditEventBtn">Update Event</button>
-  </div>
-</div>
-
-        
         <div class="search-container">
           <input
             id="search"
@@ -187,6 +217,6 @@
       </div>
       <div id="imagePreview"></div>
     </div>
-    <script src="../JS/Dashboard.js"></script>
+    <script src="/Admin/JS/Dashboard.Js"></script>
   </body>
 </html>

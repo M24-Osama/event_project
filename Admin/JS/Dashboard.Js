@@ -1,61 +1,93 @@
 let events = JSON.parse(localStorage.getItem("events")) || []; // Use an empty array if null
 console.log(events);
-cardContainer = document.getElementById("tableEvent");
+let cardContainer = document.getElementById("tableEvent");
 let count = 0;
 let color = true;
-events.forEach((event) => {
-  const tr = document.createElement("tr");
-  tr.className = "card";
-  tr.className = "card";
-  if (color) {
-    tr.className += " cardBlue";
-    color = false;
-  } else {
-    color = true;
-  }
-  tr.innerHTML = `
-    <td>${count}</td>
-    <td>${event.id}</td>
-    <td>${event.title}</td>
-    <td>${event.date}</td>
-    <td>${event.time}</td>
-    <td >${event.location}</td>
-    <td><div class = "desc" >${event.description}</div></td>
-    <td>  
-    <div class="btnEvent"><i class="bi bi-pen-fill"> Edit</i></div>
-        <div class="btnEvent red delete-button" data-id="${event.id}">
-            <span class="bi bi-trash-fill" style="color: white;"> Delete</span>
-        </div>
-    </td>
-  `;
 
-  cardContainer.appendChild(tr);
-  count += 1;
-  // Add the event listener to the delete button
-  const deleteButton = tr.querySelector(".delete-button");
-  deleteButton.addEventListener("click", () => {
-    if (confirm("Are you sure to Delete?")) {
-      const eventId = parseInt(deleteButton.getAttribute("data-id"), 10);
-      deleteEventById(eventId);
-      tr.remove(); // Remove the row from the table
+// Populate the table with events
+function populateTable() {
+  cardContainer.innerHTML = `
+    <th class="thw10">#</th>
+    <th class="thw10">ID</th>
+    <th class="thw20">Event's Name</th>
+    <th class="thw20">Date</th>
+    <th class="thw20">Time</th>
+    <th class="thw20">Location</th>
+    <th class="thw20">Description</th>
+    <th class="thw20">Action</th>
+  `;
+  
+  count = 0;
+  events.forEach((event) => {
+    const tr = document.createElement("tr");
+    tr.className = "card";
+    if (color) {
+      tr.className += " cardBlue";
+      color = false;
+    } else {
+      color = true;
     }
+    tr.setAttribute('data-id', event.id);
+    tr.innerHTML = `
+      <td>${count}</td>
+      <td>${event.id}</td>
+      <td>${event.title}</td>
+      <td>${event.date}</td>
+      <td>${event.time}</td>
+      <td>${event.location}</td>
+      <td><div class="desc">${event.description}</div></td>
+      <td>  
+        <div class="btnEvent edit-button" data-id="${event.id}"><i class="bi bi-pen-fill"> Edit</i></div>
+        <div class="btnEvent red delete-button" data-id="${event.id}">
+          <span class="bi bi-trash-fill" style="color: white;"> Delete</span>
+        </div>
+      </td>
+    `;
+
+    cardContainer.appendChild(tr);
+    count += 1;
+
+    // Add event listeners to the buttons
+    const deleteButton = tr.querySelector(".delete-button");
+    deleteButton.addEventListener("click", () => {
+      if (confirm("Are you sure you want to delete this event?")) {
+        const eventId = parseInt(deleteButton.getAttribute("data-id"), 10);
+        deleteEventById(eventId);
+        tr.remove();
+      }
+    });
+
+    const editButton = tr.querySelector(".edit-button");
+    editButton.addEventListener("click", () => {
+      const eventId = parseInt(editButton.getAttribute("data-id"), 10);
+      const eventToEdit = events.find(e => e.id === eventId);
+      if (eventToEdit) {
+        populateEditForm(eventToEdit);
+        editEventPopup.style.display = 'flex';
+      }
+    });
   });
-});
+}
+
+// Call populateTable on page load
+populateTable();
 
 function deleteEventById(eventId) {
-  // Filter out the event with the matching ID
   events = events.filter((event) => event.id !== eventId);
   localStorage.setItem("events", JSON.stringify(events));
 }
+
 let searchInput = document.getElementById("search");
 searchInput.addEventListener("input", search);
+
 function search(e) {
+  console.log(e);
   const value = (e.target.value || searchInput.value).toLowerCase();
   const cards = document.getElementsByClassName("card");
   Array.from(cards).forEach((card) => {
     const id = card.children[1].textContent.toLowerCase();
     const title = card.children[2].textContent.toLowerCase();
-    const loc = card.children[4].textContent.toLowerCase();
+    const loc = card.children[5].textContent.toLowerCase();
 
     if (title.includes(value) || id.includes(value) || loc.includes(value)) {
       card.style.display = "";
@@ -112,6 +144,9 @@ window.addEventListener("click", (event) => {
   if (event.target === locationPopup) {
     locationPopup.style.display = "none";
   }
+  if (event.target === editEventPopup) {
+    editEventPopup.style.display = "none";
+  }
 });
 
 // location popup
@@ -164,6 +199,7 @@ eventImagesInput.addEventListener("change", function () {
 saveLocationBtn.addEventListener("click", () => {
   if (markerLocation) {
     locationDisplay.innerHTML = `Location: ${locationDetails.city}, ${locationDetails.country}<br>Full Location: ${locationDetails.fullAddress}`;
+    editLocationDisplay.innerHTML = `Location: ${locationDetails.city}, ${locationDetails.country}<br>Full Location: ${locationDetails.fullAddress}`;
 
     locationPopup.style.display = "none";
 
@@ -179,7 +215,6 @@ saveLocationBtn.addEventListener("click", () => {
 submitEventBtn.addEventListener("click", () => {
   // Display confirmation dialog
   if (confirm("Are you sure you want to add this event?")) {
-    // If the user confirms, proceed with adding the event
     const eventData = {
       id: Date.now(),
       title: eventTitleInput.value,
@@ -192,9 +227,8 @@ submitEventBtn.addEventListener("click", () => {
       markerLocation: markerLocation,
     };
 
-    const existingEvents = JSON.parse(localStorage.getItem("events")) || [];
-    existingEvents.push(eventData);
-    localStorage.setItem("events", JSON.stringify(existingEvents));
+    events.push(eventData);
+    localStorage.setItem("events", JSON.stringify(events));
 
     // Clear the form fields
     eventTitleInput.value = "";
@@ -209,31 +243,74 @@ submitEventBtn.addEventListener("click", () => {
     eventPopup.style.display = "none";
 
     // Add new event to the table
-    const tr = document.createElement("tr");
-    tr.className = "card";
-    if (color) {
-      tr.className += " cardBlue";
-      color = false;
-    } else {
-      color = true;
-    }
-    tr.innerHTML = `
-      <td>${count}</td>
-      <td>${eventData.id}</td>
-      <td>${eventData.title}</td>
-      <td>${eventData.date}</td>
-      <td>${eventData.time}</td>
-      <td>${eventData.fullLocation}</td>
-      <td><div class = "desc">${eventData.description}</div></td>
-      <td>  
-          <div class="btnEvent" ><i class="bi bi-pen-fill"> Edit</i></div>
-          <div class="btnEvent red"> <span class="bi bi-trash-fill" style="color: white;"> Delete</span> </div>
-      </td>
-    `;
-    count += 1;
-    cardContainer.appendChild(tr);
+    populateTable();
   } else {
     eventPopup.style.display = "none";
+  }
+});
+
+// Edit functionality
+let editingEventId = null;
+const editEventPopup = document.getElementById('editEventPopup');
+const closeEditPopupBtn = document.getElementById('closeEditPopupBtn');
+const updateEventBtn = document.getElementById('updateEventBtn');
+const editSetLocationBtn = document.getElementById('editSetLocationBtn');
+const editLocationDisplay = document.getElementById('editLocationDisplay');
+
+
+// Function to populate the edit form
+function populateEditForm(event) {
+  document.getElementById('editEventTitle').value = event.title;
+  document.getElementById('editEventDate').value = event.date;
+  document.getElementById('editEventTime').value = event.time;
+  document.getElementById('editEventDescription').value = event.description;
+ 
+  editLocationDisplay.innerHTML = `Location: ${event.location}<br>Full Location: ${event.fullLocation}`;
+  
+  editingEventId = event.id;
+  locationDetails = {
+    city: event.location.split(',')[0].trim(),
+    country: event.location.split(',')[1].trim(),
+    fullAddress: event.fullLocation
+  };
+  markerLocation = event.markerLocation;
+  selectedImages = event.images;
+}
+
+// Function to update an event
+function updateEvent(updatedEvent) {
+  const index = events.findIndex(event => event.id === updatedEvent.id);
+  if (index !== -1) {
+    events[index] = updatedEvent;
+    localStorage.setItem('events', JSON.stringify(events));
+    populateTable();
+  }
+}
+
+closeEditPopupBtn.addEventListener('click', () => {
+  editEventPopup.style.display = 'none';
+});
+
+editSetLocationBtn.addEventListener('click', () => {
+  locationPopup.style.display = 'flex';
+});
+
+updateEventBtn.addEventListener('click', () => {
+  if (confirm('Are you sure you want to update this event?')) {
+    const updatedEvent = {
+      id: editingEventId,
+      title: document.getElementById('editEventTitle').value,
+      description: document.getElementById('editEventDescription').value,
+      date: document.getElementById('editEventDate').value,
+      time: document.getElementById('editEventTime').value,
+      images: selectedImages,
+      location: `${locationDetails.city}, ${locationDetails.country}`,
+      fullLocation: locationDetails.fullAddress,
+      markerLocation: markerLocation,
+    };
+
+    updateEvent(updatedEvent);
+    editEventPopup.style.display = 'none';
   }
 });
 
@@ -348,136 +425,5 @@ function geocodeAddress() {
     } else {
       alert("Geocode was not successful for the following reason: " + status);
     }
-  });
-}
-
-//Edit event 
-let editEventId = null; // Variable to keep track of which event is being edited
-
-// Modify the submit button text to reflect the action
-submitEventBtn.innerText = "Add Event"; 
-
-// Add the click listener for the Edit button
-cardContainer.addEventListener("click", (e) => {
-  if (e.target.classList.contains("bi-pen-fill")) {
-    const eventId = parseInt(e.target.closest("tr").querySelector("td:nth-child(2)").textContent);
-    const eventToEdit = events.find(event => event.id === eventId);
-    
-    if (eventToEdit) {
-      // Fill the popup form with the event's data
-      eventTitleInput.value = eventToEdit.title;
-      eventDateInput.value = eventToEdit.date;
-      eventTimeInput.value = eventToEdit.time;
-      eventDescriptionInput.value = eventToEdit.description;
-      locationDisplay.innerHTML = `Location: ${eventToEdit.location}<br>Full Location: ${eventToEdit.fullLocation}`;
-      selectedImages = eventToEdit.images;  // Set the images
-
-      // Set the event ID to be edited
-      editEventId = eventToEdit.id;
-
-      // Change submit button text to "Save Changes"
-      submitEventBtn.innerText = "Save Changes";
-
-      // Show the popup
-      eventPopup.style.display = "flex";
-    }
-  }
-});
-
-// Modify the submit button click listener to handle both add and edit
-submitEventBtn.addEventListener("click", () => {
-  // Display confirmation dialog
-  if (confirm(editEventId ? "Are you sure you want to edit this event?" : "Are you sure you want to add this event?")) {
-    // Check if it's an edit action or add action
-    if (editEventId) {
-      // Update the existing event in the array
-      const updatedEventData = {
-        id: editEventId,
-        title: eventTitleInput.value,
-        description: eventDescriptionInput.value,
-        date: eventDateInput.value,
-        time: eventTimeInput.value,
-        images: selectedImages,
-        location: `${locationDetails.city}, ${locationDetails.country}`,
-        fullLocation: locationDetails.fullAddress,
-        markerLocation: markerLocation,
-      };
-
-      const eventIndex = events.findIndex(event => event.id === editEventId);
-      events[eventIndex] = updatedEventData;  // Update the event in the array
-      editEventId = null; // Reset the edit ID
-      
-      submitEventBtn.innerText = "Add Event"; // Reset button text
-    } else {
-      // Add new event
-      const newEventData = {
-        id: Date.now(),
-        title: eventTitleInput.value,
-        description: eventDescriptionInput.value,
-        date: eventDateInput.value,
-        time: eventTimeInput.value,
-        images: selectedImages,
-        location: `${locationDetails.city}, ${locationDetails.country}`,
-        fullLocation: locationDetails.fullAddress,
-        markerLocation: markerLocation,
-      };
-
-      events.push(newEventData);  // Add the new event to the array
-    }
-
-    // Update localStorage with the updated events array
-    localStorage.setItem("events", JSON.stringify(events));
-
-    // Clear the form fields after adding/editing
-    eventTitleInput.value = "";
-    eventDateInput.value = "";
-    eventTimeInput.value = "";
-    eventDescriptionInput.value = "";
-    eventImagesInput.value = "";
-    selectedImages = [];
-    locationDetails = { city: "", country: "", fullAddress: "" };
-    locationDisplay.innerHTML = "No location selected.";
-    submitEventBtn.disabled = true;
-    eventPopup.style.display = "none";
-
-    // Re-render the events table to reflect changes
-    renderEvents();
-  } else {
-    eventPopup.style.display = "none";
-  }
-});
-
-// Function to render events in the table (after edit or add)
-function renderEvents() {
-  cardContainer.innerHTML = "";  // Clear the current table
-  count = 0;
-  color = true;
-
-  events.forEach(event => {
-    const tr = document.createElement("tr");
-    tr.className = "card";
-    if (color) {
-      tr.className += " cardBlue";
-      color = false;
-    } else {
-      color = true;
-    }
-    tr.innerHTML = `
-      <td>${count}</td>
-      <td>${event.id}</td>
-      <td>${event.title}</td>
-      <td>${event.date}</td>
-      <td>${event.time}</td>
-      <td>${event.fullLocation}</td>
-      <td><div class = "desc">${event.description}</div></td>
-      <td>  
-          <div class="btnEvent" ><i class="bi bi-pen-fill"> Edit</i></div>
-          <div class="btnEvent red delete-button" data-id="${event.id}">
-              <span class="bi bi-trash-fill" style="color: white;"> Delete</span>
-          </div>
-      </td>
-    `;
-    cardContainer.appendChild(tr);
-    count += 1;
   });
 }
