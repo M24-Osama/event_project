@@ -235,7 +235,6 @@ submitEventBtn.addEventListener("click", () => {
     cardContainer.appendChild(tr);
   } else {
     eventPopup.style.display = "none";
-
   }
 });
 
