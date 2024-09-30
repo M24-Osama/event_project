@@ -18,341 +18,36 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
-    <style>
-      body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f0f0f0;
-        color: #333;
-      }
-
-      .full-page {
-        display: flex;
-        height: 100vh;
-      }
-
-      .left-side {
-        width: 50%;
-        height: 100%;
-      }
-
-      .right-side {
-        width: 50%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        padding: 20px;
-        box-sizing: border-box;
-      }
-
-      .slideshow-container {
-        width: 100%;
-        height: 100%;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .mySlides {
-        display: none;
-        height: 100%;
-      }
-
-      .mySlides img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .prev,
-      .next {
-        cursor: pointer;
-        position: absolute;
-        top: 50%;
-        width: auto;
-        padding: 16px;
-        margin-top: -22px;
-        color: white;
-        font-weight: bold;
-        font-size: 30px;
-        transition: 0.6s ease;
-        border-radius: 0 3px 3px 0;
-        user-select: none;
-        background-color: rgba(0, 0, 0, 0.3);
-      }
-
-      .next {
-        right: 0;
-        border-radius: 3px 0 0 3px;
-      }
-
-      .prev:hover,
-      .next:hover {
-        background-color: rgba(0, 0, 0, 0.8);
-      }
-
-      .event-details {
-        margin-top: 50px;
-        display: flex;
-        flex-direction: column;
-        background-color: white;
-        padding: 10px 30px;
-        border-radius: 15px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        margin-bottom: 10px;
-        flex-grow: 1;
-      }
-
-      #title {
-        color: #2d9bf0;
-        margin-top: 0;
-        font-size: 2.5em;
-        margin-top: 20px;
-        border-bottom: 2px solid #2d9bf0;
-        padding-bottom: 10px;
-        margin-bottom: 0px;
-      }
-
-      .event-info-row {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-      }
-
-      .left-desc {
-        width: 65%;
-      }
-
-      .right-info {
-        width: 30%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
-
-      #desc {
-        font-size: 1.1em;
-        line-height: 1.6;
-        margin-bottom: 25px;
-      }
-
-      .event-info {
-        display: flex;
-        align-items: center;
-        font-size: 1.1em;
-      }
-
-      .event-info i {
-        margin-right: 10px;
-        color: #2d9bf0;
-        font-size: 1.2em;
-      }
-
-      #map-container {
-        height: 300px;
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      }
-
-      #map {
-        height: 80%;
-        width: 100%;
-      }
-
-      .map-controls {
-        margin-top: 15px;
-        display: flex;
-        gap: 10px;
-      }
-
-      .map-controls button {
-        background-color: #2d9bf0;
-        color: white;
-        border: none;
-        padding: 12px 20px;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 14px;
-        transition: background-color 0.3s ease;
-      }
-
-      .map-controls button:hover {
-        background-color: #1a7ac5;
-      }
-
-      /* Existing navbar styles */
-      .topnav {
-  background-color: #c0edff;
-  width: 100%;
-  z-index: 999;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  
-}
-
-.topnav img {
-  width: 50px;
-  margin: 5px;
-}
-
-.topnav a {
-  text-decoration: none;
-  color: black;
-  text-transform: uppercase;
-  font-weight: 500;
-  width: max-content;
-  position: relative;
-  cursor: pointer;
-  margin-bottom: 0px;
-}
-.activeNav {
-  font-weight: bolder;
-  color: #2d9bf0;
-  padding: 10px;
-}
-.topnav a::after {
-   
-  content: "";
-  position: absolute;
-  bottom: -6px;
-  height: 2px;
-  width: 100%;
-  left: 0;
-  background-color: rgb(5, 5, 140);
-  transition: 0.3s;
-  transition-timing-function: ease-in-out;
-  transform: scaleX(0);
-}
-
-.topnav a:hover::after {
-  transform: scaleX(1);
-}
-
-.topnav .icon {
-  display: none;
-  font-size: xx-large;
-}
-
-.div1 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 50%;
-}
-nav {
-   
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  z-index: 2;
-  width: 100%;
-  background-color: #c0edff;
-  
-  padding-right: 30px;
-}
-
-      @media screen and (max-width: 1024px) {
-        .full-page {
-          flex-direction: column;
-        }
-
-        .left-side,
-        .right-side {
-          width: 100%;
-          height: auto;
-        }
-
-        .slideshow-container {
-          height: 50vh;
-        }
-
-        .topnav {
-          justify-content: space-between;
-        }
-
-        .topnav div:not(:first-child) {
-          display: none;
-        }
-
-        .topnav a.icon {
-          float: right;
-          display: block;
-        }
-
-        .topnav.responsive {
-          position: relative;
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        .topnav.responsive .icon {
-          position: absolute;
-          right: 0;
-          top: 9px;
-        }
-
-        .topnav.responsive div {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          width: 100%;
-        }
-
-        .topnav.responsive .div1 {
-          border-top: 1px solid #000;
-          margin-top: 80px;
-        }
-
-        .darkMood .topnav.responsive .div1 {
-          border-top: 1px solid #fff;
-        }
-        .darkMood nav .topnav .div1 a {
-          color: #2d9bf0;
-}
-        .topnav.responsive div a {
-          display: block;
-          text-align: center;
-          margin: 10px;
-        }
-
-        .topnav.responsive a img {
-          position: absolute;
-          left: 0px;
-          top: 5px;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="EventsDetails.css" />
   </head>
-  <body>
+  <body id="body">
     <nav>
-        <div class="topnav" id="myTopnav">
-          <a><img src="..\image\Logonav.png" /></a>
-          <div class="div1">
-            <a href="#about"><i class="bi bi-person-vcard-fill"> About us</i></a>
-            <a href="#"
-              ><i class="bi bi-calendar2-event-fill activeNav"> Event</i></a
-            >
-            <a href="../homePage/Home.Html"
-              ><i class="bi bi-house-door-fill"> Home</i></a
-            >
-          </div>
-  
-          <div onclick="darkMood()" class="moon">
-            <a href="javascript:void(0);" id="dark"
-              ><i id="dark" class="bi bi-moon-fill"></i>
-            </a>
-          </div>
-          <a
-            href="javascript:void(0);"
-            class="bi bi-list icon"
-            onclick="nav()"
-          ></a>
+      <div class="topnav" id="myTopnav">
+        <a href="../homePage/Home.Html"><img src="..\image\Logonav.png" /></a>
+        <div class="div1">
+          <a href="../homePage/Home.Html"
+            ><i class="bi bi-person-vcard-fill"> About us</i></a
+          >
+          <a href="../EventsPage/index.html"
+            ><i class="bi bi-calendar2-event-fill activeNav"> Event</i></a
+          >
+          <a href="../homePage/Home.Html"
+            ><i class="bi bi-house-door-fill"> Home</i></a
+          >
         </div>
-      </nav>
+
+        <div onclick="darkMood()" class="moon">
+          <a href="javascript:void(0);" id="dark"
+            ><i id="dark" class="bi bi-moon-fill"></i>
+          </a>
+        </div>
+        <a
+          href="javascript:void(0);"
+          class="bi bi-list icon"
+          onclick="nav()"
+        ></a>
+      </div>
+    </nav>
 
     <div class="full-page">
       <div class="left-side">

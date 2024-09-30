@@ -45,7 +45,6 @@ events.reverse().forEach((event) => {
   cont += 1;
   const card = document.createElement("div");
   card.className = "card";
-  console.log(event.markerLocation.lng);
   card.innerHTML = `
     <a href="../EventsDetails/index.html?title=${encodeURIComponent(
       event.title
@@ -86,36 +85,43 @@ events.sort((a, b) => {
   const dateB = new Date(b.date);
   return dateA - dateB;
 });
-console.log(events);
+
 events.reverse().forEach((event) => {
   const eventDate = new Date(event.date);
   if (contSoon == 4) {
     return;
   }
+
   if (eventDate > today && eventDate <= sevenDaysLater) {
+    const i = event.images.join("@");
     contSoon += 1;
     const card = document.createElement("div");
     card.className = "card";
     card.innerHTML = `
-    <a href="../EventsDetails/index.html?title=${encodeURIComponent(
-      event.title
-    )}&img=${encodeURIComponent(event.images)}&desc=${encodeURIComponent(
+        <a href="../EventsDetails/index.html?title=${encodeURIComponent(
+          event.title
+        )}&img=${encodeURIComponent(i)}&desc=${encodeURIComponent(
       event.description
-    )}&date=${encodeURIComponent(event.date)}&location=${encodeURIComponent(
+    )}&date=${encodeURIComponent(event.date)}&time=${encodeURIComponent(
+      event.time
+    )}&location=${encodeURIComponent(
       event.location
     )}&fullLocation=${encodeURIComponent(
       event.fullLocation
-    )}&markerLocation=${encodeURIComponent(
-      event.markerLocation
+    )}&lat=${encodeURIComponent(
+      event.markerLocation.lat
+    )}&lng=${encodeURIComponent(
+      event.markerLocation.lng
     )}&time=${encodeURIComponent(event.time)}">
     <img src="${event.images[0]}" style="width: 100%;">
     <h2>${event.title}</h2>
     <p>${event.description}</p>
-    <div class="card-date-loc">
+    <div class ="card-date-loc">
       <h4>${event.location}</h4>
       <h4>${event.date}</h4>
     </div>
-</a>
+  
+  </a>
   `;
     cardContainer.appendChild(card);
   }
