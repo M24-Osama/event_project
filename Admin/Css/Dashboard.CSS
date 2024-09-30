@@ -318,3 +318,119 @@ textarea {
   margin-top: 0px;
 }
 
+.popup-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+  overflow-y: auto;
+}
+
+/* Popup Content */
+.popup-content {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  max-width: 450px;
+  width: 100%;
+  max-height: 90%;
+  overflow-y: auto;
+  text-align: center;
+  position: relative;
+}
+
+/* Close Button */
+.close-btn {
+  font-size: 24px;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  color: #2d9bf0;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+/* Labels */
+label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+/* Inputs, Selects, Textareas */
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: border 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #2d9bf0;
+}
+
+/* Buttons inside Popup */
+.popup-button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #2d9bf0;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.popup-button:hover {
+  background-color: #247ab7;
+}
+
+/* Disabled Button Style */
+.popup-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Specific Button Styles for 'Set Event Location' and 'Choose File' */
+#location-button,
+#file-button {
+  background-color: #2d9bf0;
+  color: white;
+  font-weight: 500;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+#location-button:hover,
+#file-button:hover {
+  background-color: #247ab7;
+}

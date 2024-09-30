@@ -238,8 +238,21 @@ saveLocationBtn.addEventListener("click", () => {
   }
 });
 
+const today = new Date().toISOString().split("T")[0];
+console.log(today );
+eventDateInput.setAttribute("min", today);
+document.getElementById("editEventDate").setAttribute("min", today);
 // Handle form submission
 submitEventBtn.addEventListener("click", () => {
+
+  const selectedDate = eventDateInput.value;
+
+  // Validate if the selected date is today or in the future
+  if (new Date(selectedDate) < new Date(today)) {
+    alert("Please select a date that is today or in the future.");
+    return;
+  }
+
   // Display confirmation dialog
   swal({
     title: "Add",
