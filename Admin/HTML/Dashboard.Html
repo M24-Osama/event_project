@@ -103,7 +103,7 @@
             </button>
           </div>
         </div>
-
+         
         <!-- Location popup -->
         <div id="locationPopup" class="popup-container">
           <div class="popup-content">
@@ -119,6 +119,44 @@
             <div id="map"></div>
           </div>
         </div>
+
+
+        <div id="editEventPopup" class="popup-container">
+  <div class="popup-content">
+    <span id="closeEditPopupBtn" class="close-btn">&times;</span>
+    <h2>Edit Event</h2>
+
+    <div class="form-group">
+      <label for="editEventTitle">Event Title</label>
+      <input type="text" id="editEventTitle" placeholder="Enter event title" required />
+      <div class="error-message" id="edit-title-error"></div>
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+        <label for="editEventDate">Event Date</label>
+        <input type="date" id="editEventDate" required />
+        <div class="error-message" id="edit-date-error"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="editEventTime">Event Time</label>
+        <input type="time" id="editEventTime" required />
+        <div class="error-message" id="edit-time-error"></div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="editEventDescription">Event Description</label>
+      <textarea id="editEventDescription" placeholder="Describe the event" rows="4" required></textarea>
+      <div class="error-message" id="edit-description-error"></div>
+    </div>
+
+    <button type="submit" class="submit-button" id="submitEditEventBtn">Update Event</button>
+  </div>
+</div>
+
+        
         <div class="search-container">
           <input
             id="search"
