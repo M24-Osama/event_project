@@ -183,67 +183,77 @@
 
       /* Existing navbar styles */
       .topnav {
-        background-color: #c0edff;
-        width: 100%;
-        z-index: 999;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        position: fixed;
-        top: 0;
-        left: 0;
-      }
+  background-color: #c0edff;
+  width: 100%;
+  z-index: 999;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  
+}
 
-      .topnav img {
-        width: 50px;
-        margin: 5px;
-      }
+.topnav img {
+  width: 50px;
+  margin: 5px;
+}
 
-      .topnav a {
-        text-decoration: none;
-        color: black;
-        text-transform: uppercase;
-        font-weight: 500;
-        width: max-content;
-        position: relative;
-        cursor: pointer;
-        margin-bottom: 0px;
-      }
+.topnav a {
+  text-decoration: none;
+  color: black;
+  text-transform: uppercase;
+  font-weight: 500;
+  width: max-content;
+  position: relative;
+  cursor: pointer;
+  margin-bottom: 0px;
+}
+.activeNav {
+  font-weight: bolder;
+  color: #2d9bf0;
+  padding: 10px;
+}
+.topnav a::after {
+   
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  height: 2px;
+  width: 100%;
+  left: 0;
+  background-color: rgb(5, 5, 140);
+  transition: 0.3s;
+  transition-timing-function: ease-in-out;
+  transform: scaleX(0);
+}
 
-      .activeNav {
-        font-weight: bolder;
-        color: #2d9bf0;
-      }
+.topnav a:hover::after {
+  transform: scaleX(1);
+}
 
-      .topnav a::after {
-        content: "";
-        position: absolute;
-        bottom: -6px;
-        height: 2px;
-        width: 100%;
-        left: 0;
-        background-color: rgb(5, 5, 140);
-        transition: 0.3s;
-        transition-timing-function: ease-in-out;
-        transform: scaleX(0);
-      }
+.topnav .icon {
+  display: none;
+  font-size: xx-large;
+}
 
-      .topnav a:hover::after {
-        transform: scaleX(1);
-      }
-
-      .topnav .icon {
-        display: none;
-        font-size: xx-large;
-      }
-
-      .div1 {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-evenly;
-        width: 50%;
-      }
+.div1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 50%;
+}
+nav {
+   
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+  background-color: #c0edff;
+  
+  padding-right: 30px;
+}
 
       @media screen and (max-width: 1024px) {
         .full-page {
@@ -300,7 +310,9 @@
         .darkMood .topnav.responsive .div1 {
           border-top: 1px solid #fff;
         }
-
+        .darkMood nav .topnav .div1 a {
+          color: #2d9bf0;
+}
         .topnav.responsive div a {
           display: block;
           text-align: center;
@@ -317,25 +329,30 @@
   </head>
   <body>
     <nav>
-      <div class="topnav" id="myTopnav">
-        <a><img src="../image/Logonav.png" alt="Logo" /></a>
-        <div class="div1">
-          <a href="#about"><i class="bi bi-person-vcard-fill"> About us</i></a>
-          <a href="#"><i class="bi bi-calendar2-event-fill"> Event</i></a>
-          <a href="#"><i class="bi bi-house-door-fill activeNav"> Home</i></a>
-        </div>
-        <div onclick="darkMood()" class="moon">
-          <a href="javascript:void(0);" id="dark"
-            ><i id="dark" class="bi bi-moon-fill"></i
+        <div class="topnav" id="myTopnav">
+          <a><img src="..\image\Logonav.png" /></a>
+          <div class="div1">
+            <a href="#about"><i class="bi bi-person-vcard-fill"> About us</i></a>
+            <a href="#"
+              ><i class="bi bi-calendar2-event-fill activeNav"> Event</i></a
+            >
+            <a href="../homePage/Home.Html"
+              ><i class="bi bi-house-door-fill"> Home</i></a
+            >
+          </div>
+  
+          <div onclick="darkMood()" class="moon">
+            <a href="javascript:void(0);" id="dark"
+              ><i id="dark" class="bi bi-moon-fill"></i>
+            </a>
+          </div>
+          <a
+            href="javascript:void(0);"
+            class="bi bi-list icon"
+            onclick="nav()"
           ></a>
         </div>
-        <a
-          href="javascript:void(0);"
-          class="bi bi-list icon"
-          onclick="nav()"
-        ></a>
-      </div>
-    </nav>
+      </nav>
 
     <div class="full-page">
       <div class="left-side">

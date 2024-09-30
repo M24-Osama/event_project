@@ -3,8 +3,8 @@ const events = JSON.parse(localStorage.getItem("events")) || [];
 const eventsContainers = document.querySelectorAll(".events-container");
 const searchInput = document.getElementById("search");
 const links = document.querySelectorAll(".pagination ul li.link");
-let currentValue = 1; // Tracks the current page
-const cardsPerPage = 8; // Number of cards per container
+let currentValue = 1; 
+const cardsPerPage = 8; 
 console.log(events);
 
 // Function to create a card for an event
@@ -22,7 +22,7 @@ function createEventCard(event) {
       </div>
     </a>
   `;
-  return card; // Return the created card
+  return card;
 }
 
 // Function to distribute event cards into containers

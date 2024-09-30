@@ -215,3 +215,13 @@ plusSlides(1);
 setInterval(function () {
   plusSlides(1);
 }, 5000);
+
+// nav
+function nav() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
