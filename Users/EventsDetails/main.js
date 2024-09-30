@@ -24,12 +24,10 @@ function getUrlParams() {
   };
 }
 const data = getUrlParams();
-console.log(data.markerLocation);
-console.log(data);
 
 function getTempByLocation(location) {
-  const dashPos = location.indexOf(",");
-  let subbedLoc = location.substring(dashPos + 1).trim();
+  const dashPos = location.split(",");
+  let subbedLoc = dashPos[0].trim();
 
   return fetch(
     `https://api.weatherapi.com/v1/current.json?key=dd0ce2b6bc1242f79b2131516242809&q=${subbedLoc}&aqi=no`
@@ -80,10 +78,9 @@ let directionsRenderer;
 let directionsService;
 let map;
 let myLoc;
-console.log(data.lat, data.lng);
 let loc = { lat: Number(data.lat), lng: Number(data.lng) };
 //let loc = { lat: 31.9539, lng: 35.9106 }
-console.log(loc);
+
 function initMap() {
   directionsService = new google.maps.DirectionsService();
   directionsRenderer = new google.maps.DirectionsRenderer();
