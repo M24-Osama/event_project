@@ -42,10 +42,10 @@ events.reverse().forEach((event) => {
     return;
   }
   const i = event.images.join("@");
-  console.log(i);
   cont += 1;
   const card = document.createElement("div");
   card.className = "card";
+  console.log(event.markerLocation.lng);
   card.innerHTML = `
     <a href="../EventsDetails/index.html?title=${encodeURIComponent(
       event.title
@@ -57,8 +57,10 @@ events.reverse().forEach((event) => {
     event.location
   )}&fullLocation=${encodeURIComponent(
     event.fullLocation
-  )}&markerLocation=${encodeURIComponent(
-    event.markerLocation
+  )}&lat=${encodeURIComponent(
+    event.markerLocation.lat
+  )}&lng=${encodeURIComponent(
+    event.markerLocation.lng
   )}&time=${encodeURIComponent(event.time)}">
     <img src="${event.images[0]}" style="width: 100%;">
     <h2>${event.title}</h2>

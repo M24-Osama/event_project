@@ -9,7 +9,8 @@ function getUrlParams() {
     desc: params.get("desc"),
     location: params.get("location"),
     fullLocation: params.get("fullLocation"),
-    markerLocation: params.get("markerLocation"),
+    lat: params.get("lat"),
+    lng: params.get("lng"),
     // id: 1,
     // title: "free medical day",
     // img: "../image/freeday.png",
@@ -65,7 +66,7 @@ getTempByLocation(data.location).then((temp) => {
 
 let img = document.getElementById("slideshow");
 let arrimage = data.image.split("@");
-console.log(arrimage);
+
 arrimage.forEach((element) => {
   const div = document.createElement("div");
   div.className = "mySlides fade";
@@ -79,8 +80,10 @@ let directionsRenderer;
 let directionsService;
 let map;
 let myLoc;
-let loc = { lat: 31.9539, lng: 35.9106 };
-
+console.log(data.lat, data.lng);
+let loc = { lat: Number(data.lat), lng: Number(data.lng) };
+//let loc = { lat: 31.9539, lng: 35.9106 }
+console.log(loc);
 function initMap() {
   directionsService = new google.maps.DirectionsService();
   directionsRenderer = new google.maps.DirectionsRenderer();
