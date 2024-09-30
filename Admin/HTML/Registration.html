@@ -237,6 +237,13 @@
     </div>
 
     <script>
+      const script = document.createElement("script");
+
+      // Set the source to the SweetAlert CDN
+      script.src = "https://unpkg.com/sweetalert/dist/sweetalert.min.js";
+
+      // Append the script to the document's head
+      document.head.appendChild(script);
       document
         .getElementById("registration-form")
         .addEventListener("submit", function (event) {
@@ -327,7 +334,14 @@
             existingData.push(userData);
 
             localStorage.setItem("adminData", JSON.stringify(existingData));
-            window.location.href = "Login.html";
+            swal({
+              title: "Success!",
+              text: "Your action was completed successfully!",
+              icon: "success",
+              button: "OK",
+            }).then(() => {
+              window.location.href = "Login.html";
+            });
           }
         });
     </script>

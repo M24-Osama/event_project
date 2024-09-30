@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
+    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
     />
-
-    <link rel="stylesheet" href="/Admin/Css/Dashboard.CSS" />
+    <link rel="stylesheet" href="../Css/Dashboard.CSS" />
     <link rel="icon" type="image/x-icon" href="../image/Logonav.png" />
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2Pm1mbPplAE3Q3g9XdihQ0hO1S1PfJ9s&callback=initMap"
@@ -157,15 +157,16 @@
 
             <div class="file-upload-group">
               <label for="editEventImages">Upload Event Images</label>
-              <input type="file" id="editEventImages" accept="image/*" multiple />
+              <input
+                type="file"
+                id="editEventImages"
+                accept="image/*"
+                multiple
+              />
               <div class="error-message" id="edit-image-error"></div>
             </div>
 
-            <button
-              type="submit"
-              class="submit-button"
-              id="updateEventBtn"
-            >
+            <button type="submit" class="submit-button" id="updateEventBtn">
               Update Event
             </button>
           </div>
@@ -217,6 +218,6 @@
       </div>
       <div id="imagePreview"></div>
     </div>
-    <script src="/Admin/JS/Dashboard.Js"></script>
+    <script src="../JS/Dashboard.Js"></script>
   </body>
 </html>

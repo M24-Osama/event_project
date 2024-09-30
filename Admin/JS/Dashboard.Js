@@ -3,6 +3,19 @@ console.log(events);
 let cardContainer = document.getElementById("tableEvent");
 let count = 0;
 let color = true;
+// Create a script element
+const script = document.createElement("script");
+
+// Set the source to the SweetAlert CDN
+script.src = "https://unpkg.com/sweetalert/dist/sweetalert.min.js";
+
+// Append the script to the document's head
+document.head.appendChild(script);
+
+// Optionally, add an event listener to ensure the script is loaded
+script.onload = () => {
+  console.log("SweetAlert script has been loaded.");
+};
 
 // Populate the table with events
 function populateTable() {
@@ -16,7 +29,7 @@ function populateTable() {
     <th class="thw20">Description</th>
     <th class="thw20">Action</th>
   `;
-  
+
   count = 0;
   events.forEach((event) => {
     const tr = document.createElement("tr");
@@ -27,7 +40,7 @@ function populateTable() {
     } else {
       color = true;
     }
-    tr.setAttribute('data-id', event.id);
+    tr.setAttribute("data-id", event.id);
     tr.innerHTML = `
       <td>${count}</td>
       <td>${event.id}</td>
@@ -50,20 +63,34 @@ function populateTable() {
     // Add event listeners to the buttons
     const deleteButton = tr.querySelector(".delete-button");
     deleteButton.addEventListener("click", () => {
-      if (confirm("Are you sure you want to delete this event?")) {
-        const eventId = parseInt(deleteButton.getAttribute("data-id"), 10);
-        deleteEventById(eventId);
-        tr.remove();
-      }
+      swal({
+        title: "Delete",
+        text: "Are you sure you want to delete this event?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+          const eventId = parseInt(deleteButton.getAttribute("data-id"), 10);
+          deleteEventById(eventId);
+          tr.remove();
+          swal("Delete", "Event has been deleted successfully!", "success");
+        }
+      });
+      // if (confirm("Are you sure you want to delete this event?")) {
+      //   const eventId = parseInt(deleteButton.getAttribute("data-id"), 10);
+      //   deleteEventById(eventId);
+      //   tr.remove();
+      // }
     });
 
     const editButton = tr.querySelector(".edit-button");
     editButton.addEventListener("click", () => {
       const eventId = parseInt(editButton.getAttribute("data-id"), 10);
-      const eventToEdit = events.find(e => e.id === eventId);
+      const eventToEdit = events.find((e) => e.id === eventId);
       if (eventToEdit) {
         populateEditForm(eventToEdit);
-        editEventPopup.style.display = 'flex';
+        editEventPopup.style.display = "flex";
       }
     });
   });
@@ -214,64 +241,105 @@ saveLocationBtn.addEventListener("click", () => {
 // Handle form submission
 submitEventBtn.addEventListener("click", () => {
   // Display confirmation dialog
-  if (confirm("Are you sure you want to add this event?")) {
-    const eventData = {
-      id: Date.now(),
-      title: eventTitleInput.value,
-      description: eventDescriptionInput.value,
-      date: eventDateInput.value,
-      time: eventTimeInput.value,
-      images: selectedImages,
-      location: `${locationDetails.city}, ${locationDetails.country}`,
-      fullLocation: locationDetails.fullAddress,
-      markerLocation: markerLocation,
-    };
+  swal({
+    title: "Add",
+    text: "Are you sure you want to Add this event?",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  }).then((willDelete) => {
+    if (willDelete) {
+      const eventData = {
+        id: Date.now(),
+        title: eventTitleInput.value,
+        description: eventDescriptionInput.value,
+        date: eventDateInput.value,
+        time: eventTimeInput.value,
+        images: selectedImages,
+        location: `${locationDetails.city}, ${locationDetails.country}`,
+        fullLocation: locationDetails.fullAddress,
+        markerLocation: markerLocation,
+      };
 
-    events.push(eventData);
-    localStorage.setItem("events", JSON.stringify(events));
+      events.push(eventData);
+      localStorage.setItem("events", JSON.stringify(events));
 
-    // Clear the form fields
-    eventTitleInput.value = "";
-    eventDateInput.value = "";
-    eventTimeInput.value = "";
-    eventDescriptionInput.value = "";
-    eventImagesInput.value = "";
-    selectedImages = [];
-    locationDetails = { city: "", country: "", fullAddress: "" };
-    locationDisplay.innerHTML = "No location selected.";
-    submitEventBtn.disabled = true;
-    eventPopup.style.display = "none";
+      // Clear the form fields
+      eventTitleInput.value = "";
+      eventDateInput.value = "";
+      eventTimeInput.value = "";
+      eventDescriptionInput.value = "";
+      eventImagesInput.value = "";
+      selectedImages = [];
+      locationDetails = { city: "", country: "", fullAddress: "" };
+      locationDisplay.innerHTML = "No location selected.";
+      submitEventBtn.disabled = true;
+      eventPopup.style.display = "none";
 
-    // Add new event to the table
-    populateTable();
-  } else {
-    eventPopup.style.display = "none";
-  }
+      // Add new event to the table
+      populateTable();
+      swal("Add", "Event has been added successfully!", "success");
+    } else {
+      eventPopup.style.display = "none";
+    }
+  });
+  // if (confirm("Are you sure you want to add this event?")) {
+  //   const eventData = {
+  //     id: Date.now(),
+  //     title: eventTitleInput.value,
+  //     description: eventDescriptionInput.value,
+  //     date: eventDateInput.value,
+  //     time: eventTimeInput.value,
+  //     images: selectedImages,
+  //     location: `${locationDetails.city}, ${locationDetails.country}`,
+  //     fullLocation: locationDetails.fullAddress,
+  //     markerLocation: markerLocation,
+  //   };
+
+  //   events.push(eventData);
+  //   localStorage.setItem("events", JSON.stringify(events));
+
+  //   // Clear the form fields
+  //   eventTitleInput.value = "";
+  //   eventDateInput.value = "";
+  //   eventTimeInput.value = "";
+  //   eventDescriptionInput.value = "";
+  //   eventImagesInput.value = "";
+  //   selectedImages = [];
+  //   locationDetails = { city: "", country: "", fullAddress: "" };
+  //   locationDisplay.innerHTML = "No location selected.";
+  //   submitEventBtn.disabled = true;
+  //   eventPopup.style.display = "none";
+
+  //   // Add new event to the table
+  //   populateTable();
+  // } else {
+  //   eventPopup.style.display = "none";
+  // }
 });
 
 // Edit functionality
 let editingEventId = null;
-const editEventPopup = document.getElementById('editEventPopup');
-const closeEditPopupBtn = document.getElementById('closeEditPopupBtn');
-const updateEventBtn = document.getElementById('updateEventBtn');
-const editSetLocationBtn = document.getElementById('editSetLocationBtn');
-const editLocationDisplay = document.getElementById('editLocationDisplay');
-
+const editEventPopup = document.getElementById("editEventPopup");
+const closeEditPopupBtn = document.getElementById("closeEditPopupBtn");
+const updateEventBtn = document.getElementById("updateEventBtn");
+const editSetLocationBtn = document.getElementById("editSetLocationBtn");
+const editLocationDisplay = document.getElementById("editLocationDisplay");
 
 // Function to populate the edit form
 function populateEditForm(event) {
-  document.getElementById('editEventTitle').value = event.title;
-  document.getElementById('editEventDate').value = event.date;
-  document.getElementById('editEventTime').value = event.time;
-  document.getElementById('editEventDescription').value = event.description;
- 
+  document.getElementById("editEventTitle").value = event.title;
+  document.getElementById("editEventDate").value = event.date;
+  document.getElementById("editEventTime").value = event.time;
+  document.getElementById("editEventDescription").value = event.description;
+
   editLocationDisplay.innerHTML = `Location: ${event.location}<br>Full Location: ${event.fullLocation}`;
-  
+
   editingEventId = event.id;
   locationDetails = {
-    city: event.location.split(',')[0].trim(),
-    country: event.location.split(',')[1].trim(),
-    fullAddress: event.fullLocation
+    city: event.location.split(",")[0].trim(),
+    country: event.location.split(",")[1].trim(),
+    fullAddress: event.fullLocation,
   };
   markerLocation = event.markerLocation;
   selectedImages = event.images;
@@ -279,39 +347,64 @@ function populateEditForm(event) {
 
 // Function to update an event
 function updateEvent(updatedEvent) {
-  const index = events.findIndex(event => event.id === updatedEvent.id);
+  const index = events.findIndex((event) => event.id === updatedEvent.id);
   if (index !== -1) {
     events[index] = updatedEvent;
-    localStorage.setItem('events', JSON.stringify(events));
+    localStorage.setItem("events", JSON.stringify(events));
     populateTable();
   }
 }
 
-closeEditPopupBtn.addEventListener('click', () => {
-  editEventPopup.style.display = 'none';
+closeEditPopupBtn.addEventListener("click", () => {
+  editEventPopup.style.display = "none";
 });
 
-editSetLocationBtn.addEventListener('click', () => {
-  locationPopup.style.display = 'flex';
+editSetLocationBtn.addEventListener("click", () => {
+  locationPopup.style.display = "flex";
 });
 
-updateEventBtn.addEventListener('click', () => {
-  if (confirm('Are you sure you want to update this event?')) {
-    const updatedEvent = {
-      id: editingEventId,
-      title: document.getElementById('editEventTitle').value,
-      description: document.getElementById('editEventDescription').value,
-      date: document.getElementById('editEventDate').value,
-      time: document.getElementById('editEventTime').value,
-      images: selectedImages,
-      location: `${locationDetails.city}, ${locationDetails.country}`,
-      fullLocation: locationDetails.fullAddress,
-      markerLocation: markerLocation,
-    };
+updateEventBtn.addEventListener("click", () => {
+  swal({
+    title: "Edit",
+    text: "Are you sure you want to edit this event?",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  }).then((willDelete) => {
+    if (willDelete) {
+      const updatedEvent = {
+        id: editingEventId,
+        title: document.getElementById("editEventTitle").value,
+        description: document.getElementById("editEventDescription").value,
+        date: document.getElementById("editEventDate").value,
+        time: document.getElementById("editEventTime").value,
+        images: selectedImages,
+        location: `${locationDetails.city}, ${locationDetails.country}`,
+        fullLocation: locationDetails.fullAddress,
+        markerLocation: markerLocation,
+      };
 
-    updateEvent(updatedEvent);
-    editEventPopup.style.display = 'none';
-  }
+      updateEvent(updatedEvent);
+      editEventPopup.style.display = "none";
+      swal("Edit", "Event has been edited successfully!", "success");
+    }
+  });
+  // if (confirm("Are you sure you want to update this event?")) {
+  //   const updatedEvent = {
+  //     id: editingEventId,
+  //     title: document.getElementById("editEventTitle").value,
+  //     description: document.getElementById("editEventDescription").value,
+  //     date: document.getElementById("editEventDate").value,
+  //     time: document.getElementById("editEventTime").value,
+  //     images: selectedImages,
+  //     location: `${locationDetails.city}, ${locationDetails.country}`,
+  //     fullLocation: locationDetails.fullAddress,
+  //     markerLocation: markerLocation,
+  //   };
+
+  //   updateEvent(updatedEvent);
+  //   editEventPopup.style.display = "none";
+  // }
 });
 
 // Google Maps Code
