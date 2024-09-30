@@ -11,32 +11,28 @@ console.log(events);
 function createEventCard(event) {
   const card = document.createElement("div");
   card.className = "card";
-
   card.innerHTML = `
-    <a href="../HTML/EventDetails.html?title=${event.title}&img=${event.images}&desc=${event.description}&date=${event.date}&location=${event.location}&fullLocation=${event.fullLocation}&markerLocation=${event.markerLocation}&time=${event.time}">
-    <img src="${event.images[0]}" style="width: 100%;">
-    <h2>${event.title}</h2>
-    <p>${event.description}</p>
-    <div class ="card-date-loc">
-      <h4>${event.location}</h4>
-      <h4>${event.date}</h4>
-    </div>
+    <a href="/Users/EventsDetails/index.html?title=${event.title}&img=${event.images}&desc=${event.description}&date=${event.date}&location=${event.location}&fullLocation=${event.fullLocation}&markerLocation=${event.markerLocation}&time=${event.time}">
+      <img src="${event.images}" style="width: 100%;">
+      <h2>${event.title}</h2>
+      <p>${event.description}</p>
+      <div class ="card-date-loc">
+        <h4>${event.location}</h4>
+        <h4>${event.date}</h4>
+      </div>
     </a>
-    `;
+  `;
   return card; // Return the created card
 }
 
 // Function to distribute event cards into containers
 function distributeCards() {
-  // Clear existing cards in all containers
   eventsContainers.forEach((container) => (container.innerHTML = ""));
-
-  // Loop through events and add them to the appropriate container
   for (let i = 0; i < events.length; i++) {
-    const containerIndex = Math.floor(i / cardsPerPage); // Determine which container to use
+    const containerIndex = Math.floor(i / cardsPerPage);
     if (containerIndex < eventsContainers.length) {
-      const card = createEventCard(events[i]); // Create the card
-      eventsContainers[containerIndex].appendChild(card); // Add the card to the container
+      const card = createEventCard(events[i]);
+      eventsContainers[containerIndex].appendChild(card);
     }
   }
 }
@@ -44,66 +40,61 @@ function distributeCards() {
 // Function to show the current container
 function updateVisibleContainer() {
   eventsContainers.forEach((container, index) => {
-    container.style.display = index === currentValue - 1 ? "grid" : "none"; // Show or hide container
+    container.style.display = index === currentValue - 1 ? "grid" : "none";
   });
 }
 
 // Search functionality to filter cards
 searchInput.addEventListener("input", (e) => {
-  const value = e.target.value.toLowerCase(); // Get search input
-  const cards = document.querySelectorAll(".card"); // Get all cards
+  const value = e.target.value.toLowerCase();
+  const cards = document.querySelectorAll(".card");
 
   cards.forEach((card) => {
-    const title = card.querySelector("h1").innerText.toLowerCase();
+    const title = card.querySelector("h2").innerText.toLowerCase();
     const desc = card.querySelector("p").innerText.toLowerCase();
     const location = card.querySelector("h4").innerText.toLowerCase();
-
-    // Check if the card should be visible
     const isVisible =
       title.includes(value) || desc.includes(value) || location.includes(value);
-    card.classList.toggle("hide", !isVisible); // Show or hide the card
+    card.classList.toggle("hide", !isVisible);
   });
 });
 
-// Function to handle pagination link clicks
+// Pagination link handling
 function handleLinkClick(e) {
-  currentValue = parseInt(e.target.getAttribute("value")); // Update current page number
-  updateLinksAndContainer(); // Update visible container
+  currentValue = parseInt(e.target.getAttribute("value"));
+  updateLinksAndContainer();
 }
 
-// Attach event listeners to pagination links
 links.forEach((link) => {
   link.addEventListener("click", handleLinkClick);
 });
 
-// Update visible container and active link
 function updateLinksAndContainer() {
-  links.forEach((link) => link.classList.remove("active")); // Remove active class from all links
-  links[currentValue - 1].classList.add("active"); // Add active class to the current link
-  updateVisibleContainer(); // Show the correct container
+  links.forEach((link) => link.classList.remove("active"));
+  links[currentValue - 1].classList.add("active");
+  updateVisibleContainer();
 }
 
-// Previous button functionality
+// Previous and next buttons
 document.getElementById("prev").addEventListener("click", () => {
-  if (currentValue > 1) currentValue--; // Decrease page number
-  updateLinksAndContainer(); // Update the display
+  if (currentValue > 1) currentValue--;
+  updateLinksAndContainer();
 });
 
-// Next button functionality
 document.getElementById("next").addEventListener("click", () => {
-  if (currentValue < links.length) currentValue++; // Increase page number
-  updateLinksAndContainer(); // Update the display
+  if (currentValue < links.length) currentValue++;
+  updateLinksAndContainer();
 });
 
-// Initialize the page by distributing cards and showing the first container
+// Initialize page
 function initializePage() {
-  distributeCards(); // Distribute cards into containers
-  updateVisibleContainer(); // Show the first container
-  if (links.length > 0) links[0].classList.add("active"); // Set first link as active
+  distributeCards();
+  updateVisibleContainer();
+  if (links.length > 0) links[0].classList.add("active");
 }
 
-// Call the initialize function when the script loads
 initializePage();
+
 function nav() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
@@ -137,10 +128,9 @@ function darkMood() {
 function searchDate() {
   const dateInput = document.getElementById("date-input").value;
   const cards = document.querySelectorAll(".card");
-  console.log("Selected date:", dateInput);
   cards.forEach((card) => {
     const dateElement = card.querySelector(".date");
-    const dateText = dateElement ? dateElement.textContent.trim() : ""; // Extract text content
+    const dateText = dateElement ? dateElement.textContent.trim() : "";
     const isVisible = dateText.includes(dateInput);
     card.classList.toggle("hide", !isVisible);
   });

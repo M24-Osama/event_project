@@ -1,53 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    
-    
-     <div class="content">
-        <div class="leftContent"></div>
-        <div class="rightContent"></div>
-     </div>
-
-
-
-
-
-     <button onclick="myPlace(map)">loc</button>
-     <button onclick="direction(loc,myLoc)">Direction</button>
-     <button onclick="Clear()">Clear</button>
-     <div id="map" style="height: 400px; width: 50%"></div>
-
-     
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <script>
-      // Function to get URL parameters
-      function getUrlParams() {
+    function getUrlParams() {
         const params = new URLSearchParams(window.location.search);
 
         return {
           date: params.get("date"),
-          title: "Free medical day",
+          title: params.get("title"),
           image:params.get("img"),
-          dec:params.get("desc"),
+          desc:params.get("desc"),
           loc:params.get("location"),
-          date: params.get("date"),
           id: 1,
           fullLocation:params.get("fullLocation"),
           markerLocation:params.get("markerLocation"),
@@ -64,20 +23,69 @@
     }
           
         };
+        const data = getUrlParams();
+       
+        function getTempByLocation(location) {
+          const dashPos = location.indexOf("/");
+          let subbedLoc = location.substring(dashPos + 1).trim(); 
+         
+          return fetch(
+              `https://api.weatherapi.com/v1/current.json?key=dd0ce2b6bc1242f79b2131516242809&q=${subbedLoc}&aqi=no`
+          )
+          .then((response) => {
+              if (!response.ok) throw new Error('Network response was not ok');
+              return response.json();
+          })
+          .then((data) => {
+            console.log(data.current.temp_c);
+              return data.current.temp_c;
+              
+          })
+          .catch((error) => {
+              console.error("Error fetching the weather data:", error);
+              return null; // Return null or some default value in case of an error
+          });
+      }
       
-     
-      const data = getUrlParams();
+      // Update the title, description, and location immediately
+      document.getElementById("title").innerHTML = data.title;
+      document.getElementById("desc").innerHTML = data.desc;
+      document.getElementById("location").innerHTML = data.fullLocation;
       
+      // Fetch and display temperature
+      getTempByLocation("Jordan/Irbid").then((temp) => {
+          if (temp !== null) {
+              document.getElementById("temp").innerHTML = `${temp} °C`; 
+          } else {
+              document.getElementById("temp").innerHTML = "Temp isn't valid";
+          }
+      });
 
       
-      let marker1 ;
+      let img= document.getElementById("img");
+      let arrimage = [];
+
+      arrimage = ["/Users/image/slider2.png","/Users/image/slider3.jpg"];
+      //  arrimage = data.image.split(',');
+      
+      // console.log(arrimage);
+      // arrimage.forEach(element => {
+      //   const div=document.createElement('div');
+      //   div.className="mySlides fade";
+      //   div.innerHTML=`<img src=${element} />`;
+      //   img.appendChild(div);
+        
+      // });
+    
+
+      let marker1;
       let marker2;
       let directionsRenderer;
       let directionsService;
       let map;
       let myLoc;
-      let loc = data.markerLocation;
-         console.log(loc);
+      let loc = JSON.parse(localStorage.getItem("markerLocation"));
+
       function initMap() {
         directionsService = new google.maps.DirectionsService();
         directionsRenderer = new google.maps.DirectionsRenderer();
@@ -175,10 +183,37 @@
         }
       }
 
-      window.onload = initMap;
+window.onload = initMap;
+let slideIndex = 1;
+// showSlides(slideIndex);
 
-      window.setInterval(getLocation(), 1000);
-      
-    </script>
-  </body>
-</html>
+function plusSlides(n) {
+  showSlides((slideIndex += n));
+}
+
+function currentSlide(n) {
+  showSlides((slideIndex = n));
+}
+
+// function showSlides(n) {
+//   let i;
+//   let slides = document.getElementsByClassName("mySlides");
+//   let dots = document.getElementsByClassName("dot");
+//   if (n > slides.length) {
+//     slideIndex = 1;
+//   }
+//   if (n < 1) {
+//     slideIndex = slides.length;
+//   }
+//   for (i = 0; i < slides.length; i++) {
+//     slides[i].style.display = "none";
+//   }
+//   for (i = 0; i < dots.length; i++) {
+//     dots[i].className = dots[i].className.replace(" active", "");
+//   }
+//   slides[slideIndex - 1].style.display = "block";
+//   dots[slideIndex - 1].className += " active";
+// }
+// setInterval(function () {
+//   plusSlides(1);
+// }, 5000);

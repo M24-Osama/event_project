@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event description</title>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2Pm1mbPplAE3Q3g9XdihQ0hO1S1PfJ9s&callback=initMap"
+        async
+        defer
+    ></script>
+    <link rel="icon" type="image/x-icon" href="../image/Logonav.png" />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
+    />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        .full-page {
+            display: flex;
+            height: 100vh;
+        }
+
+        .left-side {
+            width: 50%;
+            height: 100%;
+        }
+
+        .right-side {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .slideshow-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mySlides {
+            display: none;
+            height: 100%;
+        }
+
+        .mySlides img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 30px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .event-details {
+          margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        #title {
+            color: #2d9bf0;
+            margin-top: 0;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #2d9bf0;
+            padding-bottom: 10px;
+        }
+
+        .event-info-row {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .left-desc {
+            width: 65%;
+        }
+
+        .right-info {
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #desc {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .event-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .event-info i {
+            margin-right: 10px;
+            color: #2d9bf0;
+            font-size: 1.2em;
+        }
+
+        #map-container {
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        #map {
+            height: 80%;
+            width: 100%;
+        }
+
+        .map-controls {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .map-controls button {
+            background-color: #2d9bf0;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .map-controls button:hover {
+            background-color: #1a7ac5;
+        }
+
+        /* Existing navbar styles */
+        .topnav {
+            background-color: #c0edff;
+            width: 100%;
+            z-index: 999;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        .topnav img {
+            width: 50px;
+            margin: 5px;
+        }
+
+        .topnav a {
+            text-decoration: none;
+            color: black;
+            text-transform: uppercase;
+            font-weight: 500;
+            width: max-content;
+            position: relative;
+            cursor: pointer;
+            margin-bottom: 0px;
+        }
+
+        .activeNav {
+            font-weight: bolder;
+            color: #2d9bf0;
+        }
+
+        .topnav a::after {
+            content: "";
+            position: absolute;
+            bottom: -6px;
+            height: 2px;
+            width: 100%;
+            left: 0;
+            background-color: rgb(5, 5, 140);
+            transition: 0.3s;
+            transition-timing-function: ease-in-out;
+            transform: scaleX(0);
+        }
+
+        .topnav a:hover::after {
+            transform: scaleX(1);
+        }
+
+        .topnav .icon {
+            display: none;
+            font-size: xx-large;
+        }
+
+        .div1 {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-evenly;
+            width: 50%;
+        }
+
+        @media screen and (max-width: 1024px) {
+            .full-page {
+                flex-direction: column;
+            }
+
+            .left-side,
+            .right-side {
+                width: 100%;
+                height: auto;
+            }
+
+            .slideshow-container {
+                height: 50vh;
+            }
+
+            .topnav {
+                justify-content: space-between;
+                width: 90%;
+            }
+
+            .topnav div:not(:first-child) {
+                display: none;
+            }
+
+            .topnav a.icon {
+                float: right;
+                display: block;
+            }
+
+            .topnav.responsive {
+                position: relative;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .topnav.responsive .icon {
+                position: absolute;
+                right: 0;
+                top: 9px;
+            }
+
+            .topnav.responsive div {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+            }
+
+            .topnav.responsive .div1 {
+                border-top: 1px solid #000;
+                margin-top: 80px;
+            }
+
+            .darkMood .topnav.responsive .div1 {
+                border-top: 1px solid #fff;
+            }
+
+            .topnav.responsive div a {
+                display: block;
+                text-align: center;
+                margin: 10px;
+            }
+
+            .topnav.responsive a img {
+                position: absolute;
+                left: 0px;
+                top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <div class="topnav" id="myTopnav">
+        <a><img src="../image/Logonav.png" alt="Logo" /></a>
+        <div class="div1">
+            <a href="#about"><i class="bi bi-person-vcard-fill"> About us</i></a>
+            <a href="#"><i class="bi bi-calendar2-event-fill"> Event</i></a>
+            <a href="#"><i class="bi bi-house-door-fill activeNav"> Home</i></a>
+        </div>
+        <div onclick="darkMood()" class="moon">
+            <a href="javascript:void(0);" id="dark"><i id="dark" class="bi bi-moon-fill"></i></a>
+        </div>
+        <a href="javascript:void(0);" class="bi bi-list icon" onclick="nav()"></a>
+    </div>
+</nav>
+
+<div class="full-page">
+    <div class="left-side">
+        <div id="slideshow" class="slideshow-container">
+           
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+    </div>
+
+    <div class="right-side">
+        <div class="event-details">
+            <h2 id="title">Free doctors day in Irbid</h2>
+            <div class="event-info-row">
+                <div class="left-desc">
+                    <p id="desc">
+                        This is a description for an exclusive event which will contain the most popular doctors in Irbid. So check your time!
+                    </p>
+                </div>
+                <div class="right-info">
+                    <div class="event-info">
+                        <i class="bi bi-clock-fill"></i>
+                        <p id="time">12:40 PM</p>
+                    </div>
+                    <div class="event-info">
+                        <i class="bi bi-thermometer-half"></i>
+                        <p id="temp">25°C</p>
+                    </div>
+                    <div class="event-info">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <p id="location">Irbid/Jordan</p>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="map-container">
+            <div id="map"></div>
+            <div class="map-controls">
+                <button onclick="myPlace(map)">My Location</button>
+                <button onclick="direction(loc, myLoc)">Directions</button>
+                <button onclick="Clear()">Clear</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="main.js"></script>
+</body>
+</html>

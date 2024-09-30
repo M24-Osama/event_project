@@ -1,0 +1,229 @@
+
+
+.mySlides {
+  display: none;
+  height: 100%;
+}
+.mySlides img {
+  vertical-align: middle;
+  height: 100%;
+  width: 100%;
+}
+
+/* Slideshow container */
+.slideshow-container {
+  padding-top: 60px;
+  height: 70vh;
+  position: relative;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: black;
+  font-size: 50px;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 6%;
+}
+.prev {
+  left: 6%;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #c0edff;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active {
+  background-color: #2d9bf0;
+}
+.dot:hover {
+  background-color: #2d9bf099;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.topnav {
+  background-color: #c0edff;
+  width: 100%;
+  z-index: 999;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.topnav img {
+  width: 50px;
+  margin: 5px;
+}
+
+.topnav a {
+  text-decoration: none;
+  color: black;
+  text-transform: uppercase;
+  font-weight: 500;
+  width: max-content;
+  position: relative;
+  cursor: pointer;
+  margin-bottom: 0px;
+}
+.activeNav {
+  font-weight: bolder;
+  color: #2d9bf0;
+}
+.topnav a::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  height: 2px;
+  width: 100%;
+  left: 0;
+  background-color: rgb(5, 5, 140);
+  transition: 0.3s;
+  transition-timing-function: ease-in-out;
+  transform: scaleX(0);
+}
+
+.topnav a:hover::after {
+  transform: scaleX(1);
+}
+
+.topnav .icon {
+  display: none;
+  font-size: xx-large;
+}
+
+.div1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 50%;
+}
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+  background-color: #c0edff;
+}
+
+@media screen and (max-width: 1024px) {
+  /*slider*/
+  .prev,
+  .next,
+  .text {
+    font-size: 25px;
+  }
+  /*card*/
+  .card {
+    width: 90%;
+    height: auto;
+  }
+  .about {
+    width: 90%;
+    height: auto;
+    font-size: small;
+  }
+  /*nav*/
+  .topnav {
+    justify-content: space-between;
+    width: 90%;
+  }
+  .topnav div:not(:first-child) {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+  .topnav.responsive {
+    position: relative;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 9px;
+  }
+  .topnav.responsive div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+  .topnav.responsive .div1 {
+    border-top: 1px solid #000;
+
+    margin-top: 80px;
+  }
+  .darkMood .topnav.responsive .div1 {
+    border-top: 1px solid #fff;
+  }
+  .topnav.responsive div a {
+    display: block;
+    text-align: center;
+    margin: 10px;
+  }
+  .topnav.responsive a img {
+    position: absolute;
+    left: 0px;
+    top: 5px;
+  }
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .card {
+    width: 45%;
+    height: auto;
+  }
+}
