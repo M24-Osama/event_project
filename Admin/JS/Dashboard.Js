@@ -1,3 +1,9 @@
+let logOut = document.getElementById("logOut");
+logOut.addEventListener("click", () => {
+  localStorage.setItem("loggedInUser", "");
+  window.location.href = "Login.html";
+});
+
 let events = JSON.parse(localStorage.getItem("events")) || []; // Use an empty array if null
 console.log(events);
 let cardContainer = document.getElementById("tableEvent");
@@ -239,12 +245,11 @@ saveLocationBtn.addEventListener("click", () => {
 });
 
 const today = new Date().toISOString().split("T")[0];
-console.log(today );
+console.log(today);
 eventDateInput.setAttribute("min", today);
 document.getElementById("editEventDate").setAttribute("min", today);
 // Handle form submission
 submitEventBtn.addEventListener("click", () => {
-
   const selectedDate = eventDateInput.value;
 
   // Validate if the selected date is today or in the future

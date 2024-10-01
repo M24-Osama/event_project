@@ -222,6 +222,9 @@ h2 {
   cursor: pointer;
   margin-bottom: 0px;
 }
+.topnav a .i {
+  display: none;
+}
 .activeNav {
   font-weight: bolder;
   color: #2d9bf0;
@@ -499,6 +502,9 @@ footer {
   }
   .footer .copyright {
     margin: 0px;
+  }
+  .topnav a .i {
+    display: inline;
   }
 }
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {

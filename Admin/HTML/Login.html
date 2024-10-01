@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script>
+      if (localStorage.getItem("loggedInUser") == "") {
+        event.preventDefault();
+        window.location.href = "Login.html";
+      }
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Login</title>
@@ -53,7 +59,7 @@
         width: 180px;
         height: 180px;
       }
-      
+
       .form-section {
         flex: 1;
         padding: 20px;
@@ -177,7 +183,6 @@
             </div>
 
             <button type="submit" class="login-button">Login</button>
-            
           </form>
         </div>
       </div>
@@ -197,6 +202,7 @@
           const matchingUser = storedUsers.find((user) => user.email === email);
 
           if (matchingUser && matchingUser.password === password) {
+            localStorage.setItem("loggedInUser", JSON.stringify(matchingUser));
             window.location.href = "Dashboard.html";
           } else {
             alert("Invalid email or password. Please try again.");

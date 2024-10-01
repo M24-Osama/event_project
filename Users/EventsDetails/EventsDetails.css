@@ -12,12 +12,20 @@
 }
 .full-page {
   display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
 }
 
 .left-side {
-  width: 50%;
+  width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 30px;
 }
 nav .moon a {
   font-size: 30px;
@@ -27,7 +35,7 @@ nav {
   box-shadow: 0px 0px 10px #000;
 }
 .right-side {
-  width: 50%;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -36,10 +44,12 @@ nav {
 }
 
 .slideshow-container {
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: 75%;
   position: relative;
   overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .mySlides {
@@ -80,7 +90,7 @@ nav {
 }
 
 .event-details {
-  margin-top: 50px;
+  margin-top: 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -259,8 +269,9 @@ nav {
   }
 
   .slideshow-container {
+    width: 100%;
     height: 50vh;
-    margin-top: 9vh;
+    margin-top: 85vh;
   }
 
   .topnav {
@@ -380,7 +391,7 @@ h2 {
 }
 .darkMood .right-side {
   background-color: #262626;
-  box-shadow: 10px 10px 20px rgba(255, 255, 255, 0.7);
+  padding: 10px;
 }
 .darkMood #map-container {
   background-color: #000;
@@ -390,4 +401,10 @@ h2 {
 }
 .darkMood .left-desc p {
   color: white;
+}
+.darkMood .left-side {
+  background-color: #262626;
+}
+.darkMood .slideshow-container {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
