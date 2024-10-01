@@ -253,6 +253,8 @@ textarea {
   width: 100%;
   background-color: #2d9bf0;
   border-radius: 5px;
+  height: 50px;
+  margin-top: 10px;
 }
 
 .file-upload-group {

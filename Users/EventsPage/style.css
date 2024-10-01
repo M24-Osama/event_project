@@ -90,6 +90,7 @@ nav {
   z-index: 2;
   width: 100%;
   background-color: #c0edff;
+  box-shadow: 0px 0px 10px #000;
 }
 
 .content {
