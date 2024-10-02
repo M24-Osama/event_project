@@ -25,22 +25,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 30px;
 }
 nav .moon a {
   font-size: 30px;
   color: black;
 }
+.topnav a .i {
+  display: none;
+}
 nav {
   box-shadow: 0px 0px 10px #000;
 }
 .right-side {
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: 75%;
   display: flex;
   flex-direction: column;
-  padding: 20px;
   box-sizing: border-box;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  margin-top: 50px;
+  border-radius: 15px;
 }
 
 .slideshow-container {
@@ -50,6 +54,7 @@ nav {
   overflow: hidden;
   border-radius: 15px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-top: 50px;
 }
 
 .mySlides {
@@ -90,28 +95,22 @@ nav {
 }
 
 .event-details {
-  margin-top: 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   background-color: white;
-  padding: 10px 30px;
-  border-radius: 15px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  margin-bottom: 10px;
+  padding: 10px 20px;
+  border-radius: 15px 15px 0px 0px;
   flex-grow: 1;
 }
 
 #title {
   color: #2d9bf0;
-  margin-top: 0;
   font-size: 2.5em;
-  margin-top: 20px;
   border-bottom: 2px solid #2d9bf0;
   padding-bottom: 10px;
-  margin-bottom: 0px;
+  margin: 0px;
   width: 100%;
 }
 
@@ -152,10 +151,11 @@ nav {
 }
 
 #map-container {
-  height: 300px;
-  border-radius: 15px;
+  height: 40%;
+  width: 100%;
+  border-radius: 0px 0px 15px 15px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background-color: #f2f2f2;
 }
 
 #map {
@@ -164,7 +164,6 @@ nav {
 }
 
 .map-controls {
-  margin-top: 15px;
   display: flex;
   gap: 10px;
 }
@@ -258,6 +257,12 @@ nav {
   .full-page {
     flex-direction: column;
   }
+  #map {
+    height: 50vh;
+  }
+  .topnav a .i {
+    display: inline;
+  }
 
   .left-side {
     width: 100%;
@@ -271,7 +276,7 @@ nav {
   .slideshow-container {
     width: 100%;
     height: 50vh;
-    margin-top: 85vh;
+    margin-top: 62vh;
   }
 
   .topnav {
@@ -390,8 +395,7 @@ h2 {
   background-color: #000;
 }
 .darkMood .right-side {
-  background-color: #262626;
-  padding: 10px;
+  background-color: #000;
 }
 .darkMood #map-container {
   background-color: #000;

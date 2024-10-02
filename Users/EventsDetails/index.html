@@ -26,13 +26,16 @@
         <a href="../homePage/Home.Html"><img src="..\image\Logonav.png" /></a>
         <div class="div1">
           <a href="../homePage/Home.Html"
-            ><i class="bi bi-person-vcard-fill"> About us</i></a
-          >
+            ><i class="bi bi-house-door-fill i"> </i> <span>Home</span>
+          </a>
           <a href="../EventsPage/index.html"
-            ><i class="bi bi-calendar2-event-fill activeNav"> Event</i></a
+            ><span class="activeNav"
+              ><i class="bi bi-calendar2-event-fill i"> </i
+              ><span>Event</span></span
+            ></a
           >
-          <a href="../homePage/Home.Html"
-            ><i class="bi bi-house-door-fill"> Home</i></a
+          <a href="#about"
+            ><i class="bi bi-person-vcard-fill i"> </i><span>About us</span></a
           >
         </div>
 
@@ -56,48 +59,48 @@
           <a class="next" onclick="plusSlides(1)">&#10095;</a>
         </div>
       </div>
-      <div class="right-side">
-        <div class="event-details">
-          <h2 id="title">Free doctors day in Irbid</h2>
-          <div class="event-info-row">
-            <div class="left-desc">
-              <p id="desc">
-                This is a description for an exclusive event which will contain
-                the most popular doctors in Irbid. So check your time!
-              </p>
-            </div>
-            <div class="right-info">
-              <div class="event-info">
-                <i class="bi bi-clock-fill"></i>
-                <p id="time">12:40 PM</p>
+      <div class="left-side">
+        <div class="right-side">
+          <div class="event-details">
+            <h2 id="title">Free doctors day in Irbid</h2>
+            <div class="event-info-row">
+              <div class="left-desc">
+                <p id="desc">
+                  This is a description for an exclusive event which will
+                  contain the most popular doctors in Irbid. So check your time!
+                </p>
               </div>
-              <div class="event-info">
-                <i class="bi bi-calendar2-event-fill"></i>
-                <p id="date">12:40 PM</p>
-              </div>
-              <div class="event-info">
-                <i class="bi bi-thermometer-half"></i>
-                <p id="temp">25°C</p>
-              </div>
-              <div class="event-info">
-                <i class="bi bi-geo-alt-fill"></i>
-                <p id="location">Irbid/Jordan</p>
+              <div class="right-info">
+                <div class="event-info">
+                  <i class="bi bi-clock-fill"></i>
+                  <p id="time">12:40 PM</p>
+                </div>
+                <div class="event-info">
+                  <i class="bi bi-calendar2-event-fill"></i>
+                  <p id="date">12:40 PM</p>
+                </div>
+                <div class="event-info">
+                  <i class="bi bi-thermometer-half"></i>
+                  <p id="temp">25°C</p>
+                </div>
+                <div class="event-info">
+                  <i class="bi bi-geo-alt-fill"></i>
+                  <p id="location">Irbid/Jordan</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <div id="map-container">
-          <div id="map"></div>
-          <div class="map-controls">
-            <button onclick="myPlace(map)">My Location</button>
-            <button onclick="direction(loc, myLoc)">Directions</button>
-            <button onclick="Clear()">Clear</button>
+          <div id="map-container">
+            <div id="map"></div>
+            <div class="map-controls">
+              <button onclick="myPlace(map)">My Location</button>
+              <button onclick="direction(loc, myLoc)">Directions</button>
+              <button onclick="Clear()">Clear</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
     <script src="main.js"></script>
   </body>
 </html>

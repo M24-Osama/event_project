@@ -92,7 +92,9 @@ nav {
   background-color: #c0edff;
   box-shadow: 0px 0px 10px #000;
 }
-
+.topnav a .i {
+  display: none;
+}
 .content {
   display: flex;
   justify-content: center;
@@ -472,6 +474,9 @@ li:not(.active):hover {
     position: absolute;
     left: 0px;
     top: 5px;
+  }
+  .topnav a .i {
+    display: inline;
   }
 }
 /*reg*/
