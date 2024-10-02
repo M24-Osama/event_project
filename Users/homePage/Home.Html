@@ -29,7 +29,7 @@
             >
             <a href="../EventsPage/index.html"
               ><i class="bi bi-calendar2-event-fill i"> </i
-              ><span>Event</span></a
+              ><span>Events</span></a
             >
             <a href="#about"
               ><i class="bi bi-person-vcard-fill i"> </i
@@ -51,21 +51,41 @@
       </nav>
       <div class="slider">
         <div class="slideshow-container">
-          <div class="mySlides fade">
-            <img src="../image/slider1.jpg" />
+          <div class="mySlides fade ">
+           <div class="slide1">
+            <h1>Welcome to EventakPlus</h1>
+            <br>
+            <h4 style="width: 50%; text-align: center;">Your go-to platform for discovering and managing medical events! Whether you're looking to attend, organize, or stay informed about the latest in the medical field, EventakPlus offers a seamless experience. Stay updated with upcoming conferences, workshops, and webinars, all tailored for healthcare professionals.
+            </h4>
+           </div>
           </div>
 
-          <div class="mySlides fade">
-            <img src="../image/slider2.png" />
-          </div>
+          
+          <div class="mySlides fade ">
+            <div class="slide2">
+             <h1>Some key info</h1>
+             
+              <div class="slider2Info">
+                <div class="us" style="text-align: center;">
+                  <br>
+                  <h1 id="events">0</h1>
+                <h1>Events</h1>
+                </div>
+                
+                <div class="us" style="text-align: center;">
+                  <br>
+                  <h1 id="feedbacks">0</h1>
+                <h1>Feedbacks</h1>
+                </div>
 
-          <div class="mySlides fade">
-            <img src="../image/slider4.jpg" />
-          </div>
-          <div class="mySlides fade">
-            <img src="../image/slider5.jpg" />
-          </div>
+              </div>
 
+              
+
+            </div>
+           </div>
+          
+         
           <a class="prev" onclick="plusSlides(-1)"
             ><i class="bi bi-arrow-left-circle-fill"></i
           ></a>
@@ -81,8 +101,8 @@
       <div id="dot" style="text-align: center">
         <span class="dot" onclick="currentSlide(1)"></span>
         <span class="dot" onclick="currentSlide(2)"></span>
-        <span class="dot" onclick="currentSlide(3)"></span>
-        <span class="dot" onclick="currentSlide(4)"></span>
+       
+       
       </div>
 
       <br /><br />
@@ -124,7 +144,9 @@
         <div class="footer">
           <div class="left-section">
             <div class="logo">
-              <img src="../image/Logo1.png" alt="Company Logo" />
+              
+              <img src="../image/Logonav.png" alt="Company Logo" />
+              <center><p class="leftSide-text">EeventakPlus</p></center>
             </div>
           </div>
           <div class="rghit-section">
@@ -144,7 +166,8 @@
             </div>
 
             <div class="form-section">
-              <input type="text" id="name" placeholder="Your Name" required />
+              
+                <input type="text" id="name" placeholder="Your Name" required />
               <input
                 type="email"
                 id="email"
@@ -154,15 +177,17 @@
               <textarea
                 id="comment"
                 placeholder="Your Comment"
-                required
-              ></textarea>
+                required>
+              </textarea>
               <button type="submit" id="submitBtn">Submit</button>
+              
             </div>
           </div>
         </div>
       </footer>
       <!-- start dark mood script-->
       <script src="Home.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </body>
   </div>
 </html>

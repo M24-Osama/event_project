@@ -145,6 +145,7 @@ function nav() {
   }
 }
 
+//submit form in footer
 document.getElementById("submitBtn").addEventListener("click", function (e) {
   e.preventDefault();
 
@@ -155,12 +156,20 @@ document.getElementById("submitBtn").addEventListener("click", function (e) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (!name || !email || !comment) {
-    alert("Please fill in all fields.");
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Please fill in all fields!",
+    });
     return;
   }
 
   if (!emailRegex.test(email)) {
-    alert("Please enter a valid email address.");
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Please enter a valid email address!",
+    });
     return;
   }
 
@@ -172,8 +181,19 @@ document.getElementById("submitBtn").addEventListener("click", function (e) {
 
   localStorage.setItem("formData", JSON.stringify(formData));
 
-  alert("Form submitted!");
+  Swal.fire({
+    // position: "center",
+    icon: "success",
+    title: "Your message sent successfully!",
+    showConfirmButton: false,
+    timer: 1500
+  });
+
+ document.getElementById("name").value = "";
+ document.getElementById("email").value = "";
+ document.getElementById("comment").value = "";
 });
+
 
 window.onload = function () {
   document.getElementById("name").value = "";
@@ -199,3 +219,21 @@ function darkMood() {
     localStorage.setItem("darkMood", "dark");
   }
 }
+
+
+let feedbacksNum = document.getElementById("feedbacks");;
+let eventsNum = document.getElementById("events");
+
+function getUsersAndEventsNumber() {
+  eventsNum.innerHTML = JSON.parse(localStorage.getItem("events")).length;
+  feedbacksNum.innerHTML = JSON.parse(localStorage.getItem("formData")).length;
+  
+
+
+}
+getUsersAndEventsNumber();
+
+
+
+
+
