@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Messages</title>
+    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="../Css/Admin_Messages.CSS" />
+    <link rel="icon" type="image/x-icon" href="../image/Logonav.png" />
+  </head>
+  <body>
+    <nav>
+      <div class="topnav" id="myTopnav">
+        <a href=""><img src="../image/Logonav.png" /></a>
+        <div class="div1">
+          <p>Dashboard</p>
+        </div>
+
+        <div>
+          <a id="logOut">Log out</a>
+        </div>
+      </div>
+    </nav>
+    <div class="page">
+      <div class="container">
+        <div class="btn">
+          <a href="Registration.html">Add Admin </a>
+        </div>
+        <div id="showPopupBtn" class="btn">
+          <span>Add Event </span>
+        </div>
+
+        <div id="eventPopup" class="popup-container">
+          <div class="popup-content">
+            <span id="closePopupBtn" class="close-btn">&times;</span>
+            <h2>Create New Event</h2>
+
+            <div class="form-group">
+              <label for="eventTitle">Event Title</label>
+              <input
+                type="text"
+                id="eventTitle"
+                placeholder="Enter event title"
+                required
+              />
+              <div class="error-message" id="title-error"></div>
+            </div>
+
+            <div class="row">
+              <div class="form-group">
+                <label for="eventDate">Event Date</label>
+                <input type="date" id="eventDate" required />
+                <div class="error-message" id="date-error"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="eventTime">Event Time</label>
+                <input type="time" id="eventTime" required />
+                <div class="error-message" id="time-error"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="eventDescription">Event Description</label>
+              <textarea
+                id="eventDescription"
+                placeholder="Describe the event"
+                rows="4"
+                required
+              ></textarea>
+              <div class="error-message" id="description-error"></div>
+            </div>
+
+            <div class="form-group">
+              <label>Event Location</label>
+              <button id="setLocationBtn">Set Event Location</button>
+              <div id="locationBox" class="location-box">
+                <div id="locationDisplay">No location selected.</div>
+              </div>
+            </div>
+
+            <div class="file-upload-group">
+              <label for="eventImages">Upload Event Images</label>
+              <input type="file" id="eventImages" accept="image/*" multiple />
+              <div class="error-message" id="image-error"></div>
+            </div>
+
+            <button
+              type="submit"
+              class="submit-button"
+              id="submitEventBtn"
+              disabled
+            >
+              Add Event
+            </button>
+          </div>
+        </div>
+
+        <!-- Edit Event Popup -->
+        <div id="editEventPopup" class="popup-container">
+          <div class="popup-content">
+            <span id="closeEditPopupBtn" class="close-btn">&times;</span>
+            <h2>Edit Event</h2>
+
+            <div class="form-group">
+              <label for="editEventTitle">Event Title</label>
+              <input
+                type="text"
+                id="editEventTitle"
+                placeholder="Enter event title"
+                required
+              />
+              <div class="error-message" id="edit-title-error"></div>
+            </div>
+
+            <div class="row">
+              <div class="form-group">
+                <label for="editEventDate">Event Date</label>
+                <input type="date" id="editEventDate" required />
+                <div class="error-message" id="edit-date-error"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="editEventTime">Event Time</label>
+                <input type="time" id="editEventTime" required />
+                <div class="error-message" id="edit-time-error"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="editEventDescription">Event Description</label>
+              <textarea
+                id="editEventDescription"
+                placeholder="Describe the event"
+                rows="4"
+                required
+              ></textarea>
+              <div class="error-message" id="edit-description-error"></div>
+            </div>
+
+            <div class="form-group">
+              <label>Event Location</label>
+              <button id="editSetLocationBtn">Set Event Location</button>
+              <div id="editLocationBox" class="location-box">
+                <div id="editLocationDisplay">No location selected.</div>
+              </div>
+            </div>
+
+            <div class="file-upload-group">
+              <label for="editEventImages">Upload Event Images</label>
+              <input
+                type="file"
+                id="editEventImages"
+                accept="image/*"
+                multiple
+              />
+              <div class="error-message" id="edit-image-error"></div>
+            </div>
+
+            <button type="submit" class="submit-button" id="updateEventBtn">
+              Update Event
+            </button>
+          </div>
+        </div>
+
+        <!-- Location popup -->
+        <div id="locationPopup" class="popup-container">
+          <div class="popup-content">
+            <span id="closeLocationPopup" class="close-btn">&times;</span>
+            <h2>Select Event Location</h2>
+            <input
+              id="searchLocation"
+              type="text"
+              placeholder="Search for a location..."
+            />
+            <button onclick="geocodeAddress()">Search</button>
+            <button id="saveLocationBtn">Save Location</button>
+            <div id="map"></div>
+          </div>
+        </div>
+
+        <div class="search-container">
+          <input
+            id="search"
+            type="text"
+            class="search-input"
+            placeholder="Search about event"
+          />
+          <div
+            id="search-icon"
+            class="bi bi-search search-icon"
+            onclick="search(event)"
+          ></div>
+        </div>
+      </div>
+      <br />
+      <h2>Admin</h2>
+      <br />
+      <div class="table">
+        <table id="tableEvent">
+          <th class="thw10">#</th>
+          <th class="thw20">Name</th>
+          <th class="thw20">Email</th>
+          <th class="thw20">Password</th>
+          <th class="thw10">Action</th>
+        </table>
+      </div>
+      <div id="imagePreview"></div>
+      <br />
+      <h2>Messages</h2>
+      <br />
+      <div class="table">
+        <table id="tableMessages">
+          <th class="thw10">#</th>
+          <th class="thw20">Name</th>
+          <th class="thw20">Email</th>
+          <th class="thw20">Messages</th>
+          <th class="thw10">Action</th>
+        </table>
+      </div>
+    </div>
+    <script src="../JS/Admin_Messages.Js"></script>
+  </body>
+</html>

@@ -1,0 +1,437 @@
+@import url("https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&display=swap");
+* {
+  font-family: "Playwrite DE Grund", cursive;
+
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+.topnav {
+  background-color: #c0edff;
+  width: 100%;
+  z-index: 999;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.topnav img {
+  width: 50px;
+  margin: 5px;
+}
+
+.topnav a {
+  text-decoration: none;
+  color: black;
+  text-transform: uppercase;
+  font-weight: 500;
+  width: max-content;
+  position: relative;
+  cursor: pointer;
+  margin-bottom: 0px;
+}
+
+.topnav a::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  height: 2px;
+  width: 100%;
+  left: 0;
+  background-color: rgb(5, 5, 140);
+  transition: 0.3s;
+  transition-timing-function: ease-in-out;
+  transform: scaleX(0);
+}
+
+.topnav a:hover::after {
+  transform: scaleX(1);
+}
+
+.topnav a.active {
+  background-color: #04aa6d;
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+  font-size: xx-large;
+}
+.div1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 50%;
+}
+
+.div1 p {
+  font-size: xx-large;
+}
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+  background-color: #c0edff;
+}
+.container {
+  padding-top: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 85%;
+}
+.search-container {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-icon {
+  transform: translateX(-3%);
+  color: #000;
+  background-color: #2d9bf0;
+  padding: 6px 30px;
+  border-radius: 0px 8px 8px 0px;
+  z-index: 2;
+  font-size: x-large;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+.search-icon:hover {
+  background-color: #2d9bf099;
+}
+.btn {
+  width: 170px;
+  height: 50px;
+  border-radius: 8px;
+  font-size: large;
+  background-color: #2d9bf0;
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.btn a {
+  color: #000;
+  text-decoration: none;
+}
+.btn:hover {
+  background-color: #2d9bf099;
+}
+.thw10 {
+  width: 3%;
+}
+.thw20 {
+  width: 25%;
+}
+.table {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.table table {
+  border-collapse: collapse;
+  width: 85%;
+  border: 1px solid #ccc;
+}
+.desc {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  font-size: 14px;
+}
+tr,
+td,
+th {
+  text-align: center;
+  border: 1px solid #ccc;
+  padding: 5px;
+}
+.btnEvent {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 50px;
+  border-radius: 8px;
+  background-color: #2d9bf0;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+.btnEvent:hover {
+  background-color: #2d9bf099;
+}
+.red {
+  background-color: rgb(255, 0, 0);
+}
+.red:hover {
+  background-color: rgb(255, 0, 0, 0.7);
+}
+.card {
+  display: auto;
+}
+.cardBlue {
+  background-color: rgb(192, 237, 255, 0.5);
+}
+/*add*/
+
+.popup-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  z-index: 5;
+}
+
+.popup-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  max-width: 400px;
+  width: 100%;
+  max-height: 90%;
+  overflow-y: auto;
+  text-align: center;
+}
+
+.close-btn {
+  font-size: 24px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+
+.submit-button {
+  display: block;
+  width: 100%;
+  background-color: #2d9bf0;
+  border-radius: 5px;
+  height: 50px;
+  margin-top: 10px;
+}
+
+.file-upload-group {
+  margin-top: 15px;
+  text-align: left;
+}
+
+.submit-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.row > .form-group {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.row > .form-group:last-child {
+  margin-right: 0;
+}
+
+#locationPopup {
+  width: 100%;
+  height: 100%;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+#map {
+  height: 400px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.location-box {
+  background-color: #c9c9ca;
+  padding: 10px;
+  margin-top: 15px;
+  border-radius: 5px;
+}
+
+.location-box div {
+  margin-bottom: 8px;
+}
+.search-input {
+  padding-right: 30px;
+  border-radius: 8px 0px 0px 8px;
+  width: 100%;
+  height: 50px;
+  padding: 20px;
+  z-index: 1;
+  border: 1px solid #ccc;
+  margin-top: 0px;
+}
+
+.popup-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+  overflow-y: auto;
+}
+
+/* Popup Content */
+.popup-content {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  max-width: 450px;
+  width: 100%;
+  max-height: 90%;
+  overflow-y: auto;
+  text-align: center;
+  position: relative;
+}
+
+/* Close Button */
+.close-btn {
+  font-size: 24px;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  color: #2d9bf0;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+/* Labels */
+label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+/* Inputs, Selects, Textareas */
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: border 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #2d9bf0;
+}
+
+/* Buttons inside Popup */
+.popup-button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #2d9bf0;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.popup-button:hover {
+  background-color: #247ab7;
+}
+
+/* Disabled Button Style */
+.popup-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Specific Button Styles for 'Set Event Location' and 'Choose File' */
+#location-button,
+#file-button {
+  background-color: #2d9bf0;
+  color: white;
+  font-weight: 500;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+#location-button:hover,
+#file-button:hover {
+  background-color: #247ab7;
+}
