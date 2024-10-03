@@ -31,13 +31,13 @@ function showSlides(n) {
 setInterval(function () {
   plusSlides(1);
 }, 5000);
-//Latest adminData added
-let adminData = JSON.parse(localStorage.getItem("adminData")) || []; // Use an empty array if null
-console.log(adminData);
-// latest adminData
+//Latest events added
+let events = JSON.parse(localStorage.getItem("events")) || []; // Use an empty array if null
+console.log(events);
+// latest events
 cardContainer = document.getElementById("card-container");
 let cont = 0;
-adminData.reverse().forEach((event) => {
+events.reverse().forEach((event) => {
   if (cont == 4) {
     return;
   }
@@ -46,7 +46,7 @@ adminData.reverse().forEach((event) => {
   const card = document.createElement("div");
   card.className = "card";
   card.innerHTML = `
-    <a href="../adminDataDetails/index.html?title=${encodeURIComponent(
+    <a href="../eventsDetails/index.html?title=${encodeURIComponent(
       event.title
     )}&img=${encodeURIComponent(i)}&desc=${encodeURIComponent(
     event.description
@@ -80,13 +80,13 @@ let contSoon = 0;
 const today = new Date();
 const sevenDaysLater = new Date(today);
 sevenDaysLater.setDate(today.getDate() + 7);
-adminData.sort((a, b) => {
+events.sort((a, b) => {
   const dateA = new Date(a.date);
   const dateB = new Date(b.date);
   return dateA - dateB;
 });
 
-adminData.reverse().forEach((event) => {
+events.reverse().forEach((event) => {
   const eventDate = new Date(event.date);
   if (contSoon == 4) {
     return;
@@ -98,7 +98,7 @@ adminData.reverse().forEach((event) => {
     const card = document.createElement("div");
     card.className = "card";
     card.innerHTML = `
-        <a href="../adminDataDetails/index.html?title=${encodeURIComponent(
+        <a href="../eventsDetails/index.html?title=${encodeURIComponent(
           event.title
         )}&img=${encodeURIComponent(i)}&desc=${encodeURIComponent(
       event.description
@@ -131,7 +131,7 @@ if (ch.length == 0) {
   const card = document.createElement("div");
   card.className = "cardSoon";
   card.innerHTML = `
-    <h3>Coming soon adminData</h3>
+    <h3>Coming soon events</h3>
 `;
   cardContainer.appendChild(card);
 }
@@ -220,10 +220,10 @@ function darkMood() {
 }
 
 let feedbacksNum = document.getElementById("feedbacks");
-let adminDataNum = document.getElementById("adminData");
+let eventsNum = document.getElementById("events");
 
-function getUsersAndadminDataNumber() {
-  adminDataNum.innerHTML = JSON.parse(localStorage.getItem("adminData")).length;
+function getUsersAndeventsNumber() {
+  eventsNum.innerHTML = JSON.parse(localStorage.getItem("events")).length;
   feedbacksNum.innerHTML = JSON.parse(localStorage.getItem("formData")).length;
 }
-getUsersAndadminDataNumber();
+getUsersAndeventsNumber();

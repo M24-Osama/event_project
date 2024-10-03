@@ -17,9 +17,8 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&display=swap");
 
-  
       body {
         font-family: "Playwrite DE Grund", cursive;
         background: linear-gradient(90deg, #a7def2, #1fa0e1);
@@ -200,7 +199,7 @@
           const email = document.getElementById("email").value;
           const password = document.getElementById("password").value;
 
-          const storedUsers = JSON.parse(localStorage.getItem("adminData"));
+          const storedUsers = JSON.parse(localStorage.getItem("events"));
 
           const matchingUser = storedUsers.find((user) => user.email === email);
 
