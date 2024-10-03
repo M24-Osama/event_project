@@ -1,160 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
+    <script>
+      if (!localStorage.getItem("loggedInUser")) {
+        window.location.href = "Login.html";
+      }
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Messages</title>
     <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
     />
     <link rel="stylesheet" href="../Css/Admin_Messages.CSS" />
     <link rel="icon" type="image/x-icon" href="../image/Logonav.png" />
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
-       
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+      }
+
+      .sidebar {
+        height: 100vh;
+        width: 250px;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #c0edff;
+        overflow-x: hidden;
+        padding-top: 60px;
+      }
+      .sidebar a {
+        padding: 10px 15px;
+        text-decoration: none;
+        font-size: 18px;
+        color: black;
+        display: block;
+      }
+      .sidebar a:hover {
+        background-color: #2d9bf0;
+        color: white;
+      }
+
+      .main-content {
+        flex: 1;
+        margin-left: 250px;
+        padding: 20px;
+        width: calc(100% - 250px);
+        box-sizing: border-box;
+      }
+
+      .topnav {
+        position: fixed;
+        top: 0;
+        left: 40px;
+        right: 0;
+        z-index: 2;
+      }
+      .page {
+        padding-top: 60px;
+      }
+      .container {
+        padding-top: 20px;
+      }
+
+      @media screen and (max-width: 768px) {
         .sidebar {
-            height: 100vh;
-            width: 250px;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background-color: #c0edff;
-            overflow-x: hidden;
-            padding-top: 60px;
+          width: 100%;
+          height: auto;
+          position: relative;
         }
-        .sidebar a {
-            padding: 10px 15px;
-            text-decoration: none;
-            font-size: 18px;
-            color: black;
-            display: block;
-        }
-        .sidebar a:hover {
-            background-color: #2d9bf0;
-            color: white;
-        }
-        
         .main-content {
-            flex: 1;
-            margin-left: 250px;
-            padding: 20px;
-            width: calc(100% - 250px);
-            box-sizing: border-box;
+          margin-left: 0;
+          width: 100%;
         }
-        
         .topnav {
-            position: fixed;
-            top: 0;
-            left: 40px;
-            right: 0;
-            z-index: 2;
+          left: 0;
         }
-        .page {
-            padding-top: 60px;
-        }
-        .container {
-            padding-top: 20px;
-        }
-       
-        @media screen and (max-width: 768px) {
-            .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
-            }
-            .main-content {
-                margin-left: 0;
-                width: 100%;
-            }
-            .topnav {
-                left: 0;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="sidebar">
-        <a href="dashboard.html">Dashboard</a>
-        <a href="admin_messages.html">Admin Messages</a>
-        <a href="events.html">Events</a>
-        <a href="users.html">Users</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="admin_messages.html">Admin Messages</a>
+      <a href="adminData.html">adminData</a>
+      <a href="users.html">Users</a>
     </div>
 
     <div class="main-content">
-        <nav>
-            <div class="topnav" id="myTopnav">
-                <a href=""><img src="../image/Logonav.png" /></a>
-                <div class="div1">
-                    <p>Dashboard</p>
-                </div>
-                <div>
-                    <a id="logOut">Log out</a>
-                </div>
-            </div>
-        </nav>
-        <div class="page">
-            <div class="container">
-                <div class="btn">
-                    <a href="Registration.html">Add Admin</a>
-                </div>
-            </div>
-            <br />
-            <center><h2>Admins</h2></center>
-            <br />
-            <div class="table">
-                <table id="tableEvent">
-                    <thead>
-                        <tr>
-                            <th class="thw10">#</th>
-                            <th class="thw20">Name</th>
-                            <th class="thw20">Email</th>
-                            <th class="thw20">Password</th>
-                            <th class="thw10">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-            </div>
-            <br /><br>
-            <center><h2>Messages</h2></center>
-            <br />
-            <div class="table">
-                <table id="tableMessages">
-                    <thead>
-                        <tr>
-                            <th class="thw10">#</th>
-                            <th class="thw20">Name</th>
-                            <th class="thw20">Email</th>
-                            <th class="thw20">Messages</th>
-                            <th class="thw10">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-            </div>
+      <nav>
+        <div class="topnav" id="myTopnav">
+          <a href=""><img src="../image/Logonav.png" /></a>
+          <div class="div1">
+            <p>Dashboard</p>
+          </div>
+          <div>
+            <a id="logOut">Log out</a>
+          </div>
         </div>
+      </nav>
+      <div class="page">
+        <div class="container">
+          <div class="btn">
+            <a href="Registration.html">Add Admin</a>
+          </div>
+        </div>
+        <br />
+        <center><h2>Admins</h2></center>
+        <br />
+        <div class="table">
+          <table id="tableEvent">
+            <thead>
+              <tr>
+                <th class="thw10">#</th>
+                <th class="thw20">Name</th>
+                <th class="thw20">Email</th>
+                <th class="thw20">Password</th>
+                <th class="thw10">Action</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <br /><br />
+        <center><h2>Messages</h2></center>
+        <br />
+        <div class="table">
+          <table id="tableMessages">
+            <thead>
+              <tr>
+                <th class="thw10">#</th>
+                <th class="thw20">Name</th>
+                <th class="thw20">Email</th>
+                <th class="thw20">Messages</th>
+                <th class="thw10">Action</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
     </div>
 
-    <div id="editEventPopup" style="display: none;">
-        <div class="popup-content">
-            <span id="closeEditPopupBtn">&times;</span>
-            <h2>Edit Admin</h2>
-            <label for="editEventName">Name:</label>
-            <input type="text" id="editEventName" />
-            <label for="editEventEmail">Email:</label>
-            <input type="email" id="editEventEmail" />
-            <label for="editEventPassword">Password:</label>
-            <input type="password" id="editEventPassword" />
-            <button id="updateEventBtn">Update</button>
-        </div>
+    <div id="editEventPopup" style="display: none">
+      <div class="popup-content">
+        <span id="closeEditPopupBtn">&times;</span>
+        <h2>Edit Admin</h2>
+        <label for="editEventName">Name:</label>
+        <input type="text" id="editEventName" />
+        <label for="editEventEmail">Email:</label>
+        <input type="email" id="editEventEmail" />
+        <label for="editEventPassword">Password:</label>
+        <input type="password" id="editEventPassword" />
+        <button id="updateEventBtn">Update</button>
+      </div>
     </div>
 
     <script src="../JS/Admin_Messages.Js"></script>
-</body>
+  </body>
 </html>

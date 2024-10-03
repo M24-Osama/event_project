@@ -1,4 +1,10 @@
-let adminData = JSON.parse(localStorage.getItem("Admin")) || [];
+let logOut = document.getElementById("logOut");
+logOut.addEventListener("click", () => {
+  localStorage.setItem("loggedInUser", "");
+  window.location.href = "Login.html";
+});
+
+let adminData = JSON.parse(localStorage.getItem("adminData")) || [];
 let cardContainer = document.getElementById("tableEvent");
 let color = true;
 
@@ -27,7 +33,9 @@ function populateTable() {
       <td>${event.email}</td>
       <td>**********</td>
       <td>
-        <div class="btnEvent edit-button" data-id="${event.name}"><i class="bi bi-pen-fill"></i></div>
+        <div class="btnEvent edit-button" data-id="${
+          event.name
+        }"><i class="bi bi-pen-fill"></i></div>
         <div class="btnEvent red delete-button" data-id="${event.name}">
           <i class="bi bi-trash-fill" style="color: white;"></i>
         </div>
@@ -91,7 +99,7 @@ function updateEvent(originalName, updatedEvent) {
   const index = adminData.findIndex((event) => event.name === originalName);
   if (index !== -1) {
     adminData[index] = updatedEvent;
-    localStorage.setItem("Admin", JSON.stringify(adminData));
+    localStorage.setItem("adminData", JSON.stringify(adminData));
     populateTable(); // Refresh table
   }
 }
@@ -104,42 +112,44 @@ let formData = JSON.parse(localStorage.getItem("formData")) || [];
 
 // Populate Messages Table
 function populateTableMessages() {
-    const tableBody = document.querySelector("#tableMessages tbody");
-    tableBody.innerHTML = ""; // Clear existing content
+  const tableBody = document.querySelector("#tableMessages tbody");
+  tableBody.innerHTML = ""; // Clear existing content
 
-    formData.forEach((message, index) => {
-        const tr = document.createElement("tr");
+  formData.forEach((message, index) => {
+    const tr = document.createElement("tr");
 
-        tr.innerHTML = `
+    tr.innerHTML = `
             <td class="thw10">${index + 1}</td>
             <td class="thw20">${message.name}</td>
             <td class="thw20">${message.email}</td>
             <td class="thw20">${message.comment}</td>
             <td class="thw10">
-                <div class="btnEvent red delete-button" data-name="${message.name}">
+                <div class="btnEvent red delete-button" data-name="${
+                  message.name
+                }">
                     <span class="bi bi-trash-fill" style="color: white;"></span>
                 </div>
             </td>
         `;
-        tableBody.appendChild(tr);
+    tableBody.appendChild(tr);
 
-        // Delete button functionality
-        tr.querySelector(".delete-button").addEventListener("click", () => {
-            swal({
-                title: "Delete",
-                text: "Are you sure you want to delete this message?",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            }).then((willDelete) => {
-                if (willDelete) {
-                    deleteMessageByName(message.name);
-                    tr.remove();
-                    swal("Delete", "Message has been deleted successfully!", "success");
-                }
-            });
-        });
+    // Delete button functionality
+    tr.querySelector(".delete-button").addEventListener("click", () => {
+      swal({
+        title: "Delete",
+        text: "Are you sure you want to delete this message?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+          deleteMessageByName(message.name);
+          tr.remove();
+          swal("Delete", "Message has been deleted successfully!", "success");
+        }
+      });
     });
+  });
 }
 
 // Call the function on page load to populate the table
@@ -147,12 +157,7 @@ populateTableMessages();
 
 // Delete Function for messages
 function deleteMessageByName(name) {
-    formData = formData.filter((message) => message.name !== name);
-    localStorage.setItem("formData", JSON.stringify(formData));
-    populateTableMessages(); // Refresh messages table
+  formData = formData.filter((message) => message.name !== name);
+  localStorage.setItem("formData", JSON.stringify(formData));
+  populateTableMessages(); // Refresh messages table
 }
-let logOut = document.getElementById("logOut");
-logOut.addEventListener("click", () => {
-  localStorage.setItem("loggedInUser", "");
-  window.location.href = "Login.html";
-});

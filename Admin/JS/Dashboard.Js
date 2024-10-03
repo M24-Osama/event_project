@@ -1,3 +1,7 @@
+if (localStorage.getItem("loggedInUser") == "") {
+  event.preventDefault();
+  window.location.href = "Login.html";
+}
 let logOut = document.getElementById("logOut");
 logOut.addEventListener("click", () => {
   localStorage.setItem("loggedInUser", "");

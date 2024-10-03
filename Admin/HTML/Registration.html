@@ -307,7 +307,7 @@
 
           if (isValid) {
             const existingData =
-              JSON.parse(localStorage.getItem("events")) || [];
+              JSON.parse(localStorage.getItem("adminData")) || [];
 
             if (existingData.some((user) => user.email === email)) {
               document.getElementById("email-error").innerText =
@@ -325,7 +325,7 @@
 
             let existingData;
             try {
-              existingData = JSON.parse(localStorage.getItem("events"));
+              existingData = JSON.parse(localStorage.getItem("adminData"));
             } catch (e) {
               existingData = [];
             }
@@ -336,7 +336,7 @@
 
             existingData.push(userData);
 
-            localStorage.setItem("events", JSON.stringify(existingData));
+            localStorage.setItem("adminData", JSON.stringify(existingData));
             swal({
               title: "Success!",
               text: "Your action was completed successfully!",
