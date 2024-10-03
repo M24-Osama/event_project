@@ -33,12 +33,12 @@
         height: 100vh;
         width: 250px;
         position: fixed;
-        z-index: 1;
+        z-index: 3;
         top: 0;
         left: 0;
         background-color: #c0edff;
         overflow-x: hidden;
-        padding-top: 60px;
+        padding-top: 80px;
       }
       .sidebar a {
         padding: 10px 15px;
@@ -48,7 +48,20 @@
         display: block;
         z-index: 999;
       }
+      .sidebar p {
+        padding: 10px 15px;
+        text-decoration: none;
+        font-size: 18px;
+        color: #2d9bf0;
+        display: block;
+        z-index: 999;
+        border-bottom: 1px solid #2d9bf0;
+      }
       .sidebar a:hover {
+        background-color: #2d9bf0;
+        color: white;
+      }
+      .sidebar .active {
         background-color: #2d9bf0;
         color: white;
       }
@@ -64,7 +77,6 @@
       .topnav {
         position: fixed;
         top: 0;
-        left: 90px;
         right: 0;
         z-index: 2;
       }
@@ -93,32 +105,30 @@
     </style>
   </head>
   <body>
-    <nav>
-      <div class="topnav" id="myTopnav">
-        <a href=""><img src="../image/Logonav.png" /></a>
-        <div class="div1">
-          <p>Dashboard</p>
-          <a id="logOut">Log out</a>
-        </div>
-      </div>
-    </nav>
-
     <div class="sidebar">
-      <a href="dashboard.html">Dashboard</a>
-      <a href="admin_messages.html">Admin Messages</a>
-      <a href="events.html">Events</a>
-      <a href="users.html">Users</a>
+      <p>Dashboard</p>
+      <a class="active" href="dashboard.html">Events</a>
+      <a href="admin_messages.html">Admin</a>
+      <a href="Messages.Html">Messages</a>
+      <a href="../../Users/homePage/Home.Html">Users</a>
     </div>
 
     <div class="page">
       <div class="container">
-        <div class="btn">
-          <a href="Registration.html">Add Admin </a>
-        </div>
+        <nav>
+          <div class="topnav" id="myTopnav">
+            <a href=""><img src="../image/Logonav.png" /></a>
+            <div class="div1">
+              <p>Events</p>
+            </div>
+            <div>
+              <a id="logOut">Log out</a>
+            </div>
+          </div>
+        </nav>
         <div id="showPopupBtn" class="btn">
           <span>Add Event </span>
         </div>
-
         <div id="eventPopup" class="popup-container">
           <div class="popup-content">
             <span id="closePopupBtn" class="close-btn">&times;</span>
@@ -282,7 +292,6 @@
           ></div>
         </div>
       </div>
-      <br />
       <br />
       <div class="table">
         <table id="tableEvent">
