@@ -1,6 +1,6 @@
-// Retrieve adminData from localStorage
-const adminData = JSON.parse(localStorage.getItem("adminData")) || [];
-const adminDataContainers = document.querySelectorAll(".adminData-container");
+// Retrieve events from localStorage
+const events = JSON.parse(localStorage.getItem("events")) || [];
+const eventsContainers = document.querySelectorAll(".events-container");
 const searchInput = document.getElementById("search");
 const links = document.querySelectorAll(".pagination ul li.link");
 let currentValue = 1;
@@ -12,7 +12,7 @@ function createEventCard(event) {
   const card = document.createElement("div");
   card.className = "card";
   card.innerHTML = `
-           <a href="../adminDataDetails/index.html?title=${encodeURIComponent(
+           <a href="../eventsDetails/index.html?title=${encodeURIComponent(
              event.title
            )}&img=${encodeURIComponent(i)}&desc=${encodeURIComponent(
     event.description
@@ -42,19 +42,19 @@ function createEventCard(event) {
 
 // Function to distribute event cards into containers
 function distributeCards() {
-  adminDataContainers.forEach((container) => (container.innerHTML = ""));
-  for (let i = 0; i < adminData.length; i++) {
+  eventsContainers.forEach((container) => (container.innerHTML = ""));
+  for (let i = 0; i < events.length; i++) {
     const containerIndex = Math.floor(i / cardsPerPage);
-    if (containerIndex < adminDataContainers.length) {
-      const card = createEventCard(adminData[i]);
-      adminDataContainers[containerIndex].appendChild(card);
+    if (containerIndex < eventsContainers.length) {
+      const card = createEventCard(events[i]);
+      eventsContainers[containerIndex].appendChild(card);
     }
   }
 }
 
 // Function to show the current container
 function updateVisibleContainer() {
-  adminDataContainers.forEach((container, index) => {
+  eventsContainers.forEach((container, index) => {
     container.style.display = index === currentValue - 1 ? "grid" : "none";
   });
 }

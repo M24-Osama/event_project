@@ -11,11 +11,10 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
     <style>
-       @import url('https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&display=swap");
 
-  
-body {
-  font-family: "Playwrite DE Grund", cursive;
+      body {
+        font-family: "Playwrite DE Grund", cursive;
         background: linear-gradient(90deg, #a7def2, #1fa0e1);
         display: flex;
         justify-content: center;
@@ -194,7 +193,7 @@ body {
         </div>
 
         <div class="form-section">
-          <h1 style="color: #2d9bf0;">Join as Admin!</h1>
+          <h1 style="color: #2d9bf0">Join as Admin!</h1>
           <form id="registration-form">
             <div class="input-group">
               <span class="input-icon fa fa-user"></span>
@@ -308,7 +307,7 @@ body {
 
           if (isValid) {
             const existingData =
-              JSON.parse(localStorage.getItem("adminData")) || [];
+              JSON.parse(localStorage.getItem("events")) || [];
 
             if (existingData.some((user) => user.email === email)) {
               document.getElementById("email-error").innerText =
@@ -326,7 +325,7 @@ body {
 
             let existingData;
             try {
-              existingData = JSON.parse(localStorage.getItem("adminData"));
+              existingData = JSON.parse(localStorage.getItem("events"));
             } catch (e) {
               existingData = [];
             }
@@ -337,7 +336,7 @@ body {
 
             existingData.push(userData);
 
-            localStorage.setItem("adminData", JSON.stringify(existingData));
+            localStorage.setItem("events", JSON.stringify(existingData));
             swal({
               title: "Success!",
               text: "Your action was completed successfully!",
