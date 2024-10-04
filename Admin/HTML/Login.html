@@ -183,8 +183,18 @@
         </div>
       </div>
     </div>
-
+    <!-- <script src="sweetalert2.all.min.js"></script> -->
     <script>
+      
+      const script = document.createElement("script");
+
+// Set the source to the SweetAlert CDN
+       script.src = "https://unpkg.com/sweetalert/dist/sweetalert.min.js";
+       document.head.appendChild(script);
+       script.onload = () => {
+  console.log("SweetAlert script has been loaded.");
+};
+
       document
         .getElementById("loginForm")
         .addEventListener("submit", function (event) {
@@ -201,9 +211,10 @@
             localStorage.setItem("loggedInUser", JSON.stringify(matchingUser));
             window.location.href = "Dashboard.html";
           } else {
-            alert("Invalid email or password. Please try again.");
+            swal("Error", "Wrong email or password, please try again!", "error");
           }
         });
     </script>
+    
   </body>
 </html>
